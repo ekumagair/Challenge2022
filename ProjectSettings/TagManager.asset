@@ -30,6 +30,7 @@ TagManager:
   - CoverPoint
   - Interactable
   - AIAction
+  - TriggerDano
   layers:
   - Default
   - TransparentFX
