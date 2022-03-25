@@ -1289,7 +1289,7 @@ GameObject:
   - component: {fileID: 8216018468423162407}
   - component: {fileID: 8328036874784387465}
   m_Layer: 9
-  m_Name: Cavaleiro
+  m_Name: Gladiador
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1304,7 +1304,7 @@ Transform:
   m_GameObject: {fileID: 8329258053292303919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
   m_Children:
   - {fileID: 8323626785002749559}
   - {fileID: 8323252233360539821}
@@ -1345,12 +1345,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 4
   _isDead: 0
   _currentHealth: 0
   isImmortal: 0
   fillHealthOnStart: 1
-  maxHealth: 50
+  maxHealth: 200
   healthRecovery: 0
   healthRecoveryDelay: 0
   currentHealthRecoveryDelay: 0
@@ -1402,12 +1402,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   headDetect: 0.95
-  patrolSpeed: 0.5
-  wanderSpeed: 0.5
-  chaseSpeed: 1
-  strafeSpeed: 1
+  patrolSpeed: 0.25
+  wanderSpeed: 0.25
+  chaseSpeed: 0.5
+  strafeSpeed: 0.5
   strafeSideways: 1
-  strafeBackward: 1
+  strafeBackward: 0
   strafeDistance: 3
   minStrafeSwape: 2
   maxStrafeSwape: 5
@@ -1433,17 +1433,17 @@ MonoBehaviour:
   displayGizmos: 0
   passiveToDamage: 0
   agressiveAtFirstSight: 1
-  attackRotationSpeed: 0.6
-  firstAttackDelay: 0
-  minTimeToAttack: 4
-  maxTimeToAttack: 6
-  maxAttackCount: 2
+  attackRotationSpeed: 0.3
+  firstAttackDelay: 1
+  minTimeToAttack: 3
+  maxTimeToAttack: 4
+  maxAttackCount: 1
   randomAttackCount: 1
-  chanceToRoll: 0.1
-  chanceToBlockInStrafe: 0.1
+  chanceToRoll: 0
+  chanceToBlockInStrafe: 0.03
   chanceToBlockAttack: 0
-  raiseShield: 4
-  lowerShield: 2
+  raiseShield: 2
+  lowerShield: 1
   distanceToChangeWaypoint: 1
   patrollingStopDistance: 0.5
   patrolWithoutAreaStyle: 2
@@ -1583,7 +1583,7 @@ MonoBehaviour:
     attackObject: {fileID: 8217696065682512601}
     isHuman: 1
   defaultDamage:
-    damageValue: 10
+    damageValue: 30
     staminaBlockCost: 5
     staminaRecoveryDelay: 1
     ignoreDefense: 0
@@ -1617,11 +1617,11 @@ MonoBehaviour:
   onEquipWeapon:
     m_PersistentCalls:
       m_Calls: []
-  defaultAttackDistance: 1
-  defaultStaminaCost: 20
+  defaultAttackDistance: 2
+  defaultStaminaCost: 25
   defaultStaminaRecoveryDelay: 1
-  defaultDefenseRate: 50
-  defaultDefenseRange: 90
+  defaultDefenseRate: 20
+  defaultDefenseRange: 40
 --- !u!114 &8328036874784387465
 MonoBehaviour:
   m_ObjectHideFlags: 0
