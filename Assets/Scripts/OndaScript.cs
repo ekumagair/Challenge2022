@@ -5,6 +5,7 @@ using UnityEngine;
 public class OndaScript : MonoBehaviour
 {
     public float delay;
+    public bool esperarInimigosMortos = false;
     public GameObject inimigo;
     public Transform[] local;
     public int quantos = 1;
@@ -12,6 +13,21 @@ public class OndaScript : MonoBehaviour
 
     private void Awake()
     {
+        StartCoroutine(EsperarInimigos());
+    }
+
+    IEnumerator EsperarInimigos()
+    {
+        if (esperarInimigosMortos == true)
+        {
+            yield return new WaitForSeconds(delay);
+
+            while (StaticClass.inimigosVivos > 0)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
         StartCoroutine(Criar());
     }
 

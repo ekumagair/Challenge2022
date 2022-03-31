@@ -31,7 +31,7 @@ namespace Invector.vMelee
             meleeManager = GetComponent<vMeleeManager>();
             if (controlDisplayPrefab)
             {
-                currentDisplay = Instantiate(controlDisplayPrefab);
+                //currentDisplay = Instantiate(controlDisplayPrefab);
             }
         }
 

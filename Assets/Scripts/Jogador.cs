@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Jogador : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Jogador : MonoBehaviour
     public int armaEquipada;
     public bool[] armasDisponiveis;
     public GameObject[] armasModelos;
+    public Image[] armasEspacos;
 
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
@@ -31,12 +33,12 @@ public class Jogador : MonoBehaviour
 
         if (armaEquipada == 0)
         {
-            arma.defaultDamage.damageValue = 10;
+            arma.defaultDamage.damageValue = 20;
             arma.defaultStaminaCost = 5;
         }
         else if (armaEquipada == 1)
         {
-            arma.defaultDamage.damageValue = 25;
+            arma.defaultDamage.damageValue = 40;
             arma.defaultStaminaCost = 20;
         }
 
@@ -45,17 +47,19 @@ public class Jogador : MonoBehaviour
             if(i != armaEquipada)
             {
                 armasModelos[i].SetActive(false);
+                armasEspacos[i].color = new Color32(150, 150, 150, 200);
             }
             else
             {
                 armasModelos[i].SetActive(true);
+                armasEspacos[i].color = new Color32(255, 255, 0, 200);
             }
         }
     }
 
     public void CriarSplashEspada()
     {
-        Instantiate(splashEspada, transform.position + transform.forward, transform.rotation);
+        Instantiate(splashEspada, transform.position + (transform.forward * 1.5f), transform.rotation);
     }
 
     private void OnTriggerEnter(Collider other)

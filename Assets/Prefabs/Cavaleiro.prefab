@@ -1288,6 +1288,7 @@ GameObject:
   - component: {fileID: 8217680984085026511}
   - component: {fileID: 8216018468423162407}
   - component: {fileID: 8328036874784387465}
+  - component: {fileID: 8093031007304398478}
   m_Layer: 9
   m_Name: Cavaleiro
   m_TagString: Enemy
@@ -1345,7 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 3
+  selectedToolbar: 0
   _isDead: 0
   _currentHealth: 0
   isImmortal: 0
@@ -1434,12 +1435,12 @@ MonoBehaviour:
   passiveToDamage: 0
   agressiveAtFirstSight: 1
   attackRotationSpeed: 0.9
-  firstAttackDelay: 0
+  firstAttackDelay: 1
   minTimeToAttack: 2
   maxTimeToAttack: 3
   maxAttackCount: 2
   randomAttackCount: 1
-  chanceToRoll: 0.1
+  chanceToRoll: 0.2
   chanceToBlockInStrafe: 0.1
   chanceToBlockAttack: 0
   raiseShield: 4
@@ -1624,6 +1625,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e611dbd4fdeacb14581bc5c963268305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8093031007304398478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8329258053292303919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d65c6c4769fbba4d9dbafaa040e0550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 6020708913455267028, guid: 1887d2cb5318b83428143721d6141956, type: 3}
+  chance: 4
 --- !u!1 &8329270424867627701
 GameObject:
   m_ObjectHideFlags: 0

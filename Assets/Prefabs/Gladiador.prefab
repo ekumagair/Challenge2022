@@ -1435,9 +1435,9 @@ MonoBehaviour:
   passiveToDamage: 0
   agressiveAtFirstSight: 1
   attackRotationSpeed: 0.3
-  firstAttackDelay: 1
+  firstAttackDelay: 1.5
   minTimeToAttack: 3
-  maxTimeToAttack: 4
+  maxTimeToAttack: 5
   maxAttackCount: 1
   randomAttackCount: 1
   chanceToRoll: 0
@@ -1638,6 +1638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 6020708913455267028, guid: f8a2fa9aaf58b1d41829d4e841b726ec, type: 3}
+  chance: 1
 --- !u!1 &8329270424867627701
 GameObject:
   m_ObjectHideFlags: 0
