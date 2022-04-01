@@ -1346,7 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 6
   _isDead: 0
   _currentHealth: 0
   isImmortal: 0
@@ -1460,8 +1460,8 @@ MonoBehaviour:
   canSeeTarget: 0
   actions: 0
   stateRoutineIteration: 0.15
-  destinationRoutineIteration: 0.25
-  findTargetIteration: 0.25
+  destinationRoutineIteration: 0.1
+  findTargetIteration: 0.1
   smoothSpeed: 5
   onIdle:
     m_PersistentCalls:

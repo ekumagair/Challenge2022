@@ -33,7 +33,10 @@ public class OndaScript : MonoBehaviour
 
     IEnumerator Criar()
     {
-        yield return new WaitForSeconds(delay);
+        if (esperarInimigosMortos == false)
+        {
+            yield return new WaitForSeconds(delay);
+        }
 
         int escolha = Random.Range(0, local.Length);
 
