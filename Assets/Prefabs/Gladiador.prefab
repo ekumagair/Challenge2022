@@ -1346,7 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 6
+  selectedToolbar: 2
   _isDead: 0
   _currentHealth: 0
   isImmortal: 0
@@ -1403,8 +1403,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   headDetect: 0.95
-  patrolSpeed: 0.25
-  wanderSpeed: 0.25
+  patrolSpeed: 0.3
+  wanderSpeed: 0.3
   chaseSpeed: 0.5
   strafeSpeed: 0.5
   strafeSideways: 1

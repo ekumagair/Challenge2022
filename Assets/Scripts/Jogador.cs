@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Jogador : MonoBehaviour
 {
@@ -14,10 +15,15 @@ public class Jogador : MonoBehaviour
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
 
+    int cenaAtual;
+
     private void Start()
     {
+        cenaAtual = SceneManager.GetActiveScene().buildIndex;
         arma = GetComponent<Invector.vMelee.vMeleeManager>();
         vida = GetComponent<Invector.vHealthController>();
+        StaticClass.ondasPassadas = 0;
+        StaticClass.inimigosVivos = 0;
     }
 
     private void Update()
@@ -54,6 +60,13 @@ public class Jogador : MonoBehaviour
                 armasModelos[i].SetActive(true);
                 armasEspacos[i].color = new Color32(255, 255, 0, 200);
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            StaticClass.ondasPassadas = 0;
+            StaticClass.inimigosVivos = 0;
+            SceneManager.LoadScene(cenaAtual);
         }
     }
 

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class OndaScript : MonoBehaviour
 {
-    public float delay;
+    public float delayInicial = 1f;
+    public float delayRepetir = 1f;
+    public int esperarOndas = 0;
     public bool esperarInimigosMortos = false;
     public GameObject inimigo;
     public Transform[] local;
@@ -18,14 +20,26 @@ public class OndaScript : MonoBehaviour
 
     IEnumerator EsperarInimigos()
     {
+        if (esperarOndas > 0)
+        {
+            while (StaticClass.ondasPassadas < esperarOndas)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
         if (esperarInimigosMortos == true)
         {
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(delayInicial);
 
             while (StaticClass.inimigosVivos > 0)
             {
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(1f);
             }
+        }
+        else
+        {
+            yield return new WaitForSeconds(delayInicial);
         }
 
         StartCoroutine(Criar());
@@ -33,10 +47,6 @@ public class OndaScript : MonoBehaviour
 
     IEnumerator Criar()
     {
-        if (esperarInimigosMortos == false)
-        {
-            yield return new WaitForSeconds(delay);
-        }
 
         int escolha = Random.Range(0, local.Length);
 
@@ -49,10 +59,12 @@ public class OndaScript : MonoBehaviour
 
         if(repetir > 0)
         {
+            yield return new WaitForSeconds(delayRepetir);
             StartCoroutine(Criar());
         }
         else
         {
+            StaticClass.ondasPassadas++;
             Destroy(gameObject);
         }
     }
