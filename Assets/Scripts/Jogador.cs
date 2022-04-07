@@ -62,11 +62,23 @@ public class Jogador : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.Comma))
+        {
+            StaticClass.faseAtual--;
+        }
+        if (Input.GetKeyDown(KeyCode.Period))
+        {
+            StaticClass.faseAtual++;
+        }
+        if (Input.GetKeyDown(KeyCode.R))
         {
             StaticClass.ondasPassadas = 0;
             StaticClass.inimigosVivos = 0;
             SceneManager.LoadScene(cenaAtual);
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
 
