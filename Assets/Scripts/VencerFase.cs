@@ -34,8 +34,16 @@ public class VencerFase : MonoBehaviour
         StaticClass.estadoDeJogo = 1;
         Cursor.lockState = CursorLockMode.None;
 
-        Destroy(jogadorInput);
+        DesativarInputs();
 
         Debug.Log("Venceu a fase");
+    }
+
+    public void DesativarInputs()
+    {
+        if (jogadorInput != null)
+        {
+            Destroy(jogadorInput);
+        }
     }
 }

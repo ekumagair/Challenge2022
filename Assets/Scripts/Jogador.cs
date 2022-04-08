@@ -7,25 +7,20 @@ using UnityEngine.SceneManagement;
 public class Jogador : MonoBehaviour
 {
     public GameObject splashEspada;
+    public GameObject splashMachado;
     public int armaEquipada;
     public bool[] armasDisponiveis;
     public GameObject[] armasModelos;
     public Image[] armasEspacos;
 
-    public GameObject menuContinuar;
-    public GameObject menuPerdeu;
-
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
-
-    int cenaAtual;
+    public Invector.vCamera.vThirdPersonCamera cameraThirdPerson;
 
     private void Start()
     {
-        cenaAtual = SceneManager.GetActiveScene().buildIndex;
         arma = GetComponent<Invector.vMelee.vMeleeManager>();
         vida = GetComponent<Invector.vHealthController>();
-        ReiniciarVariaveis();
     }
 
     private void Update()
@@ -48,8 +43,8 @@ public class Jogador : MonoBehaviour
             }
             else if (armaEquipada == 1)
             {
-                arma.defaultDamage.damageValue = 40;
-                arma.defaultStaminaCost = 20;
+                arma.defaultDamage.damageValue = 45;
+                arma.defaultStaminaCost = 25;
             }
 
             for (int i = 0; i < armasModelos.Length; i++)
@@ -66,24 +61,6 @@ public class Jogador : MonoBehaviour
                 }
             }
         }
-        
-        if(StaticClass.estadoDeJogo == 1)
-        {
-            menuContinuar.SetActive(true);
-        }
-        else
-        {
-            menuContinuar.SetActive(false);
-        }
-
-        if (StaticClass.estadoDeJogo == -1)
-        {
-            menuPerdeu.SetActive(true);
-        }
-        else
-        {
-            menuPerdeu.SetActive(false);
-        }
 
         if (Input.GetKeyDown(KeyCode.Comma))
         {
@@ -93,53 +70,23 @@ public class Jogador : MonoBehaviour
         {
             StaticClass.faseAtual++;
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ReiniciarCena();
-        }
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
     }
 
     public void CriarSplashEspada()
     {
-        Instantiate(splashEspada, transform.position + (transform.forward * 1.5f), transform.rotation);
-    }
-
-    public void MudarEstadoDeJogo(int e)
-    {
-        StaticClass.estadoDeJogo = e;
-
-        if(StaticClass.estadoDeJogo == 0)
+        if (armaEquipada == 0)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Instantiate(splashEspada, transform.position + (transform.forward * 1.5f), transform.rotation);
         }
-        else
+        else if (armaEquipada == 1)
         {
-            Cursor.lockState = CursorLockMode.None;
+            Instantiate(splashMachado, transform.position + (transform.forward * 1.75f), transform.rotation);
         }
     }
 
-    public void Continuar()
+    public void DestruirCamera()
     {
-        StaticClass.faseAtual++;
-        ReiniciarVariaveis();
-        SceneManager.LoadScene(cenaAtual);
-    }
-
-    public void ReiniciarVariaveis()
-    {
-        StaticClass.estadoDeJogo = 0;
-        StaticClass.ondasPassadas = 0;
-        StaticClass.inimigosVivos = 0;
-    }
-
-    public void ReiniciarCena()
-    {
-        ReiniciarVariaveis();
-        SceneManager.LoadScene(cenaAtual);
+        Destroy(cameraThirdPerson);
     }
 
     private void OnTriggerEnter(Collider other)
