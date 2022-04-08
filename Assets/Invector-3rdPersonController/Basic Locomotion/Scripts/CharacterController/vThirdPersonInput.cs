@@ -712,7 +712,7 @@ namespace Invector.vCharacterController
                 var receiver = animatorMoves[i];
                 animatorMoveEvent += () =>
                 {
-                    if (receiver.enabled)
+                    if (receiver.enabled && StaticClass.estadoDeJogo == 0)
                     {
                         receiver.OnAnimatorMoveEvent();
                     }
@@ -727,7 +727,10 @@ namespace Invector.vCharacterController
 
         private void OnAnimatorMove()
         {
-            animatorMoveEvent?.Invoke();
+            if (StaticClass.estadoDeJogo == 0)
+            {
+                animatorMoveEvent?.Invoke();
+            }
         }
     }
 }
