@@ -12,6 +12,9 @@ public class Jogador : MonoBehaviour
     public GameObject[] armasModelos;
     public Image[] armasEspacos;
 
+    public GameObject menuContinuar;
+    public GameObject menuPerdeu;
+
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
 
@@ -22,47 +25,67 @@ public class Jogador : MonoBehaviour
         cenaAtual = SceneManager.GetActiveScene().buildIndex;
         arma = GetComponent<Invector.vMelee.vMeleeManager>();
         vida = GetComponent<Invector.vHealthController>();
-        StaticClass.ondasPassadas = 0;
-        StaticClass.inimigosVivos = 0;
+        ReiniciarVariaveis();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1) && armasDisponiveis[0] == true)
+        if (StaticClass.estadoDeJogo == 0)
         {
-            armaEquipada = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[1] == true)
-        {
-            armaEquipada = 1;
-        }
-
-        if (armaEquipada == 0)
-        {
-            arma.defaultDamage.damageValue = 20;
-            arma.defaultStaminaCost = 5;
-        }
-        else if (armaEquipada == 1)
-        {
-            arma.defaultDamage.damageValue = 40;
-            arma.defaultStaminaCost = 20;
-        }
-
-        for (int i = 0; i < armasModelos.Length; i++)
-        {
-            if(i != armaEquipada)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && armasDisponiveis[0] == true)
             {
-                armasModelos[i].SetActive(false);
-                armasEspacos[i].color = new Color32(150, 150, 150, 200);
+                armaEquipada = 0;
             }
-            else
+            if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[1] == true)
             {
-                armasModelos[i].SetActive(true);
-                armasEspacos[i].color = new Color32(255, 255, 0, 200);
+                armaEquipada = 1;
+            }
+
+            if (armaEquipada == 0)
+            {
+                arma.defaultDamage.damageValue = 20;
+                arma.defaultStaminaCost = 5;
+            }
+            else if (armaEquipada == 1)
+            {
+                arma.defaultDamage.damageValue = 40;
+                arma.defaultStaminaCost = 20;
+            }
+
+            for (int i = 0; i < armasModelos.Length; i++)
+            {
+                if (i != armaEquipada)
+                {
+                    armasModelos[i].SetActive(false);
+                    armasEspacos[i].color = new Color32(150, 150, 150, 200);
+                }
+                else
+                {
+                    armasModelos[i].SetActive(true);
+                    armasEspacos[i].color = new Color32(255, 255, 0, 200);
+                }
             }
         }
+        
+        if(StaticClass.estadoDeJogo == 1)
+        {
+            menuContinuar.SetActive(true);
+        }
+        else
+        {
+            menuContinuar.SetActive(false);
+        }
 
-        if(Input.GetKeyDown(KeyCode.Comma))
+        if (StaticClass.estadoDeJogo == -1)
+        {
+            menuPerdeu.SetActive(true);
+        }
+        else
+        {
+            menuPerdeu.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Comma))
         {
             StaticClass.faseAtual--;
         }
@@ -72,9 +95,7 @@ public class Jogador : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            StaticClass.ondasPassadas = 0;
-            StaticClass.inimigosVivos = 0;
-            SceneManager.LoadScene(cenaAtual);
+            ReiniciarCena();
         }
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -85,6 +106,40 @@ public class Jogador : MonoBehaviour
     public void CriarSplashEspada()
     {
         Instantiate(splashEspada, transform.position + (transform.forward * 1.5f), transform.rotation);
+    }
+
+    public void MudarEstadoDeJogo(int e)
+    {
+        StaticClass.estadoDeJogo = e;
+
+        if(StaticClass.estadoDeJogo == 0)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    public void Continuar()
+    {
+        StaticClass.faseAtual++;
+        ReiniciarVariaveis();
+        SceneManager.LoadScene(cenaAtual);
+    }
+
+    public void ReiniciarVariaveis()
+    {
+        StaticClass.estadoDeJogo = 0;
+        StaticClass.ondasPassadas = 0;
+        StaticClass.inimigosVivos = 0;
+    }
+
+    public void ReiniciarCena()
+    {
+        ReiniciarVariaveis();
+        SceneManager.LoadScene(cenaAtual);
     }
 
     private void OnTriggerEnter(Collider other)
