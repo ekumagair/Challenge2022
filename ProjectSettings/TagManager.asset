@@ -32,6 +32,7 @@ TagManager:
   - AIAction
   - TriggerDano
   - Coletar
+  - Destino
   layers:
   - Default
   - TransparentFX

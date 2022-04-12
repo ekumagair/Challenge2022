@@ -61,15 +61,6 @@ public class Jogador : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Comma))
-        {
-            StaticClass.faseAtual--;
-        }
-        if (Input.GetKeyDown(KeyCode.Period))
-        {
-            StaticClass.faseAtual++;
-        }
     }
 
     public void CriarSplashEspada()
