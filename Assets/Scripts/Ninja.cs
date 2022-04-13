@@ -53,7 +53,7 @@ public class Ninja : MonoBehaviour
                     StartCoroutine(Atacar());
                 }
             }
-
+            /*
             transform.LookAt(destino.transform.position);
 
             Vector3 resetar = transform.rotation.eulerAngles;
@@ -61,6 +61,12 @@ public class Ninja : MonoBehaviour
             resetar.z = 0;
 
             transform.rotation = Quaternion.Euler(resetar);
+            */
+
+            Vector3 dir = destino.transform.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 3f).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
         }
     }
 

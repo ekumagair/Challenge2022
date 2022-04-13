@@ -105,9 +105,10 @@ namespace Invector.vCharacterController
                 return;
             }
 
-            if (weakAttackInput.GetButtonDown() && MeleeAttackStaminaConditions())
+            if (weakAttackInput.GetButtonDown() && MeleeAttackStaminaConditions() && Jogador.armaDelay < 0.6f)
             {
                 TriggerWeakAttack();
+                Jogador.armaDelay = 1f;
             }
         }
 
@@ -174,6 +175,8 @@ namespace Invector.vCharacterController
             return result >= 0;
         }
 
+
+        // PODE ATACAR OU NÃO
         protected virtual bool MeleeAttackConditions()
         {
             if (meleeManager == null)
@@ -181,7 +184,7 @@ namespace Invector.vCharacterController
                 meleeManager = GetComponent<vMeleeManager>();
             }
 
-            return meleeManager != null && cc.isGrounded && !cc.customAction && !cc.isJumping && !cc.isCrouching && !cc.isRolling && !isEquipping && !cc.animator.IsInTransition(cc.baseLayer);
+            return meleeManager != null && cc.isGrounded && !cc.customAction && !cc.isJumping && !cc.isCrouching && !cc.isRolling && !isEquipping && !cc.animator.IsInTransition(cc.baseLayer) && Jogador.armaEquipada != 2;
         }
 
         protected override bool JumpConditions()

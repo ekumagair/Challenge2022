@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31b633d56ecd214ab45ecb73ee1920d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desbloquearArma: -1
-  recuperarVida: 25
+  desbloquearArma: 2
+  recuperarVida: 0
 --- !u!1 &8451110408551441270
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,6 +41,7 @@ public class Samurai : MonoBehaviour
                 agente.destination = transform.position;
             }
 
+            /*
             transform.LookAt(alvo.transform.position);
 
             Vector3 resetar = transform.rotation.eulerAngles;
@@ -48,6 +49,12 @@ public class Samurai : MonoBehaviour
             resetar.z = 0;
 
             transform.rotation = Quaternion.Euler(resetar);
+            */
+
+            Vector3 dir = alvo.transform.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 4f).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
             tempoAteAtacar -= Time.deltaTime;
 
