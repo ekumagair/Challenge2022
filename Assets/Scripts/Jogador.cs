@@ -14,8 +14,11 @@ public class Jogador : MonoBehaviour
     public int[] armasQuantidade;
     public GameObject[] armasModelos;
 
-    public Image[] armasEspacos;
+    //public Image[] armasEspacos;
     public Text[] armasQuantidadeTexto;
+    public Image inventarioUnicoFundo;
+    public Sprite[] inventarioUnicoSprites;
+    public Image[] inventarioIcones;
 
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
@@ -89,7 +92,7 @@ public class Jogador : MonoBehaviour
                     {
                         armasModelos[i].SetActive(false);
                     }
-                    armasEspacos[i].color = new Color32(150, 150, 150, 200);
+                    //armasEspacos[i].color = new Color32(150, 150, 150, 200);
                 }
                 else
                 {
@@ -97,7 +100,7 @@ public class Jogador : MonoBehaviour
                     {
                         armasModelos[i].SetActive(true);
                     }
-                    armasEspacos[i].color = new Color32(255, 255, 0, 200);
+                    //armasEspacos[i].color = new Color32(255, 255, 0, 200);
                 }
 
                 if(armasQuantidadeTexto != null && i == 2)
@@ -108,11 +111,20 @@ public class Jogador : MonoBehaviour
                 if(armasQuantidade[i] > 0)
                 {
                     armasDisponiveis[i] = true;
+                    inventarioIcones[i].enabled = true;
                 }
                 else
                 {
                     armasDisponiveis[i] = false;
+                    inventarioIcones[i].enabled = false;
                 }
+            }
+
+            inventarioUnicoFundo.sprite = inventarioUnicoSprites[armaEquipada];
+
+            if(armaEquipada == 2 && Input.GetMouseButton(0))
+            {
+                inventarioUnicoFundo.sprite = inventarioUnicoSprites[3];
             }
 
             if(armaDelay > 0)
