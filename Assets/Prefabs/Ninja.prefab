@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1413438260738966761}
   - component: {fileID: 1413438260738966551}
   - component: {fileID: 1996276460166526549}
+  - component: {fileID: 6380732129230132416}
   m_Layer: 9
   m_Name: Ninja
   m_TagString: Enemy
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 1
   _isDead: 0
   _currentHealth: 30
   isImmortal: 0
@@ -75,6 +76,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6380732129230132416}
+        m_TargetAssemblyTypeName: Personagem, Assembly-CSharp
+        m_MethodName: CriarParticulaDano
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -178,8 +191,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destruirAoMorrer: 1
   projetil: {fileID: 8462342364657874864, guid: ed7c9584f6f4f4b48b426fc5b0e45c05, type: 3}
+  meshDefaultMat:
+  - {fileID: 0}
+  - {fileID: 0}
+  mesh:
+  - {fileID: 1413438261169200652}
+  - {fileID: 1413438261799121739}
+  materialInvisivel: {fileID: 2100000, guid: f695ad58bd7fa1c4f80595adde6e57e2, type: 2}
   destino: {fileID: 0}
   destinos: []
+--- !u!114 &6380732129230132416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413438260738966762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf3c81fd6fac9d45b394236391f9b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jogador: 0
+  particulaDano: {fileID: 309877448753314056, guid: 96b9324030163834d94a85b88b4bead1, type: 3}
 --- !u!1 &1413438261169200654
 GameObject:
   m_ObjectHideFlags: 0
