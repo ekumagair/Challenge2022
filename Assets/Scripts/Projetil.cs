@@ -7,6 +7,7 @@ public class Projetil : MonoBehaviour
     public float velocidade = 1;
     public string ignorar = "";
     public int dano = 20;
+    public GameObject efeitoImpacto;
 
     void Update()
     {
@@ -20,6 +21,11 @@ public class Projetil : MonoBehaviour
             if(collision.gameObject.GetComponent<Invector.vHealthController>() != null)
             {
                 collision.gameObject.GetComponent<Invector.vHealthController>().AddHealth(dano * -1);
+            }
+
+            if (efeitoImpacto != null)
+            {
+                Instantiate(efeitoImpacto, transform.position, transform.rotation);
             }
 
             Destroy(gameObject);

@@ -78,6 +78,7 @@ MonoBehaviour:
   velocidade: 12
   ignorar: 
   dano: 20
+  efeitoImpacto: {fileID: 309877448753314056, guid: 9bd1c0d58339fff4b9aa5df32fb35e73, type: 3}
 --- !u!1 &753201467891401665
 GameObject:
   m_ObjectHideFlags: 0

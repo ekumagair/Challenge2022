@@ -128,3 +128,4 @@ MonoBehaviour:
   velocidade: 14
   ignorar: 
   dano: 15
+  efeitoImpacto: {fileID: 309877448753314056, guid: 9bd1c0d58339fff4b9aa5df32fb35e73, type: 3}

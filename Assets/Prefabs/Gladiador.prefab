@@ -1289,6 +1289,7 @@ GameObject:
   - component: {fileID: 8216018468423162407}
   - component: {fileID: 8328036874784387465}
   - component: {fileID: 343406452927132373}
+  - component: {fileID: 7688620220223122287}
   m_Layer: 9
   m_Name: Gladiador
   m_TagString: Enemy
@@ -1346,7 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 7
   _isDead: 0
   _currentHealth: 0
   isImmortal: 0
@@ -1361,7 +1362,19 @@ MonoBehaviour:
       m_Calls: []
   _onReceiveDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7688620220223122287}
+        m_TargetAssemblyTypeName: Personagem, Assembly-CSharp
+        m_MethodName: CriarParticulaDano
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onDead:
     m_PersistentCalls:
       m_Calls: []
@@ -1639,6 +1652,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 6020708913455267028, guid: f8a2fa9aaf58b1d41829d4e841b726ec, type: 3}
   chance: 1
+--- !u!114 &7688620220223122287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8329258053292303919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf3c81fd6fac9d45b394236391f9b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jogador: 0
+  particulaDano: {fileID: 309877448753314056, guid: 96b9324030163834d94a85b88b4bead1, type: 3}
 --- !u!1 &8329270424867627701
 GameObject:
   m_ObjectHideFlags: 0

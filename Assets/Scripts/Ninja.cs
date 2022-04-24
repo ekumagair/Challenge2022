@@ -11,6 +11,12 @@ public class Ninja : MonoBehaviour
     bool atacando = false;
     public GameObject projetil;
 
+    public bool podeFicarInvisivel = true;
+    bool invisivel = false;
+    public Material[] meshDefaultMat;
+    public MeshRenderer[] mesh;
+    public Material materialInvisivel;
+
     public GameObject destino;
     public GameObject[] destinos;
     NavMeshAgent agente;
@@ -20,6 +26,7 @@ public class Ninja : MonoBehaviour
         agente = GetComponent<NavMeshAgent>();
         morto = false;
         atacando = false;
+        invisivel = false;
 
         destinos = GameObject.FindGameObjectsWithTag("Destino");
         destinos[0] = GameObject.FindGameObjectWithTag("Player");
@@ -73,6 +80,21 @@ public class Ninja : MonoBehaviour
     public void EscolherDestino(int min)
     {
         destino = destinos[Random.Range(min, destinos.Length)];
+
+        if(podeFicarInvisivel == true)
+        {
+            if (invisivel == false)
+            {
+                if (Random.Range(0, 2) == 0)
+                {
+                    FicarTransparente();
+                }
+            }
+            else if (meshDefaultMat[0] != null)
+            {
+                FicarOpaco();
+            }
+        }
     }
 
     IEnumerator Atacar()
@@ -99,5 +121,29 @@ public class Ninja : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void FicarTransparente()
+    {
+        int qualMesh = 0;
+
+        foreach (MeshRenderer mr in mesh)
+        {
+            meshDefaultMat[qualMesh] = mr.material;
+            mr.material = materialInvisivel;
+            qualMesh++;
+        }
+
+        invisivel = true;
+    }
+
+    void FicarOpaco()
+    {
+        for (int i = 0; i < mesh.Length; i++)
+        {
+            mesh[i].material = meshDefaultMat[i];
+        }
+
+        invisivel = false;
     }
 }
