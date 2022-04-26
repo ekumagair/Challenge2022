@@ -72,7 +72,7 @@ public class Ninja : MonoBehaviour
 
             Vector3 dir = destino.transform.position - transform.position;
             Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 3f).eulerAngles;
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 4f).eulerAngles;
             transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
         }
     }

@@ -22,12 +22,14 @@ public class Jogador : MonoBehaviour
 
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
+    Animator animator;
     public Invector.vCamera.vThirdPersonCamera cameraThirdPerson;
 
     private void Start()
     {
         arma = GetComponent<Invector.vMelee.vMeleeManager>();
         vida = GetComponent<Invector.vHealthController>();
+        animator = GetComponent<Animator>();
         armaDelay = 0.0f;
     }
 
@@ -121,6 +123,7 @@ public class Jogador : MonoBehaviour
             }
 
             inventarioUnicoFundo.sprite = inventarioUnicoSprites[armaEquipada];
+            animator.SetInteger("ArmaAtual", armaEquipada);
 
             if(armaEquipada == 2 && Input.GetMouseButton(0))
             {
