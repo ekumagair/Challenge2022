@@ -12,16 +12,21 @@ public class Samurai : MonoBehaviour
     bool atacando = false;
     public GameObject projetil;
 
+    bool levandoDano = false;
+
     float distanciaLimite = 5;
     public GameObject alvo;
     NavMeshAgent agente;
+    Animator animator;
 
     void Awake()
     {
         agente = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         alvo = GameObject.FindGameObjectWithTag("Player");
         morto = false;
         atacando = false;
+        levandoDano = false;
 
         ResetarTempoDeAtaque();
         tempoAteAtacar += 2f;
@@ -32,13 +37,30 @@ public class Samurai : MonoBehaviour
     {
         if (morto == false && atacando == false && alvo != null)
         {
-            if (Mathf.Abs(Vector3.Distance(alvo.transform.position, transform.position)) > distanciaLimite)
+            if (Mathf.Abs(Vector3.Distance(alvo.transform.position, transform.position)) > distanciaLimite || levandoDano)
             {
-                agente.destination = alvo.transform.position;
+
+                if (levandoDano == false)
+                {
+                    agente.destination = alvo.transform.position;
+                }
+                else
+                {
+                    agente.destination = transform.forward * -3f;
+                }
             }
             else
             {
                 agente.destination = transform.position;
+            }
+
+            if(agente.velocity.magnitude > 0)
+            {
+                animator.SetBool("Movendo", true);
+            }
+            else
+            {
+                animator.SetBool("Movendo", false);
             }
 
             /*
@@ -66,19 +88,26 @@ public class Samurai : MonoBehaviour
         else
         {
             agente.destination = transform.position;
+            animator.SetBool("Movendo", false);
         }
+
+        animator.SetBool("Morto", morto);
+        animator.SetBool("Fugindo", levandoDano);
     }
 
     IEnumerator Atacar()
     {
         atacando = true;
         ResetarTempoDeAtaque();
+        animator.Play("Fire-Straight");
+
+        yield return new WaitForSeconds(0.4f);
 
         var flecha = Instantiate(projetil, transform.position + transform.up + transform.forward, transform.rotation);
         flecha.GetComponent<Projetil>().ignorar = "Enemy";
         flecha.transform.rotation = transform.rotation;
 
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(0.5f);
 
         atacando = false;
     }
@@ -96,5 +125,26 @@ public class Samurai : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else
+        {
+            Destroy(GetComponent<Collider>());
+            animator.Play("Death");
+        }
+
+        agente.destination = transform.position;
+    }
+
+    public void LevarDano()
+    {
+        animator.Play("BlockBreak");
+        StartCoroutine(LevarDanoCoroutine());
+    }
+
+    IEnumerator LevarDanoCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        levandoDano = true;
+        yield return new WaitForSeconds(3f);
+        levandoDano = false;
     }
 }

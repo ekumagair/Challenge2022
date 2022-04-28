@@ -14,16 +14,18 @@ public class Ninja : MonoBehaviour
     public bool podeFicarInvisivel = true;
     bool invisivel = false;
     public Material[] meshDefaultMat;
-    public MeshRenderer[] mesh;
+    public SkinnedMeshRenderer[] mesh;
     public Material materialInvisivel;
 
     public GameObject destino;
     public GameObject[] destinos;
     NavMeshAgent agente;
+    Animator animator;
 
     void Awake()
     {
         agente = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         morto = false;
         atacando = false;
         invisivel = false;
@@ -40,10 +42,12 @@ public class Ninja : MonoBehaviour
             if (atacando == false)
             {
                 agente.destination = destino.transform.position;
+                animator.SetBool("Movendo", true);
             }
             else
             {
                 agente.destination = transform.position;
+                animator.SetBool("Movendo", false);
             }
 
             if (destino.tag == "Destino")
@@ -75,6 +79,8 @@ public class Ninja : MonoBehaviour
             Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 4f).eulerAngles;
             transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
         }
+
+        animator.SetBool("Morto", morto);
     }
 
     public void EscolherDestino(int min)
@@ -100,6 +106,7 @@ public class Ninja : MonoBehaviour
     IEnumerator Atacar()
     {
         atacando = true;
+        animator.Play("Fire-Straight");
 
         yield return new WaitForSeconds(0.15f);
 
@@ -121,13 +128,20 @@ public class Ninja : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else
+        {
+            Destroy(GetComponent<Collider>());
+            animator.Play("Death");
+        }
+
+        agente.destination = transform.position;
     }
 
     void FicarTransparente()
     {
         int qualMesh = 0;
 
-        foreach (MeshRenderer mr in mesh)
+        foreach (SkinnedMeshRenderer mr in mesh)
         {
             meshDefaultMat[qualMesh] = mr.material;
             mr.material = materialInvisivel;
@@ -145,5 +159,10 @@ public class Ninja : MonoBehaviour
         }
 
         invisivel = false;
+    }
+
+    public void LevarDano()
+    {
+        animator.Play("BlockBreak");
     }
 }

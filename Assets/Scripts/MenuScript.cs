@@ -15,6 +15,6 @@ public class MenuScript : MonoBehaviour
 
     public void IrParaJogo()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Gameplay");
     }
 }

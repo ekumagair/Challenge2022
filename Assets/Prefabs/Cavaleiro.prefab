@@ -5604,7 +5604,7 @@ MonoBehaviour:
   selectedToolbar: 0
   attackObject: {fileID: 0}
   damagePercentage: 100
-  triggerType: 3
+  triggerType: 1
 --- !u!65 &2752066365979943732
 BoxCollider:
   m_ObjectHideFlags: 0
