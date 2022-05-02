@@ -12,4 +12,6 @@ public static class StaticClass
     // 0 = Jogando
     // 1 = Venceu
     // -1 = Perdeu
+
+    public static float sensibilidadeMouse = 8f;
 }

@@ -64,7 +64,8 @@ public class DetectarPerda : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            //Application.Quit();
+            VoltarParaTitulo();
         }
     }
 
@@ -100,5 +101,13 @@ public class DetectarPerda : MonoBehaviour
     {
         ReiniciarVariaveis();
         SceneManager.LoadScene(cenaAtual);
+    }
+
+    public void VoltarParaTitulo()
+    {
+        if (!Input.GetKey(KeyCode.Q))
+        {
+            SceneManager.LoadScene("Titulo");
+        }
     }
 }

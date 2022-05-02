@@ -31,10 +31,15 @@ public class Jogador : MonoBehaviour
         vida = GetComponent<Invector.vHealthController>();
         animator = GetComponent<Animator>();
         armaDelay = 0.0f;
+
+        Debug.Log("Sensibilidade " + cameraThirdPerson.currentState.xMouseSensitivity);
     }
 
     private void Update()
     {
+        cameraThirdPerson.currentState.xMouseSensitivity = StaticClass.sensibilidadeMouse;
+        cameraThirdPerson.currentState.yMouseSensitivity = StaticClass.sensibilidadeMouse;
+
         if (StaticClass.estadoDeJogo == 0)
         {
             if (armaDelay == 0)

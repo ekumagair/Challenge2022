@@ -638,7 +638,7 @@ namespace Invector.vCamera
                 // lock into a target            
                 if (!lockTarget)
                 {
-                    // free rotation 
+                    // free rotation
                     mouseX += x * (vInput.instance.inputDevice == InputDevice.Joystick ? currentState.xMouseSensitivity * joystickSensitivity : currentState.xMouseSensitivity);
                     mouseY -= y * (vInput.instance.inputDevice == InputDevice.Joystick ? currentState.yMouseSensitivity * joystickSensitivity : currentState.yMouseSensitivity);
 
