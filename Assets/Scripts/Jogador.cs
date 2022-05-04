@@ -8,11 +8,14 @@ public class Jogador : MonoBehaviour
 {
     public GameObject splashEspada;
     public GameObject splashMachado;
+    public GameObject splashGiratorio;
     public static int armaEquipada;
     public static float armaDelay = 0.0f;
     public bool[] armasDisponiveis;
     public int[] armasQuantidade;
     public GameObject[] armasModelos;
+
+    bool girando = false;
 
     //public Image[] armasEspacos;
     public Text[] armasQuantidadeTexto;
@@ -31,6 +34,7 @@ public class Jogador : MonoBehaviour
         vida = GetComponent<Invector.vHealthController>();
         animator = GetComponent<Animator>();
         armaDelay = 0.0f;
+        girando = false;
 
         Debug.Log("Sensibilidade " + cameraThirdPerson.currentState.xMouseSensitivity);
     }
@@ -42,7 +46,7 @@ public class Jogador : MonoBehaviour
 
         if (StaticClass.estadoDeJogo == 0)
         {
-            if (armaDelay == 0)
+            if (armaDelay == 0 && girando == false)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1) && armasDisponiveis[0] == true)
                 {
@@ -58,6 +62,10 @@ public class Jogador : MonoBehaviour
                 {
                     armaEquipada = 2;
                     Jogador.armaDelay = 0.2f;
+                }
+                if(Input.GetKeyDown(KeyCode.F))
+                {
+                    StartCoroutine(AtaqueGiratorio());
                 }
 
                 if (armaEquipada == 0)
@@ -197,5 +205,23 @@ public class Jogador : MonoBehaviour
             Destroy(other.transform.parent.gameObject);
             Destroy(other.gameObject);
         }
+    }
+
+    IEnumerator AtaqueGiratorio()
+    {
+        girando = true;
+        Jogador.armaDelay = 1.9f;
+
+        animator.Play("MoveAttack1");
+
+        yield return new WaitForSeconds(0.25f);
+
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(0.25f);
+            Instantiate(splashGiratorio, transform.position, transform.rotation);
+            GetComponent<Invector.vCharacterController.vThirdPersonMotor>().currentStamina *= 0.6f;
+        }
+        girando = false;
     }
 }

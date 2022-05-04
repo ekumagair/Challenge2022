@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
     public Slider sliderMouse;
+    public bool escSair;
 
     private void Start()
     {
@@ -23,7 +24,14 @@ public class MenuScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            if (escSair)
+            {
+                SairDoJogo();
+            }
+            else
+            {
+                IrParaTitulo();
+            }
         }
     }
 
@@ -40,6 +48,11 @@ public class MenuScript : MonoBehaviour
     public void IrParaOpcoes()
     {
         SceneManager.LoadScene("Opcoes");
+    }
+
+    public void SairDoJogo()
+    {
+        Application.Quit();
     }
 
     public void MudarSensitividadeDoMouse()
