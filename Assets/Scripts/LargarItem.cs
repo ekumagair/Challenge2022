@@ -31,11 +31,6 @@ public class LargarItem : MonoBehaviour
             Debug.Log(StaticClass.inimigosVivos);
             criou = true;
         }
-
-        if(transform.position.y < -10)
-        {
-            transform.position = new Vector3(transform.position.x, 1, transform.position.z);
-        }
     }
 
     public void CriarItem()

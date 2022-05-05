@@ -9,8 +9,10 @@ public class Jogador : MonoBehaviour
     public GameObject splashEspada;
     public GameObject splashMachado;
     public GameObject splashGiratorio;
+    public GameObject splashGiratorio2;
     public static int armaEquipada;
     public static float armaDelay = 0.0f;
+    public static int inimigosMortosHabilidade = 0;
     public bool[] armasDisponiveis;
     public int[] armasQuantidade;
     public GameObject[] armasModelos;
@@ -34,6 +36,8 @@ public class Jogador : MonoBehaviour
         vida = GetComponent<Invector.vHealthController>();
         animator = GetComponent<Animator>();
         armaDelay = 0.0f;
+        inimigosMortosHabilidade = 0;
+        vida.isImmortal = false;
         girando = false;
 
         Debug.Log("Sensibilidade " + cameraThirdPerson.currentState.xMouseSensitivity);
@@ -63,7 +67,7 @@ public class Jogador : MonoBehaviour
                     armaEquipada = 2;
                     Jogador.armaDelay = 0.2f;
                 }
-                if(Input.GetKeyDown(KeyCode.F))
+                if(Input.GetKeyDown(KeyCode.F) && inimigosMortosHabilidade >= 10 && (armaEquipada == 0 || armaEquipada == 1))
                 {
                     StartCoroutine(AtaqueGiratorio());
                 }
@@ -210,7 +214,9 @@ public class Jogador : MonoBehaviour
     IEnumerator AtaqueGiratorio()
     {
         girando = true;
+        vida.isImmortal = true;
         Jogador.armaDelay = 1.9f;
+        Jogador.inimigosMortosHabilidade = 0;
 
         animator.Play("MoveAttack1");
 
@@ -219,9 +225,20 @@ public class Jogador : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(0.25f);
-            Instantiate(splashGiratorio, transform.position, transform.rotation);
+
+            if (armaEquipada == 0)
+            {
+                Instantiate(splashGiratorio, transform.position, transform.rotation);
+            }
+            else if(armaEquipada == 1)
+            {
+                Instantiate(splashGiratorio2, transform.position, transform.rotation);
+            }
+
             GetComponent<Invector.vCharacterController.vThirdPersonMotor>().currentStamina *= 0.6f;
         }
+
+        vida.isImmortal = false;
         girando = false;
     }
 }
