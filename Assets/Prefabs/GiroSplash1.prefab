@@ -57,5 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305c4f30f7ac2844d8862950c8b189b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dano: 15
+  dano: 20
   duracao: 0.1

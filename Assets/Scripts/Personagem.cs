@@ -22,7 +22,7 @@ public class Personagem : MonoBehaviour
 
     public void MatouInimigo()
     {
-        if (jogador == false)
+        if (jogador == false && Jogador.girando == false)
         {
             StaticClass.inimigosMortos++;
             Jogador.inimigosMortosHabilidade++;

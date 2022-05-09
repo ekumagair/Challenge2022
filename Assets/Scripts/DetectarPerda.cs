@@ -48,17 +48,17 @@ public class DetectarPerda : MonoBehaviour
             menuPerdeu.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Comma))
+        if (Input.GetKeyDown(KeyCode.Comma) && StaticClass.debug)
         {
             StaticClass.faseAtual--;
             ReiniciarCena();
         }
-        if (Input.GetKeyDown(KeyCode.Period))
+        if (Input.GetKeyDown(KeyCode.Period) && StaticClass.debug)
         {
             StaticClass.faseAtual++;
             ReiniciarCena();
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && StaticClass.debug)
         {
             ReiniciarCena();
         }

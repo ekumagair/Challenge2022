@@ -15,4 +15,5 @@ public static class StaticClass
     // -1 = Perdeu
 
     public static float sensibilidadeMouse = 8f;
+    public static bool debug = true;
 }

@@ -13,20 +13,25 @@ public class Jogador : MonoBehaviour
     public static int armaEquipada;
     public static float armaDelay = 0.0f;
     public static int inimigosMortosHabilidade = 0;
+    public static int inimigosMortosHabilidadeObjetivo = 15;
     public bool[] armasDisponiveis;
     public int[] armasQuantidade;
     public GameObject[] armasModelos;
 
-    bool girando = false;
+    public static bool girando = false;
 
     //public Image[] armasEspacos;
     public Text[] armasQuantidadeTexto;
     public Image inventarioUnicoFundo;
     public Sprite[] inventarioUnicoSprites;
     public Image[] inventarioIcones;
+    public Image hudAtaqueEspecial;
+    Color32 hudAtaqueEspecialCor = new Color(255, 255, 255, 255);
+    public Text textAtaqueEspecial;
 
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
+    Invector.vCharacterController.vThirdPersonMotor motor;
     Animator animator;
     public Invector.vCamera.vThirdPersonCamera cameraThirdPerson;
 
@@ -34,9 +39,11 @@ public class Jogador : MonoBehaviour
     {
         arma = GetComponent<Invector.vMelee.vMeleeManager>();
         vida = GetComponent<Invector.vHealthController>();
+        motor = GetComponent<Invector.vCharacterController.vThirdPersonMotor>();
         animator = GetComponent<Animator>();
         armaDelay = 0.0f;
         inimigosMortosHabilidade = 0;
+        inimigosMortosHabilidadeObjetivo = 15;
         vida.isImmortal = false;
         girando = false;
 
@@ -67,9 +74,13 @@ public class Jogador : MonoBehaviour
                     armaEquipada = 2;
                     Jogador.armaDelay = 0.2f;
                 }
-                if(Input.GetKeyDown(KeyCode.F) && inimigosMortosHabilidade >= 10 && (armaEquipada == 0 || armaEquipada == 1))
+                if(Input.GetKeyDown(KeyCode.F) && inimigosMortosHabilidade >= inimigosMortosHabilidadeObjetivo && motor.currentStamina >= 100 && (armaEquipada == 0 || armaEquipada == 1))
                 {
                     StartCoroutine(AtaqueGiratorio());
+                }
+                if(Input.GetKeyDown(KeyCode.P) && StaticClass.debug)
+                {
+                    inimigosMortosHabilidade += 10;
                 }
 
                 if (armaEquipada == 0)
@@ -142,7 +153,21 @@ public class Jogador : MonoBehaviour
             inventarioUnicoFundo.sprite = inventarioUnicoSprites[armaEquipada];
             animator.SetInteger("ArmaAtual", armaEquipada);
 
-            if(armaEquipada == 2 && Input.GetMouseButton(0))
+            int corHab;
+
+            if (inimigosMortosHabilidade < inimigosMortosHabilidadeObjetivo)
+            {
+                corHab = Mathf.RoundToInt((255 / inimigosMortosHabilidadeObjetivo) * inimigosMortosHabilidade);
+            }
+            else
+            {
+                corHab = 255;
+            }
+
+            hudAtaqueEspecialCor = new Color32((byte) corHab, (byte) corHab, (byte) corHab, 255);
+            hudAtaqueEspecial.color = hudAtaqueEspecialCor;
+
+            if (armaEquipada == 2 && Input.GetMouseButton(0))
             {
                 inventarioUnicoFundo.sprite = inventarioUnicoSprites[3];
             }
@@ -156,6 +181,9 @@ public class Jogador : MonoBehaviour
                 armaDelay = 0;
             }
         }
+
+        textAtaqueEspecial.text = inimigosMortosHabilidade.ToString() + "/" + inimigosMortosHabilidadeObjetivo.ToString();
+        //textAtaqueEspecial.text = ((255 / inimigosMortosHabilidadeObjetivo) * inimigosMortosHabilidade).ToString();
     }
 
     public void CriarSplashEspada()
@@ -216,8 +244,8 @@ public class Jogador : MonoBehaviour
         girando = true;
         vida.isImmortal = true;
         Jogador.armaDelay = 1.9f;
-        Jogador.inimigosMortosHabilidade = 0;
 
+        hudAtaqueEspecial.GetComponent<Animator>().Play("AtaqueEspecialHUDApertar");
         animator.Play("MoveAttack1");
 
         yield return new WaitForSeconds(0.25f);
@@ -235,9 +263,10 @@ public class Jogador : MonoBehaviour
                 Instantiate(splashGiratorio2, transform.position, transform.rotation);
             }
 
-            GetComponent<Invector.vCharacterController.vThirdPersonMotor>().currentStamina *= 0.6f;
+            motor.currentStamina *= 0.5f;
         }
 
+        Jogador.inimigosMortosHabilidade = 0;
         vida.isImmortal = false;
         girando = false;
     }
