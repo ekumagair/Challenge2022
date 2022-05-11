@@ -13,8 +13,11 @@ public class OndaScript : MonoBehaviour
     public int quantos = 1;
     public int repetir = 1;
 
-    private void Awake()
+    private void Start()
     {
+        StaticClass.ondasPassadas = 0;
+        StaticClass.inimigosMortos = 0;
+        StaticClass.inimigosVivos = 0;
         StartCoroutine(EsperarInimigos());
     }
 
