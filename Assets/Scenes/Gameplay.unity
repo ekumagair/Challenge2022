@@ -8661,7 +8661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3468b64ced23d694987886cd59f18694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qualFase: 2
+  qualFase: 3
 --- !u!4 &1345381119
 Transform:
   m_ObjectHideFlags: 0
