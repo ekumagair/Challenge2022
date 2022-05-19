@@ -19,16 +19,19 @@ public class SoldadoRomano : MonoBehaviour
     public GameObject alvo;
     NavMeshAgent agente;
     Animator animator;
+    Invector.vHealthController vida;
 
     void Start()
     {
         agente = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        vida = GetComponent<Invector.vHealthController>();
         alvo = GameObject.FindGameObjectWithTag("Player");
         agente.speed = 5f;
         morto = false;
         atacando = false;
         levandoDano = false;
+        vida.isImmortal = false;
     }
 
     void Update()
@@ -78,7 +81,7 @@ public class SoldadoRomano : MonoBehaviour
         }
         else
         {
-            distanciaLimite = 3f;
+            distanciaLimite = 0.5f;
             agente.speed = 2f;
         }
 
@@ -104,6 +107,18 @@ public class SoldadoRomano : MonoBehaviour
 
     public void LevarDano()
     {
-        animator.Play("");
+        animator.Play("BlockBreak");
+        StartCoroutine(Invulneravel());
+    }
+
+    IEnumerator Invulneravel()
+    {
+        vida.isImmortal = true;
+        levandoDano = true;
+
+        yield return new WaitForSeconds(3f);
+
+        vida.isImmortal = false;
+        levandoDano = false;
     }
 }

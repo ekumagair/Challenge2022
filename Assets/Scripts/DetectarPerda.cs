@@ -16,6 +16,7 @@ public class DetectarPerda : MonoBehaviour
     {
         cenaAtual = SceneManager.GetActiveScene().buildIndex;
         vidaJogador = GameObject.FindGameObjectWithTag("Player").GetComponent<Invector.vHealthController>();
+        StaticClass.estadoDeJogo = 0;
         iniciou = false;
     }
 

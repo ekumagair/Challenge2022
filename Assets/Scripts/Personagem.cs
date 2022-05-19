@@ -6,6 +6,8 @@ public class Personagem : MonoBehaviour
 {
     public bool jogador = false;
     public GameObject particulaDano;
+    public GameObject audioSource;
+    public AudioClip[] clipDano;
 
     private void Update()
     {
@@ -18,6 +20,10 @@ public class Personagem : MonoBehaviour
     public void CriarParticulaDano()
     {
         Instantiate(particulaDano, transform.position + transform.up, transform.rotation);
+
+        var snd = Instantiate(audioSource, transform.position + transform.up, transform.rotation);
+        snd.GetComponent<AudioSource>().clip = clipDano[Random.Range(0, clipDano.Length)];
+        snd.GetComponent<AudioSource>().Play();
     }
 
     public void MatouInimigo()

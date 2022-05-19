@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desbloquearArma: 1
   recuperarVida: 0
+  criarAoSerDestruido: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
+  clipAoSerDestruido: {fileID: 8300000, guid: 4a18105120c507c44afc7d7a4237bbc0, type: 3}
 --- !u!1001 &6020708914679504787
 PrefabInstance:
   m_ObjectHideFlags: 0

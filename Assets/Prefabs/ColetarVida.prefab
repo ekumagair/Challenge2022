@@ -122,6 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desbloquearArma: 2
   recuperarVida: 0
+  criarAoSerDestruido: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
+  clipAoSerDestruido: {fileID: 8300000, guid: b0d8ed57f9fa05148a7fb39a60eff08e, type: 3}
 --- !u!1 &8451110408551441270
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,9 @@ public class Jogador : MonoBehaviour
     Color32 hudAtaqueEspecialCor = new Color(255, 255, 255, 255);
     public Text textAtaqueEspecial;
 
+    public GameObject audioSource2D;
+    public AudioClip clipUsarPocao;
+
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
     Invector.vCharacterController.vThirdPersonMotor motor;
@@ -205,6 +208,11 @@ public class Jogador : MonoBehaviour
             Debug.Log("Curar");
             vida.AddHealth(cura);
             armasQuantidade[slot]--;
+
+            if(clipUsarPocao != null)
+            {
+                CriarObjetoDeSom(audioSource2D, clipUsarPocao);
+            }
         }
         else
         {
@@ -219,10 +227,11 @@ public class Jogador : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Coletar")
+        if(other.gameObject.tag == "Coletar" && other.gameObject.GetComponent<ItemColetavel>() != null)
         {
-            int da = other.gameObject.GetComponent<ItemColetavel>().desbloquearArma;
-            int rv = other.gameObject.GetComponent<ItemColetavel>().recuperarVida;
+            ItemColetavel itemColetavel = other.gameObject.GetComponent<ItemColetavel>();
+            int da = itemColetavel.desbloquearArma;
+            int rv = itemColetavel.recuperarVida;
 
             if (da >= 0)
             {
@@ -233,9 +242,22 @@ public class Jogador : MonoBehaviour
             {
                 vida.AddHealth(rv);
             }
-            
+
+            CriarObjetoDeSom(itemColetavel.criarAoSerDestruido, itemColetavel.clipAoSerDestruido);
+
             Destroy(other.transform.parent.gameObject);
             Destroy(other.gameObject);
+        }
+    }
+
+    void CriarObjetoDeSom(GameObject audioSource, AudioClip ac)
+    {
+        var go = Instantiate(audioSource, transform.position, transform.rotation);
+
+        if (go.GetComponent<AudioSource>() != null)
+        {
+            go.GetComponent<AudioSource>().clip = ac;
+            go.GetComponent<AudioSource>().Play();
         }
     }
 
@@ -266,7 +288,7 @@ public class Jogador : MonoBehaviour
             motor.currentStamina *= 0.5f;
         }
 
-        Jogador.inimigosMortosHabilidade = 0;
+        Jogador.inimigosMortosHabilidade -= inimigosMortosHabilidadeObjetivo;
         vida.isImmortal = false;
         girando = false;
     }
