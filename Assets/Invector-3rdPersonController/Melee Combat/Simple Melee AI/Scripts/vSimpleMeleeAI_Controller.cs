@@ -614,6 +614,12 @@ namespace Invector.vCharacterController.AI
                 agent.stoppingDistance = distanceToAttack;
                 attackCount--;
                 MeleeAttack();
+
+                if(GetComponent<Personagem>() != null)
+                {
+                    GetComponent<Personagem>().RastroDeAtaque();
+                }
+
                 yield return null;
             }
             //else if (!actions && attackCount > 0) canAttack = true;

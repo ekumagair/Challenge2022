@@ -109,6 +109,7 @@ namespace Invector.vCharacterController
             {
                 TriggerWeakAttack();
                 Jogador.armaDelay = 1f;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Jogador>().InputAtaque();
             }
         }
 
@@ -131,6 +132,7 @@ namespace Invector.vCharacterController
             if (strongAttackInput.GetButtonDown() && (!meleeManager.CurrentActiveAttackWeapon || meleeManager.CurrentActiveAttackWeapon.useStrongAttack) && MeleeAttackStaminaConditions())
             {
                 TriggerStrongAttack();
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Jogador>().InputAtaque();
             }
         }
 
@@ -195,7 +197,7 @@ namespace Invector.vCharacterController
 
         protected override bool RollConditions()
         {
-            return base.RollConditions() && !isAttacking && !cc.animator.IsInTransition(cc.upperBodyLayer) && !cc.animator.IsInTransition(cc.fullbodyLayer);
+            return base.RollConditions() && !isAttacking && !cc.animator.IsInTransition(cc.upperBodyLayer) && !cc.animator.IsInTransition(cc.fullbodyLayer) && !cc.isRolling && Jogador.armaDelay == 0f;
         }
 
         #endregion

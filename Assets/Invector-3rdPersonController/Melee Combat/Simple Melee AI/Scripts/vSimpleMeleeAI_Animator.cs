@@ -77,7 +77,7 @@ namespace Invector.vCharacterController.AI
                 }
             }
 
-            if (!_rigidbody.useGravity && !actions && !agent.isOnOffMeshLink)
+            if (!_rigidbody.useGravity && !actions && !agent.isOnOffMeshLink && _rigidbody != null)
             {
                 _rigidbody.velocity = animator.deltaPosition;
             }

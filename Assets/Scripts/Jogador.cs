@@ -17,6 +17,7 @@ public class Jogador : MonoBehaviour
     public bool[] armasDisponiveis;
     public int[] armasQuantidade;
     public GameObject[] armasModelos;
+    public ParticleSystem[] armasTrail;
 
     // Fazendo ataque especial
     public static bool girando = false;
@@ -100,12 +101,12 @@ public class Jogador : MonoBehaviour
                 if (armaEquipada == 0)
                 {
                     arma.defaultDamage.damageValue = 20;
-                    arma.defaultStaminaCost = 5;
+                    arma.defaultStaminaCost = 15;
                 }
                 else if (armaEquipada == 1)
                 {
                     arma.defaultDamage.damageValue = 45;
-                    arma.defaultStaminaCost = 30;
+                    arma.defaultStaminaCost = 40;
                 }
                 else if (armaEquipada == 2)
                 {
@@ -200,6 +201,14 @@ public class Jogador : MonoBehaviour
         //textAtaqueEspecial.text = ((255 / inimigosMortosHabilidadeObjetivo) * inimigosMortosHabilidade).ToString();
     }
 
+    public void InputAtaque()
+    {
+        if (armasTrail[armaEquipada] != null)
+        {
+            armasTrail[armaEquipada].Play();
+        }
+    }
+
     public void CriarSplashEspada()
     {
         if (armaEquipada == 0)
@@ -214,7 +223,7 @@ public class Jogador : MonoBehaviour
 
     public void HitShake()
     {
-        cameraShaker.ShakeCamera(0.3f, 0.04f);
+        cameraShaker.ShakeCamera(0.3f, 0.045f);
     }
 
     public void RecoilHitShake()
