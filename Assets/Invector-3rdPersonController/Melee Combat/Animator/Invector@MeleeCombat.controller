@@ -14824,12 +14824,12 @@ AnimatorStateMachine:
   m_StateMachineTransitions:
   - first: {fileID: 0}
     second: []
-  - first: {fileID: 1107244300605973448}
-    second:
-    - {fileID: 1109977525054438924}
   - first: {fileID: 1107073249461883974}
     second:
     - {fileID: 1109023572194860680}
+  - first: {fileID: 1107244300605973448}
+    second:
+    - {fileID: 1109977525054438924}
   m_StateMachineBehaviours:
   - {fileID: 114176214234564994}
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
@@ -15377,7 +15377,7 @@ AnimatorTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: DefenseID
-    m_EventTreshold: 0
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000012097988626}
   m_Solo: 0
@@ -16177,7 +16177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.25
+  startDamage: 0.1
   endDamage: 0.75
   damageMultiplier: 0
   recoilID: 0
@@ -17492,7 +17492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.25
+  startDamage: 0.1
   endDamage: 0.7
   damageMultiplier: 0
   recoilID: 0
@@ -32968,10 +32968,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102000012097988626}
-    m_Position: {x: 276, y: 168, z: 0}
+    m_Position: {x: 280, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000013808204466}
-    m_Position: {x: 276, y: 96, z: 0}
+    m_Position: {x: 280, y: 100, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:

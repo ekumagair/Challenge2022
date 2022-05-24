@@ -38,25 +38,50 @@ public class SoldadoRomano : MonoBehaviour
     {
         tempoAtaque += Time.deltaTime;
 
-        if (morto == false && atacando == false && alvo != null)
+        if (morto == false && atacando == false && alvo != null && levandoDano == false)
         {
             if (Mathf.Abs(Vector3.Distance(alvo.transform.position, transform.position)) > distanciaLimite && !levandoDano)
             {
                 agente.destination = alvo.transform.position;
+                animator.SetBool("Movendo", true);
             }
             else
             {
                 agente.destination = transform.position;
+                animator.SetBool("Movendo", false);
 
-                if(!levandoDano && alvo != null && atacando == false && lancas > 0 && tempoAtaque > 5)
+                if (!levandoDano && alvo != null && atacando == false)
                 {
-                    StartCoroutine(AtirarLanca());
+                    if (lancas > 0)
+                    {
+                        if (tempoAtaque > 5)
+                        {
+                            StartCoroutine(AtirarLanca());
+                        }
+                    }
                 }
             }
         }
         else
         {
-            agente.destination = transform.position;
+            if (levandoDano == false || morto == true)
+            {
+                agente.destination = transform.position;
+            }
+            else
+            {
+                agente.destination = transform.forward * -1f;
+            }
+
+            animator.SetBool("Movendo", false);
+        }
+
+        if(morto == false)
+        {
+            Vector3 dir = alvo.transform.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 4f).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
         }
     }
 
@@ -69,7 +94,7 @@ public class SoldadoRomano : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        var lanca = Instantiate(projetil, transform.position + transform.up + transform.forward, transform.rotation);
+        var lanca = Instantiate(projetil, transform.position + (transform.up * 1.25f) + transform.forward, transform.rotation);
         lanca.GetComponent<Projetil>().ignorar = "Enemy";
         lanca.transform.rotation = transform.rotation;
 
@@ -81,8 +106,9 @@ public class SoldadoRomano : MonoBehaviour
         }
         else
         {
-            distanciaLimite = 0.5f;
-            agente.speed = 2f;
+            distanciaLimite = 1.5f;
+            agente.speed = 3f;
+            StartCoroutine(RecuperarLanca());
         }
 
         atacando = false;
@@ -116,9 +142,17 @@ public class SoldadoRomano : MonoBehaviour
         vida.isImmortal = true;
         levandoDano = true;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         vida.isImmortal = false;
         levandoDano = false;
+    }
+
+    IEnumerator RecuperarLanca()
+    {
+        yield return new WaitForSeconds(5f);
+
+        agente.speed = 5f;
+        lancas = 1;
     }
 }

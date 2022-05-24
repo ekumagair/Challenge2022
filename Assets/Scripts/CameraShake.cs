@@ -37,10 +37,15 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    public void ShakeCamera()
+    public void ShakeCamera(float duration, float amount)
     {
-        canShake = true;
-        _shakeTimer = shakeDuration;
+        if (canShake == false)
+        {
+            shakeDuration = duration;
+            shakeAmount = amount;
+            canShake = true;
+            _shakeTimer = shakeDuration;
+        }
     }
 
     public void StartCameraShakeEffect()

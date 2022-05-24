@@ -33,6 +33,7 @@ TagManager:
   - TriggerDano
   - Coletar
   - Destino
+  - CameraShake
   layers:
   - Default
   - TransparentFX

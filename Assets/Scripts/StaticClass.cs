@@ -9,11 +9,14 @@ public static class StaticClass
     public static int inimigosVivos = 0;
     public static int ondasPassadas = 0;
 
+    public static bool clicouEmBotao = false;
+
     public static int estadoDeJogo = 0;
     // 0 = Jogando
     // 1 = Venceu
     // -1 = Perdeu
 
     public static float sensibilidadeMouse = 8f;
+    public static float volumeGlobal = 1.0f;
     public static bool debug = true;
 }

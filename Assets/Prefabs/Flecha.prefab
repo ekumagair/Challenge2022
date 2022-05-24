@@ -79,6 +79,11 @@ MonoBehaviour:
   ignorar: 
   dano: 20
   efeitoImpacto: {fileID: 309877448753314056, guid: 9bd1c0d58339fff4b9aa5df32fb35e73, type: 3}
+  audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
+  clipAtingir:
+  - {fileID: 8300000, guid: 36932983bb88cc44fb619b696de0c42c, type: 3}
+  - {fileID: 8300000, guid: 28030b977531d004ba90d2d2b3e6cc2c, type: 3}
+  - {fileID: 8300000, guid: be1284dde88fe8f4aa42f7bda4c7626f, type: 3}
 --- !u!1 &753201467891401665
 GameObject:
   m_ObjectHideFlags: 0

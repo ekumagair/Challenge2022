@@ -18,9 +18,10 @@ public class Jogador : MonoBehaviour
     public int[] armasQuantidade;
     public GameObject[] armasModelos;
 
+    // Fazendo ataque especial
     public static bool girando = false;
 
-    //public Image[] armasEspacos;
+    // Inventário
     public Text[] armasQuantidadeTexto;
     public Image inventarioUnicoFundo;
     public Sprite[] inventarioUnicoSprites;
@@ -29,13 +30,16 @@ public class Jogador : MonoBehaviour
     Color32 hudAtaqueEspecialCor = new Color(255, 255, 255, 255);
     public Text textAtaqueEspecial;
 
+    // Áudio
     public GameObject audioSource2D;
     public AudioClip clipUsarPocao;
+    public AudioClip[] clipMochila;
 
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
     Invector.vCharacterController.vThirdPersonMotor motor;
     Animator animator;
+    CameraShake cameraShaker;
     public Invector.vCamera.vThirdPersonCamera cameraThirdPerson;
 
     private void Start()
@@ -44,13 +48,17 @@ public class Jogador : MonoBehaviour
         vida = GetComponent<Invector.vHealthController>();
         motor = GetComponent<Invector.vCharacterController.vThirdPersonMotor>();
         animator = GetComponent<Animator>();
+        cameraShaker = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         armaDelay = 0.0f;
         inimigosMortosHabilidade = 0;
         inimigosMortosHabilidadeObjetivo = 15;
         vida.isImmortal = false;
         girando = false;
+        StaticClass.clicouEmBotao = false;
 
-        Debug.Log("Sensibilidade " + cameraThirdPerson.currentState.xMouseSensitivity);
+        AudioListener.volume = StaticClass.volumeGlobal;
+
+        //Debug.Log("Sensibilidade " + cameraThirdPerson.currentState.xMouseSensitivity);
     }
 
     private void Update()
@@ -66,16 +74,19 @@ public class Jogador : MonoBehaviour
                 {
                     armaEquipada = 0;
                     Jogador.armaDelay = 0.4f;
+                    CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[1] == true)
                 {
                     armaEquipada = 1;
                     Jogador.armaDelay = 0.8f;
+                    CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha3) && armasDisponiveis[2] == true)
                 {
                     armaEquipada = 2;
                     Jogador.armaDelay = 0.2f;
+                    CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
                 }
                 if(Input.GetKeyDown(KeyCode.F) && inimigosMortosHabilidade >= inimigosMortosHabilidadeObjetivo && motor.currentStamina >= 100 && (armaEquipada == 0 || armaEquipada == 1))
                 {
@@ -201,6 +212,16 @@ public class Jogador : MonoBehaviour
         }
     }
 
+    public void HitShake()
+    {
+        cameraShaker.ShakeCamera(0.3f, 0.04f);
+    }
+
+    public void RecoilHitShake()
+    {
+        cameraShaker.ShakeCamera(0.5f, 0.05f);
+    }
+
     public void ItemDeCura(int slot, int cura)
     {
         if (vida.currentHealth < vida.maxHealth)
@@ -271,6 +292,8 @@ public class Jogador : MonoBehaviour
         animator.Play("MoveAttack1");
 
         yield return new WaitForSeconds(0.25f);
+
+        cameraShaker.ShakeCamera(2f, 0.04f);
 
         for (int i = 0; i < 5; i++)
         {

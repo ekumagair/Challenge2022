@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
     public Slider sliderMouse;
+    public Slider sliderVolume;
     public bool escSair;
 
     private void Start()
@@ -16,8 +17,15 @@ public class MenuScript : MonoBehaviour
             sliderMouse.value = StaticClass.sensibilidadeMouse;
         }
 
+        if (sliderVolume != null)
+        {
+            sliderVolume.value = StaticClass.volumeGlobal;
+        }
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        StaticClass.clicouEmBotao = false;
     }
 
     private void Update()
@@ -37,17 +45,20 @@ public class MenuScript : MonoBehaviour
 
     public void IrParaJogo()
     {
-        SceneManager.LoadScene("Gameplay");
+        //SceneManager.LoadScene("Gameplay");
+        StartCoroutine(IrPara("Gameplay"));
     }
 
     public void IrParaTitulo()
     {
-        SceneManager.LoadScene("Titulo");
+        //SceneManager.LoadScene("Titulo");
+        StartCoroutine(IrPara("Titulo"));
     }
 
     public void IrParaOpcoes()
     {
-        SceneManager.LoadScene("Opcoes");
+        //SceneManager.LoadScene("Opcoes");
+        StartCoroutine(IrPara("Opcoes"));
     }
 
     public void SairDoJogo()
@@ -55,8 +66,24 @@ public class MenuScript : MonoBehaviour
         Application.Quit();
     }
 
+    IEnumerator IrPara(string cena)
+    {
+        if (StaticClass.clicouEmBotao == false)
+        {
+            StaticClass.clicouEmBotao = true;
+            yield return new WaitForSeconds(0.2f);
+            SceneManager.LoadScene(cena);
+        }
+    }
+
     public void MudarSensitividadeDoMouse()
     {
         StaticClass.sensibilidadeMouse = sliderMouse.value;
+    }
+
+    public void MudarVolumeGlobal()
+    {
+        StaticClass.volumeGlobal = sliderVolume.value;
+        AudioListener.volume = StaticClass.volumeGlobal;
     }
 }

@@ -17311,10 +17311,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 106114, guid: dfea19d1d34dd174d87195f78cb44ae7, type: 3}
+  audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   sounds:
-  - {fileID: 8300000, guid: 224b63efdb81fec4fad3a6a5cfde8bc8, type: 3}
-  triggerTime: 0
+  - {fileID: 8300000, guid: 120ca9a014e82f34e9012ca4e5cb03dd, type: 3}
+  - {fileID: 8300000, guid: 7269e3bac54d043479215bf2b819f953, type: 3}
+  - {fileID: 8300000, guid: 269392d7494f1424691ae7464387107e, type: 3}
+  triggerTime: 0.4
 --- !u!114 &114215453694696434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -29076,7 +29078,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: recoil_hard
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000013576573900}
@@ -31871,6 +31873,7 @@ AnimatorState:
   - {fileID: 1101435884478022898}
   m_StateMachineBehaviours:
   - {fileID: 114403349780949582}
+  - {fileID: 8702432335722619091}
   m_Position: {x: 12, y: 12, z: 0}
   m_IKOnFeet: 1
   m_WriteDefaultValues: 1
@@ -33873,6 +33876,7 @@ AnimatorState:
   - {fileID: 1101476070418764840}
   m_StateMachineBehaviours:
   - {fileID: 114984482878044234}
+  - {fileID: 5190347536008414684}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 1
   m_WriteDefaultValues: 1
@@ -36817,7 +36821,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102927989665312400}
-    m_Position: {x: 276, y: 108, z: 0}
+    m_Position: {x: 280, y: 110, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -39669,6 +39673,24 @@ BlendTree:
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 0
+--- !u!114 &5190347536008414684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
+  sounds:
+  - {fileID: 8300000, guid: 120ca9a014e82f34e9012ca4e5cb03dd, type: 3}
+  - {fileID: 8300000, guid: 7269e3bac54d043479215bf2b819f953, type: 3}
+  - {fileID: 8300000, guid: 269392d7494f1424691ae7464387107e, type: 3}
+  triggerTime: 0
 --- !u!206 &5263755925403293727
 BlendTree:
   m_ObjectHideFlags: 1
@@ -40166,6 +40188,24 @@ BlendTree:
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
+--- !u!114 &8702432335722619091
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 106114, guid: dfea19d1d34dd174d87195f78cb44ae7, type: 3}
+  sounds:
+  - {fileID: 8300000, guid: 120ca9a014e82f34e9012ca4e5cb03dd, type: 3}
+  - {fileID: 8300000, guid: 7269e3bac54d043479215bf2b819f953, type: 3}
+  - {fileID: 8300000, guid: 269392d7494f1424691ae7464387107e, type: 3}
+  triggerTime: 0
 --- !u!206 &8748042616782462275
 BlendTree:
   m_ObjectHideFlags: 1

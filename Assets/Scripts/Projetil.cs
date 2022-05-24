@@ -8,6 +8,8 @@ public class Projetil : MonoBehaviour
     public string ignorar = "";
     public int dano = 20;
     public GameObject efeitoImpacto;
+    public GameObject audioSource;
+    public AudioClip[] clipAtingir;
 
     void Update()
     {
@@ -26,6 +28,13 @@ public class Projetil : MonoBehaviour
             if (efeitoImpacto != null)
             {
                 Instantiate(efeitoImpacto, transform.position, transform.rotation);
+            }
+
+            if (audioSource != null)
+            {
+                var snd = Instantiate(audioSource, transform.position + transform.up, transform.rotation);
+                snd.GetComponent<AudioSource>().clip = clipAtingir[Random.Range(0, clipAtingir.Length)];
+                snd.GetComponent<AudioSource>().PlayOneShot(snd.GetComponent<AudioSource>().clip, 1);
             }
 
             Destroy(gameObject);

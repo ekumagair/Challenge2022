@@ -319,11 +319,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jogador: 0
   particulaDano: {fileID: 309877448753314056, guid: 96b9324030163834d94a85b88b4bead1, type: 3}
-  audioSource: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
+  audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   clipDano:
-  - {fileID: 8300000, guid: 5e92a426e50e91742bf6e47315077bca, type: 3}
-  - {fileID: 8300000, guid: a7dcfe7b6f1f7f64384334a555c75dca, type: 3}
-  - {fileID: 8300000, guid: e2ddfb7fc07b5aa44960499f814bc550, type: 3}
+  - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
+  - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}
+  - {fileID: 8300000, guid: 3b56c86649456af4b894b35d00fd2856, type: 3}
 --- !u!1 &1413438261169200654
 GameObject:
   m_ObjectHideFlags: 0
