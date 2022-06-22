@@ -7,8 +7,18 @@ public class Personagem : MonoBehaviour
     public bool jogador = false;
     public ParticleSystem rastroDeAtaque;
     public GameObject particulaDano;
+    public GameObject particulaBlock;
     public GameObject audioSource;
+    public GameObject destruirAoMorrer;
     public AudioClip[] clipDano;
+    public AudioClip[] clipBlock;
+
+    Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -20,13 +30,31 @@ public class Personagem : MonoBehaviour
 
     public void CriarParticulaDano()
     {
-        Instantiate(particulaDano, transform.position + transform.up, transform.rotation);
-        SomDano();
+        if (animator == null || animator.GetBool("IsBlocking") == false)
+        {
+            Instantiate(particulaDano, transform.position + transform.up, transform.rotation);
+            SomDano();
+        }
+        else
+        {
+            Instantiate(particulaBlock, transform.position + transform.up, transform.rotation);
+            SomBlock();
+        }
+
+        if(GetComponent<Jogador>() != null && jogador == true)
+        {
+            ScreenShakeJogador();
+        }
     }
 
     public void MatouInimigo()
     {
         CriarParticulaDano();
+
+        if(destruirAoMorrer != null)
+        {
+            Destroy(destruirAoMorrer);
+        }
 
         if (jogador == false && Jogador.girando == false)
         {
@@ -43,6 +71,18 @@ public class Personagem : MonoBehaviour
         var snd = Instantiate(audioSource, transform.position + transform.up, transform.rotation);
         snd.GetComponent<AudioSource>().clip = clipDano[Random.Range(0, clipDano.Length)];
         snd.GetComponent<AudioSource>().PlayOneShot(snd.GetComponent<AudioSource>().clip, 1);
+    }
+
+    public void SomBlock()
+    {
+        var snd2 = Instantiate(audioSource, transform.position + transform.up, transform.rotation);
+        snd2.GetComponent<AudioSource>().clip = clipBlock[Random.Range(0, clipBlock.Length)];
+        snd2.GetComponent<AudioSource>().PlayOneShot(snd2.GetComponent<AudioSource>().clip, 1);
+    }
+
+    public void ScreenShakeJogador()
+    {
+        GetComponent<Jogador>().HitShake();
     }
 
     public void RastroDeAtaque()

@@ -14,7 +14,7 @@ public class LargarItem : MonoBehaviour
     {
         vida = GetComponent<Invector.vHealthController>();
         StaticClass.inimigosVivos++;
-        Debug.Log(StaticClass.inimigosVivos);
+        Debug.Log("INIMIGOS VIVOS: " + StaticClass.inimigosVivos);
         criou = false;
     }
 

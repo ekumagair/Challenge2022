@@ -45,11 +45,7 @@ namespace Invector
             {
                 var source = audioObject.gameObject.GetComponent<AudioSource>();
                 var clip = sounds[_random.Next(sounds.Count)];
-
-                if (source.clip != null)
-                {
-                    source.PlayOneShot(clip);
-                }
+                source.PlayOneShot(clip);
             }
         }      
     }

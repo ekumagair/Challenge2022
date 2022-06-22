@@ -62,7 +62,7 @@ public class SoldadoRomano : MonoBehaviour
                 }
             }
         }
-        else
+        else if(morto == false)
         {
             if (levandoDano == false || morto == true)
             {

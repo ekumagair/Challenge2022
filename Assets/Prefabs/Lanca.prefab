@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidade: 20
   ignorar: 
-  dano: 45
+  dano: 40
   efeitoImpacto: {fileID: 309877448753314056, guid: 9bd1c0d58339fff4b9aa5df32fb35e73, type: 3}
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   clipAtingir:
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2091286674258855972}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: LancaModelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 3081026853875602747}
   - component: {fileID: 1204668274787297808}
   - component: {fileID: 3613904593390299460}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: pCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1546293869203175804}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

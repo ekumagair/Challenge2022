@@ -13,6 +13,9 @@ public class OndaScript : MonoBehaviour
     public int quantos = 1;
     public int repetir = 1;
 
+    // Ordem de espera:
+    // EsperarOndas > EsperarInimigosMortos > DelayInicial > DelayRepetir
+
     private void Start()
     {
         StaticClass.ondasPassadas = 0;
@@ -25,6 +28,8 @@ public class OndaScript : MonoBehaviour
     {
         if (esperarOndas > 0)
         {
+            yield return new WaitForSeconds(delayInicial / 10);
+
             while (StaticClass.ondasPassadas < esperarOndas)
             {
                 yield return new WaitForSeconds(0.5f);
@@ -33,17 +38,15 @@ public class OndaScript : MonoBehaviour
 
         if (esperarInimigosMortos == true)
         {
-            yield return new WaitForSeconds(delayInicial);
+            yield return new WaitForSeconds(delayInicial / 10);
 
             while (StaticClass.inimigosVivos > 0)
             {
                 yield return new WaitForSeconds(1f);
             }
         }
-        else
-        {
-            yield return new WaitForSeconds(delayInicial);
-        }
+
+        yield return new WaitForSeconds(delayInicial);
 
         StartCoroutine(Criar());
     }

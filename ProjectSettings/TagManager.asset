@@ -34,6 +34,7 @@ TagManager:
   - Coletar
   - Destino
   - CameraShake
+  - HUD
   layers:
   - Default
   - TransparentFX

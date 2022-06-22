@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 6020708914032426873}
   - component: {fileID: 6020708914032425094}
   - component: {fileID: 6020708914032425095}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Trigger
   m_TagString: Coletar
   m_Icon: {fileID: 0}
