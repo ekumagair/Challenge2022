@@ -10,6 +10,7 @@ public class Personagem : MonoBehaviour
     public GameObject particulaBlock;
     public GameObject audioSource;
     public GameObject destruirAoMorrer;
+    public GameObject localPes;
     public AudioClip[] clipDano;
     public AudioClip[] clipBlock;
 
