@@ -10,6 +10,7 @@ public class Jogador : MonoBehaviour
     public GameObject splashMachado;
     public GameObject splashGiratorio;
     public GameObject splashGiratorio2;
+    public GameObject fumacaAtaqueGiratorio;
     public static int armaEquipada;
     public static float armaDelay = 0.0f;
     public static int inimigosMortosHabilidade = 0;
@@ -45,6 +46,7 @@ public class Jogador : MonoBehaviour
     Invector.vCharacterController.vThirdPersonMotor motor;
     Animator animator;
     CameraShake cameraShaker;
+    Personagem personagemScript;
     public Invector.vCamera.vThirdPersonCamera cameraThirdPerson;
 
     private void Start()
@@ -53,6 +55,7 @@ public class Jogador : MonoBehaviour
         vida = GetComponent<Invector.vHealthController>();
         motor = GetComponent<Invector.vCharacterController.vThirdPersonMotor>();
         animator = GetComponent<Animator>();
+        personagemScript = GetComponent<Personagem>();
         cameraShaker = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         armaDelay = 0.0f;
         inimigosMortosHabilidade = 0;
@@ -252,6 +255,11 @@ public class Jogador : MonoBehaviour
         cameraShaker.ShakeCamera(0.5f, 0.05f);
     }
 
+    public void CriarFumaca()
+    {
+        Instantiate(fumacaAtaqueGiratorio, personagemScript.localPes.transform.position + (transform.up / 4), Quaternion.Euler(Vector3.up));
+    }
+
     public void ItemDeCura(int slot, int cura)
     {
         if (vida.currentHealth < vida.maxHealth)
@@ -338,9 +346,10 @@ public class Jogador : MonoBehaviour
                 Instantiate(splashGiratorio2, transform.position, transform.rotation);
             }
 
-            motor.currentStamina *= 0.5f;
+            motor.currentStamina *= 0.4f;
             InputAtaque();
             CriarObjetoDeSom(audioSource2D, clipSwoosh[Random.Range(0, clipSwoosh.Length)]);
+            CriarFumaca();
         }
 
         Jogador.inimigosMortosHabilidade -= inimigosMortosHabilidadeObjetivo;

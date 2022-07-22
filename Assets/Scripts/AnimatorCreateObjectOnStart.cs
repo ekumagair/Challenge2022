@@ -5,13 +5,14 @@ using UnityEngine;
 public class AnimatorCreateObjectOnStart : StateMachineBehaviour
 {
     public GameObject instanciar;
-    public Transform referencia;
+    public float forwardMult = 2f;
+    Transform referencia;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         referencia = GameObject.FindGameObjectWithTag("Player").transform;
-        Instantiate(instanciar, referencia.transform.position + (referencia.transform.forward * 2), referencia.transform.rotation);
+        Instantiate(instanciar, referencia.transform.position + (referencia.transform.forward * forwardMult), referencia.transform.rotation);
         GameObject.FindGameObjectWithTag("Player").GetComponent<Invector.vCharacterController.vThirdPersonMotor>().currentStamina *= 0.6f;
     }
 
