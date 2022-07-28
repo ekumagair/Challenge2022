@@ -96,7 +96,7 @@ public class Personagem : MonoBehaviour
 
     IEnumerator DestruirComponentes()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.2f);
 
         if (GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>() != null)
         {

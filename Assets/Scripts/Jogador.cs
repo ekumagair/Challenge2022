@@ -72,14 +72,17 @@ public class Jogador : MonoBehaviour
 
         if(StaticClass.faseAtual == 1)
         {
-            StartCoroutine(CriarInstrucao("Use W, A, S, D para se mover.", 3f, 0f));
+            StartCoroutine(CriarInstrucao("Use W, A, S, D para se mover.", 5f, 0f));
             StartCoroutine(CriarInstrucao("Ataque com o botão esquerdo do mouse. Defenda segurando o botão direito do mouse.", 5f, 5f));
-            StartCoroutine(CriarInstrucao("Segure o Shift para correr.", 5f, 25f));
+            StartCoroutine(CriarInstrucao("Segure o Shift para correr.", 5f, 20f));
+            StartCoroutine(CriarInstrucao("Você precisa de energia (barra verde) para realizar essas ações.", 5f, 25f));
         }
         else if (StaticClass.faseAtual == 2)
         {
-            StartCoroutine(CriarInstrucao("Use Q para rolar.", 3f, 0f));
-            StartCoroutine(CriarInstrucao("Aperte o E para realizar um ataque mais forte.", 5f, 5f));
+            StartCoroutine(CriarInstrucao("Use Q para rolar.", 5f, 0f));
+            StartCoroutine(CriarInstrucao("Aperte E para realizar um ataque mais forte.", 5f, 5f));
+            StartCoroutine(CriarInstrucao("Troque de arma/item com as teclas 1, 2 e 3.", 5f, 20f));
+            StartCoroutine(CriarInstrucao("O machado causa mais dano, mas consome mais energia quando você ataca.", 5f, 25f));
         }
     }
 
@@ -361,15 +364,18 @@ public class Jogador : MonoBehaviour
     {
         yield return new WaitForSeconds(delayInicial);
 
-        var inst = Instantiate(instrucao, GameObject.FindGameObjectWithTag("HUD").transform);
-        inst.GetComponent<Text>().text = texto;
+        if (StaticClass.estadoDeJogo == 0)
+        {
+            var inst = Instantiate(instrucao, GameObject.FindGameObjectWithTag("HUD").transform);
+            inst.GetComponent<Text>().text = texto;
 
-        yield return new WaitForSeconds(esconder);
+            yield return new WaitForSeconds(esconder);
 
-        inst.GetComponent<Animator>().Play("InstruçãoEsconder");
+            inst.GetComponent<Animator>().Play("InstruçãoEsconder");
 
-        yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1.5f);
 
-        Destroy(inst);
+            Destroy(inst);
+        }
     }
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

@@ -19,6 +19,7 @@ public class Ninja : MonoBehaviour
 
     public GameObject destino;
     public GameObject[] destinos;
+    int destinosAntesDeAtacar = 3;
     NavMeshAgent agente;
     Animator animator;
 
@@ -32,6 +33,7 @@ public class Ninja : MonoBehaviour
 
         destinos = GameObject.FindGameObjectsWithTag("Destino");
         destinos[0] = GameObject.FindGameObjectWithTag("Player");
+        destinosAntesDeAtacar = 3;
         EscolherDestino(0);
     }
 
@@ -85,7 +87,17 @@ public class Ninja : MonoBehaviour
 
     public void EscolherDestino(int min)
     {
+        // Destino 0 = Atacar jogador.
+
         destino = destinos[Random.Range(min, destinos.Length)];
+
+        destinosAntesDeAtacar--;
+
+        if (destinosAntesDeAtacar <= 0 && destino != destinos[0])
+        {
+            destinosAntesDeAtacar = Random.Range(2, 4);
+            destino = destinos[0];
+        }
 
         if(podeFicarInvisivel == true)
         {
