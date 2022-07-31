@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LargarItem : MonoBehaviour
 {
+    // Este script faz um personagem ter a chance aleatória de deixar um item ao morrer.
+    // Personagens com este script são considerados inimigos.
+
     public GameObject item;
     public int chance = 1;
     bool criou = false;
@@ -14,15 +17,33 @@ public class LargarItem : MonoBehaviour
     {
         vida = GetComponent<Invector.vHealthController>();
         StaticClass.inimigosVivos++;
-        Debug.Log("INIMIGOS VIVOS: " + StaticClass.inimigosVivos);
         criou = false;
+
+        if(StaticClass.debug == true)
+        {
+            Debug.Log("INIMIGOS VIVOS: " + StaticClass.inimigosVivos);
+        }
+
+        // O cálculo de chance não funciona se o valor "chance" for menor que 1.
+        if(chance < 1)
+        {
+            chance = 1;
+        }
     }
 
     private void Update()
     {
         if(vida.currentHealth <= 0 && criou == false)
         {
-            if(Random.Range(1, chance) == 1)
+            // Ao morrer, tem a chance aleatória de criar um item.
+            // chance 1 = 100%
+            // chance 2 = 50%
+            // chance 3 = 33%
+            // chance 4 = 25%
+            // [...]
+            // Quanto maior esse valor, menor a chance.
+
+            if(Random.Range(0, chance) == 0)
             {
                 CriarItem();
             }
@@ -37,6 +58,7 @@ public class LargarItem : MonoBehaviour
     {
         if (item != null)
         {
+            // Criar um item e jogá-lo para cima.
             var inst = Instantiate(item, transform.position + (transform.up * 2.5f), transform.rotation);
             inst.GetComponent<Rigidbody>().AddForce(transform.up * 300);
         }

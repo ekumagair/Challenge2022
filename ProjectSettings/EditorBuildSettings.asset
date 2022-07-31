@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Titulo.unity
     guid: 6abb126ab67050241880f2bc41cd61f1
   - enabled: 1
+    path: Assets/Scenes/SelecionarFases.unity
+    guid: 2569f520f06031e40a6be2dd4a674140
+  - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1

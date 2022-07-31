@@ -8,6 +8,7 @@ public class MenuScript : MonoBehaviour
 {
     public Slider sliderMouse;
     public Slider sliderVolume;
+    public Text textBuild;
     public bool escSair;
 
     private void Start()
@@ -22,8 +23,21 @@ public class MenuScript : MonoBehaviour
             sliderVolume.value = StaticClass.volumeGlobal;
         }
 
+        if(textBuild != null)
+        {
+            if (StaticClass.debug)
+            {
+                textBuild.text = "Build " + Application.version.ToString();
+            }
+            else
+            {
+                textBuild.text = "";
+            }
+        }
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Time.timeScale = 1;
 
         StaticClass.clicouEmBotao = false;
     }
@@ -32,6 +46,7 @@ public class MenuScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            // Se o esc faz sair do jogo ou apenas voltar para o menu de título.
             if (escSair)
             {
                 SairDoJogo();
@@ -45,19 +60,32 @@ public class MenuScript : MonoBehaviour
 
     public void IrParaJogo()
     {
-        //SceneManager.LoadScene("Gameplay");
+        //SceneManager.LoadScene("Gameplay"); Protótipo
         StartCoroutine(IrPara("Gameplay"));
+    }
+
+    public void IrParaFase(int fase)
+    {
+        StaticClass.faseAtual = fase;
+        //SceneManager.LoadScene("Gameplay"); Protótipo
+        StartCoroutine(IrPara("Gameplay"));
+    }
+
+    public void IrParaSelecionarFase()
+    {
+        //SceneManager.LoadScene("SelecionarFases"); Protótipo
+        StartCoroutine(IrPara("SelecionarFases"));
     }
 
     public void IrParaTitulo()
     {
-        //SceneManager.LoadScene("Titulo");
+        //SceneManager.LoadScene("Titulo"); Protótipo
         StartCoroutine(IrPara("Titulo"));
     }
 
     public void IrParaOpcoes()
     {
-        //SceneManager.LoadScene("Opcoes");
+        //SceneManager.LoadScene("Opcoes"); Protótipo
         StartCoroutine(IrPara("Opcoes"));
     }
 
@@ -68,6 +96,7 @@ public class MenuScript : MonoBehaviour
 
     IEnumerator IrPara(string cena)
     {
+        // Se não houver delay, o som dos botões não toca.
         if (StaticClass.clicouEmBotao == false)
         {
             StaticClass.clicouEmBotao = true;
@@ -76,6 +105,7 @@ public class MenuScript : MonoBehaviour
         }
     }
 
+    // Opções
     public void MudarSensitividadeDoMouse()
     {
         StaticClass.sensibilidadeMouse = sliderMouse.value;

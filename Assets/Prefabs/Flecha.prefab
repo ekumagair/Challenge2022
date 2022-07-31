@@ -79,7 +79,9 @@ MonoBehaviour:
   velocidade: 12
   ignorar: 
   dano: 20
-  efeitoImpacto: {fileID: 309877448753314056, guid: 9bd1c0d58339fff4b9aa5df32fb35e73, type: 3}
+  efeitoAoAtingir: 1
+  particulaImpacto: {fileID: 309877448753314056, guid: 9bd1c0d58339fff4b9aa5df32fb35e73, type: 3}
+  particulaRastro: {fileID: 2465889201632510278}
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   clipAtingir:
   - {fileID: 8300000, guid: 36932983bb88cc44fb619b696de0c42c, type: 3}

@@ -24,13 +24,6 @@ public class CameraShake : MonoBehaviour
 
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ShakeCamera();
-        }
-        */
-
         if (canShake)
         {
             StartCameraShakeEffect();
@@ -52,8 +45,12 @@ public class CameraShake : MonoBehaviour
     {
         if (_shakeTimer > 0)
         {
-            cameraTransform.localPosition = orignalCameraPos + Random.insideUnitSphere * shakeAmount;
-            _shakeTimer -= Time.deltaTime;
+            if (StaticClass.estadoDeJogo != 2)
+            {
+                // Chacoalha a câmera se o jogo não está pausado.
+                cameraTransform.localPosition = orignalCameraPos + Random.insideUnitSphere * shakeAmount;
+                _shakeTimer -= Time.deltaTime;
+            }
         }
         else
         {

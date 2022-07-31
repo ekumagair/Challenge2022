@@ -6309,13 +6309,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7903705025243207748}
-  m_LocalRotation: {x: -0.70823365, y: 0.009753528, z: 0.007279028, w: 0.70587325}
-  m_LocalPosition: {x: 0.0007954327, y: 0.22995372, z: -0.0007772688}
-  m_LocalScale: {x: 0.10714285, y: 0.10714286, z: 0.3285092}
+  m_LocalRotation: {x: -0.5010788, y: -0.47167572, z: 0.5147501, w: 0.51134574}
+  m_LocalPosition: {x: -0.664, y: 0.416, z: 0.054}
+  m_LocalScale: {x: 0.73669285, y: 0.6148777, z: 1.4363409}
   m_Children: []
   m_Father: {fileID: 5521853267093555342}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -178.461, y: 93.033, z: -88.16}
 --- !u!114 &7904817919074975374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8185,6 +8185,7 @@ MonoBehaviour:
   particulaBlock: {fileID: 309877448753314056, guid: b0df4d508a77bc346bf7718996362a7f, type: 3}
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   destruirAoMorrer: {fileID: 2933325659696598412}
+  localPes: {fileID: 0}
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

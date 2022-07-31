@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class AparecerSeLockOn : MonoBehaviour
 {
+    // Uma imagem que tem este script é escondida se o jogador não está travando a mira em um inimigo.
+
     Image img;
     Invector.vCharacterController.vLockOn lockOn;
 

@@ -9341,7 +9341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 7
+  selectedToolbar: 4
   _isDead: 0
   _currentHealth: 0
   isImmortal: 0
@@ -9461,7 +9461,7 @@ MonoBehaviour:
   randomAttackCount: 1
   chanceToRoll: 0.2
   chanceToBlockInStrafe: 0.1
-  chanceToBlockAttack: 0
+  chanceToBlockAttack: 0.1
   raiseShield: 2
   lowerShield: 4
   distanceToChangeWaypoint: 1
@@ -9657,7 +9657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 6020708913455267028, guid: 1887d2cb5318b83428143721d6141956, type: 3}
-  chance: 5
+  chance: 3
 --- !u!114 &5299759301576069627
 MonoBehaviour:
   m_ObjectHideFlags: 0
