@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class DetectarPerda : MonoBehaviour
 {
+    // Objeto que detecta os diferentes estados de jogo e executa os efeitos necessários.
+
     Invector.vHealthController vidaJogador;
     bool perdeu = false;
     bool venceu = false;
@@ -13,6 +15,7 @@ public class DetectarPerda : MonoBehaviour
 
     public GameObject menuContinuar;
     public GameObject menuPerdeu;
+    public GameObject menuPausado;
     public GameObject menuTitulo;
     public GameObject menuTextoExtra;
 
@@ -39,6 +42,7 @@ public class DetectarPerda : MonoBehaviour
             StartCoroutine(Perder());
         }
 
+        // Venceu
         if (StaticClass.estadoDeJogo == 1)
         {
             menuContinuar.SetActive(true);
@@ -58,6 +62,7 @@ public class DetectarPerda : MonoBehaviour
             menuContinuar.SetActive(false);
         }
 
+        // Perdeu
         if (StaticClass.estadoDeJogo == -1)
         {
             menuPerdeu.SetActive(true);
@@ -70,6 +75,19 @@ public class DetectarPerda : MonoBehaviour
             menuPerdeu.SetActive(false);
         }
 
+        // Pausou
+        if (StaticClass.estadoDeJogo == 2)
+        {
+            menuPausado.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            menuPausado.SetActive(false);
+        }
+
+        // Trapaças de teste
         if (Input.GetKeyDown(KeyCode.Comma) && StaticClass.debug)
         {
             StaticClass.faseAtual--;
@@ -84,16 +102,31 @@ public class DetectarPerda : MonoBehaviour
         {
             ReiniciarCena();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+        // Input para pausar ou continuar jogo
+        if (Input.GetKeyDown(KeyCode.Escape) && StaticClass.estadoDeJogo != 1 && StaticClass.estadoDeJogo != -1)
         {
-            //Application.Quit();
-            VoltarParaTitulo();
+            //Application.Quit(); Teste
+            //VoltarParaTitulo(); Teste
+
+            if(Time.timeScale > 0)
+            {
+                Pausar(true);
+            }
+            else
+            {
+                Pausar(false);
+            }
         }
     }
 
     IEnumerator Perder()
     {
-        Debug.Log("Morreu");
+        if (StaticClass.debug)
+        {
+            Debug.Log("Morreu");
+        }
+
         perdeu = true;
 
         yield return new WaitForSeconds(3f);
@@ -108,10 +141,28 @@ public class DetectarPerda : MonoBehaviour
         StaticClass.estadoDeJogo = e;
     }
 
+    // Quando o jogador vence a fase e vai para a próxima.
     public void Continuar()
     {
         StaticClass.faseAtual++;
         ReiniciarCena();
+    }
+
+    public void Pausar(bool pausar)
+    {
+        // Se o bool for verdadeiro, pausa. Senão, continua o jogo.
+        if(pausar == true)
+        {
+            StaticClass.estadoDeJogo = 2;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            StaticClass.estadoDeJogo = 0;
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     public void ReiniciarVariaveis()
@@ -135,16 +186,25 @@ public class DetectarPerda : MonoBehaviour
         }
     }
 
+    // Mostra uma dica aleatória quando o jogador perde. As dicas são para todas as fases.
     public void MostrarDica()
     {
-        int dica = Random.Range(0, 2);
+        int dica = Random.Range(0, 4);
         if (dica == 0)
         {
             menuTextoExtraText.text = "Dica: Durante um rolamento (tecla Q), você não leva dano de ataques corpo a corpo, mas inimigos ainda perderão tempo tentando te atacar.";
         }
         else if (dica == 1)
         {
-            menuTextoExtraText.text = "Dica: Ao se defender, você leva menos dano, mas ainda pode ser derrotado.";
+            menuTextoExtraText.text = "Dica: Ao se defender (segurando o botão direito do mouse), você leva menos dano, mas ainda pode ser derrotado.";
+        }
+        else if (dica == 2)
+        {
+            menuTextoExtraText.text = "Dica: Você pode pular (Barra De Espaço) para desviar de projéteis e passar por cima de inimigos que não são altos.";
+        }
+        else if (dica == 3)
+        {
+            menuTextoExtraText.text = "Dica: Ao usar um ataque forte (tecla E), você causa mais dano, mas gasta mais tempo que um ataque normal (botão esquerdo do mouse).";
         }
     }
 }

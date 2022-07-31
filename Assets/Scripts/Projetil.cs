@@ -16,6 +16,8 @@ public class Projetil : MonoBehaviour
     bool atingiu = false;
     Rigidbody _rb;
 
+    // ignorar = Objetos com esta tag não são atingidos pelo projétil.
+
     private void Start()
     {
         atingiu = false;
@@ -24,6 +26,7 @@ public class Projetil : MonoBehaviour
 
     void Update()
     {
+        // Ir para frente.
         transform.position += velocidade * transform.forward * Time.deltaTime;
     }
 
@@ -31,16 +34,19 @@ public class Projetil : MonoBehaviour
     {
         if (collision.gameObject.tag != ignorar && atingiu == false)
         {
+            // Se o objeto atingido tem vida, causa dano nele.
             if(collision.gameObject.GetComponent<Invector.vHealthController>() != null)
             {
                 collision.gameObject.GetComponent<Invector.vHealthController>().AddHealth(dano * -1);
             }
 
+            // Partícula de impacto.
             if (particulaImpacto != null)
             {
                 Instantiate(particulaImpacto, transform.position, transform.rotation);
             }
 
+            // Som de impacto.
             if (audioSource != null)
             {
                 var snd = Instantiate(audioSource, transform.position + transform.up, transform.rotation);
@@ -48,19 +54,20 @@ public class Projetil : MonoBehaviour
                 snd.GetComponent<AudioSource>().PlayOneShot(snd.GetComponent<AudioSource>().clip, 1);
             }
 
+            // Efeitos visuais de impacto.
             if (efeitoAoAtingir == 0)
             {
-                // Apenas destruir
+                // Apenas destruir.
                 Destroy(gameObject);
             }
             else if (efeitoAoAtingir == 1)
             {
-                // Prender no objeto atingido
+                // Prender no objeto atingido.
                 StartCoroutine(Atingiu1(collision.gameObject));
             }
             else if (efeitoAoAtingir == 2)
             {
-                // Ativar gravidade
+                // Ativar gravidade.
                 StartCoroutine(Atingiu2());
             }
 

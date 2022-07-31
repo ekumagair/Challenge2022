@@ -72,13 +72,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDamage: 0.25
   endDamage: 0.7
-  damageMultiplier: 0
+  damageMultiplier: 5
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - RightLowerArm
+  - RightHand
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
@@ -110,12 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 106114, guid: dfea19d1d34dd174d87195f78cb44ae7, type: 3}
+  audioSource: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
   sounds:
-  - {fileID: 8300000, guid: 60fdfa301881bae48ae59759cc83b842, type: 3}
-  - {fileID: 8300000, guid: f82a7d93926f978479349ce3a9e025f6, type: 3}
-  - {fileID: 8300000, guid: cf35a39ed3f005d49bf846fdd9eee7a0, type: 3}
-  - {fileID: 8300000, guid: 08b5a5b778d6952438c6b3bedaa1e6af, type: 3}
+  - {fileID: 8300000, guid: 5e92a426e50e91742bf6e47315077bca, type: 3}
+  - {fileID: 8300000, guid: a7dcfe7b6f1f7f64384334a555c75dca, type: 3}
+  - {fileID: 8300000, guid: e2ddfb7fc07b5aa44960499f814bc550, type: 3}
   triggerTime: 0
 --- !u!114 &-8315039875760331618
 MonoBehaviour:
@@ -890,13 +889,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDamage: 0.25
   endDamage: 0.75
-  damageMultiplier: 0
+  damageMultiplier: 5
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - RightLowerArm
+  - RightHand
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
@@ -949,6 +948,30 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-5114658143093388830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3b04f29aa5b134b99e94c78b296dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateInfos: []
+  debug: 0
+  tags:
+  - tagName: LockMovement
+    tagType: 0
+    normalizedTime: {x: 0, y: 0.3}
+  - tagName: LockMovement
+    tagType: 0
+    normalizedTime: {x: 0.8, y: 1}
+  - tagName: LockRotation
+    tagType: 0
+    normalizedTime: {x: 0, y: 1}
 --- !u!114 &-5106391156787183793
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1000,12 +1023,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 106114, guid: dfea19d1d34dd174d87195f78cb44ae7, type: 3}
+  audioSource: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
   sounds:
-  - {fileID: 8300000, guid: 60fdfa301881bae48ae59759cc83b842, type: 3}
-  - {fileID: 8300000, guid: f82a7d93926f978479349ce3a9e025f6, type: 3}
-  - {fileID: 8300000, guid: 08b5a5b778d6952438c6b3bedaa1e6af, type: 3}
-  - {fileID: 8300000, guid: cf35a39ed3f005d49bf846fdd9eee7a0, type: 3}
+  - {fileID: 8300000, guid: 5e92a426e50e91742bf6e47315077bca, type: 3}
+  - {fileID: 8300000, guid: a7dcfe7b6f1f7f64384334a555c75dca, type: 3}
+  - {fileID: 8300000, guid: e2ddfb7fc07b5aa44960499f814bc550, type: 3}
   triggerTime: 0
 --- !u!114 &-4725044023356164254
 MonoBehaviour:
@@ -1204,13 +1226,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDamage: 0.1
   endDamage: 0.55
-  damageMultiplier: 0
+  damageMultiplier: 5
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - RightLowerArm
+  - RightHand
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
@@ -17108,15 +17130,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.01
-  endDamage: 0.8
-  damageMultiplier: 0
+  startDamage: 0.1
+  endDamage: 0.7
+  damageMultiplier: 2
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - RightLowerArm
+  - RightHand
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
@@ -17164,15 +17186,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.01
-  endDamage: 0.8
-  damageMultiplier: 0
+  startDamage: 0.1
+  endDamage: 0.7
+  damageMultiplier: 2
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - RightLowerArm
+  - RightHand
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
@@ -17343,15 +17365,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.05
+  startDamage: 0.1
   endDamage: 0.8
-  damageMultiplier: 0
+  damageMultiplier: 8
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - RightLowerArm
+  - RightHand
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
@@ -17369,12 +17391,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 106114, guid: dfea19d1d34dd174d87195f78cb44ae7, type: 3}
+  audioSource: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
   sounds:
-  - {fileID: 8300000, guid: 60fdfa301881bae48ae59759cc83b842, type: 3}
-  - {fileID: 8300000, guid: f82a7d93926f978479349ce3a9e025f6, type: 3}
-  - {fileID: 8300000, guid: 08b5a5b778d6952438c6b3bedaa1e6af, type: 3}
-  - {fileID: 8300000, guid: cf35a39ed3f005d49bf846fdd9eee7a0, type: 3}
+  - {fileID: 8300000, guid: 5e92a426e50e91742bf6e47315077bca, type: 3}
+  - {fileID: 8300000, guid: a7dcfe7b6f1f7f64384334a555c75dca, type: 3}
+  - {fileID: 8300000, guid: e2ddfb7fc07b5aa44960499f814bc550, type: 3}
   triggerTime: 0
 --- !u!114 &114213069617326472
 MonoBehaviour:
@@ -17477,7 +17498,7 @@ MonoBehaviour:
     normalizedTime: {x: 0.1, y: 0.7}
   - tagName: LockMovement
     tagType: 1
-    normalizedTime: {x: 0, y: 0.7}
+    normalizedTime: {x: 0, y: 0.2}
 --- !u!114 &114275699407771092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17730,12 +17751,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 106114, guid: dfea19d1d34dd174d87195f78cb44ae7, type: 3}
+  audioSource: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
   sounds:
-  - {fileID: 8300000, guid: 60fdfa301881bae48ae59759cc83b842, type: 3}
-  - {fileID: 8300000, guid: f82a7d93926f978479349ce3a9e025f6, type: 3}
-  - {fileID: 8300000, guid: 08b5a5b778d6952438c6b3bedaa1e6af, type: 3}
-  - {fileID: 8300000, guid: cf35a39ed3f005d49bf846fdd9eee7a0, type: 3}
+  - {fileID: 8300000, guid: 5e92a426e50e91742bf6e47315077bca, type: 3}
+  - {fileID: 8300000, guid: a7dcfe7b6f1f7f64384334a555c75dca, type: 3}
+  - {fileID: 8300000, guid: e2ddfb7fc07b5aa44960499f814bc550, type: 3}
   triggerTime: 0
 --- !u!114 &114437571679399682
 MonoBehaviour:
@@ -17749,12 +17769,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 106114, guid: dfea19d1d34dd174d87195f78cb44ae7, type: 3}
+  audioSource: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
   sounds:
-  - {fileID: 8300000, guid: 60fdfa301881bae48ae59759cc83b842, type: 3}
-  - {fileID: 8300000, guid: f82a7d93926f978479349ce3a9e025f6, type: 3}
-  - {fileID: 8300000, guid: cf35a39ed3f005d49bf846fdd9eee7a0, type: 3}
-  - {fileID: 8300000, guid: 08b5a5b778d6952438c6b3bedaa1e6af, type: 3}
+  - {fileID: 8300000, guid: 5e92a426e50e91742bf6e47315077bca, type: 3}
+  - {fileID: 8300000, guid: a7dcfe7b6f1f7f64384334a555c75dca, type: 3}
+  - {fileID: 8300000, guid: e2ddfb7fc07b5aa44960499f814bc550, type: 3}
   triggerTime: 0
 --- !u!114 &114444099356613836
 MonoBehaviour:
@@ -18052,15 +18071,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.05
+  startDamage: 0.1
   endDamage: 0.8
-  damageMultiplier: 0
+  damageMultiplier: 8
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - RightLowerArm
+  - RightHand
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
@@ -18138,15 +18157,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.05
+  startDamage: 0.1
   endDamage: 0.8
-  damageMultiplier: 0
+  damageMultiplier: 8
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - RightLowerArm
+  - RightHand
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
@@ -18238,7 +18257,7 @@ MonoBehaviour:
     normalizedTime: {x: 0.1, y: 0.3}
   - tagName: LockMovement
     tagType: 1
-    normalizedTime: {x: 0, y: 0.3}
+    normalizedTime: {x: 0, y: 0.2}
 --- !u!114 &114669916436479170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18374,7 +18393,7 @@ MonoBehaviour:
     normalizedTime: {x: 0.1, y: 0.3}
   - tagName: LockMovement
     tagType: 1
-    normalizedTime: {x: 0, y: 0.3}
+    normalizedTime: {x: 0, y: 0.2}
 --- !u!114 &114771221009366196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18484,15 +18503,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.01
-  endDamage: 0.8
-  damageMultiplier: 0
+  startDamage: 0.1
+  endDamage: 0.7
+  damageMultiplier: 2
   recoilID: 0
   reactionID: 0
   meleeAttackType: 0
   damageType: 
   bodyParts:
-  - RightLowerArm
+  - RightHand
   ignoreDefense: 0
   activeRagdoll: 0
   senselessTime: 0
@@ -30718,7 +30737,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Jump
-  m_Speed: 1
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101627855152497662}
@@ -32674,7 +32693,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: JumpMove
-  m_Speed: 1
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101487481639733516}
@@ -34449,7 +34468,7 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: 48, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102443250647489832}
-    m_Position: {x: 240, y: -24, z: 0}
+    m_Position: {x: 240, y: -20, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -39884,12 +39903,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 106114, guid: dfea19d1d34dd174d87195f78cb44ae7, type: 3}
+  audioSource: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
   sounds:
-  - {fileID: 8300000, guid: 60fdfa301881bae48ae59759cc83b842, type: 3}
-  - {fileID: 8300000, guid: f82a7d93926f978479349ce3a9e025f6, type: 3}
-  - {fileID: 8300000, guid: 08b5a5b778d6952438c6b3bedaa1e6af, type: 3}
-  - {fileID: 8300000, guid: cf35a39ed3f005d49bf846fdd9eee7a0, type: 3}
+  - {fileID: 8300000, guid: 5e92a426e50e91742bf6e47315077bca, type: 3}
+  - {fileID: 8300000, guid: a7dcfe7b6f1f7f64384334a555c75dca, type: 3}
+  - {fileID: 8300000, guid: e2ddfb7fc07b5aa44960499f814bc550, type: 3}
   triggerTime: 0
 --- !u!1102 &5605048514776210588
 AnimatorState:
@@ -40169,7 +40187,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: -5953557187622493335}
   - {fileID: 8250230921055483177}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -5114658143093388830}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

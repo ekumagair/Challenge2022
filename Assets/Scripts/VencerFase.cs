@@ -19,6 +19,7 @@ public class VencerFase : MonoBehaviour
 
     IEnumerator Esperar()
     {
+        // Esperar uma quantidade de ondas ser criada.
         while (StaticClass.ondasPassadas < esperarOndas)
         {
             yield return new WaitForSeconds(0.5f);
@@ -26,11 +27,13 @@ public class VencerFase : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
+        // Esperar todos os inimigos morrerem.
         while (StaticClass.inimigosVivos > 0)
         {
             yield return new WaitForSeconds(0.5f);
         }
 
+        // Muda o estado de jogo para vitória.
         StaticClass.estadoDeJogo = 1;
         Cursor.lockState = CursorLockMode.None;
 

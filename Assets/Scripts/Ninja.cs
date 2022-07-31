@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Ninja : MonoBehaviour
 {
+    // O ninja corre rapidamente pelo mapa, usando pontos invisíveis como referência.
+
     public bool destruirAoMorrer = false;
     bool morto = false;
 
@@ -22,6 +24,8 @@ public class Ninja : MonoBehaviour
     int destinosAntesDeAtacar = 3;
     NavMeshAgent agente;
     Animator animator;
+
+    // destinosAntesDeAtacar = Quantos destinos o ninja escolhe antes de obrigatoriamente escolher o jogador. Se este limite não existir, pode demorar muito tempo para o jogador ser atacado.
 
     void Awake()
     {
@@ -41,6 +45,7 @@ public class Ninja : MonoBehaviour
     {
         if (morto == false)
         {
+            // Enqaunto não ataca, se move para seu destino.
             if (atacando == false)
             {
                 agente.destination = destino.transform.position;
@@ -48,12 +53,14 @@ public class Ninja : MonoBehaviour
             }
             else
             {
+                // Ficar parado.
                 agente.destination = transform.position;
                 animator.SetBool("Movendo", false);
             }
 
             if (destino.tag == "Destino")
             {
+                // Se o destino for apenas um ponto invisível no mapa, se aproxima dele troca de destino.
                 if (agente.remainingDistance < 1)
                 {
                     EscolherDestino(0);
@@ -61,13 +68,15 @@ public class Ninja : MonoBehaviour
             }
             else if (destino.tag == "Player")
             {
+                // Se o destino for o jogador, se aproxima dele e lança o projétil.
                 if (agente.remainingDistance < 8 && atacando == false && Vector3.Distance(gameObject.transform.position, destino.transform.position) < 9)
                 {
                     StartCoroutine(Atacar());
                 }
             }
+
             /*
-            transform.LookAt(destino.transform.position);
+            transform.LookAt(destino.transform.position); Protótipo
 
             Vector3 resetar = transform.rotation.eulerAngles;
             resetar.x = 0;
@@ -76,6 +85,7 @@ public class Ninja : MonoBehaviour
             transform.rotation = Quaternion.Euler(resetar);
             */
 
+            // Olhar para o alvo gradualmente.
             Vector3 dir = destino.transform.position - transform.position;
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 4f).eulerAngles;
@@ -87,7 +97,8 @@ public class Ninja : MonoBehaviour
 
     public void EscolherDestino(int min)
     {
-        // Destino 0 = Atacar jogador.
+        // Destino [0] = Atacar jogador. Ou seja, o primeiro espaço dessa lista é reservado para o jogador.
+        // Destino [1]+ = Outros pontos invisíveis no mapa.
 
         destino = destinos[Random.Range(min, destinos.Length)];
 
@@ -103,6 +114,7 @@ public class Ninja : MonoBehaviour
         {
             if (invisivel == false)
             {
+                // 50% de chance de ficar transparente ao chegar no destino. O bool "podeFicarInvisivel" controla se essa chance existe ou não.
                 if (Random.Range(0, 2) == 0)
                 {
                     FicarTransparente();
@@ -128,6 +140,7 @@ public class Ninja : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        // Ao terminar o ataque, escolhe um destino que não é o jogador.
         EscolherDestino(1);
         atacando = false;
     }
@@ -146,6 +159,7 @@ public class Ninja : MonoBehaviour
             animator.Play("Death");
         }
 
+        // Ficar parado.
         agente.destination = transform.position;
     }
 

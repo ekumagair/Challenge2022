@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Samurai : MonoBehaviour
 {
+    // O samurai atira flechas no jogador de longe. Ele não é muito ágil, para ser justo com o jogador que só tem armas corpo a corpo.
+
     public bool destruirAoMorrer = false;
     bool morto = false;
 
@@ -18,6 +20,8 @@ public class Samurai : MonoBehaviour
     public GameObject alvo;
     NavMeshAgent agente;
     Animator animator;
+
+    // distanciaLimite = Qual distância o samurai fica para atacar o jogador com projéteis.
 
     void Awake()
     {
@@ -39,7 +43,7 @@ public class Samurai : MonoBehaviour
         {
             if (Mathf.Abs(Vector3.Distance(alvo.transform.position, transform.position)) > distanciaLimite || levandoDano)
             {
-
+                // Se não está levando dano, vai para o jogador. Se não, se afasta dele.
                 if (levandoDano == false)
                 {
                     agente.destination = alvo.transform.position;
@@ -51,9 +55,11 @@ public class Samurai : MonoBehaviour
             }
             else
             {
+                // Ficar parado.
                 agente.destination = transform.position;
             }
 
+            // Parâmetros do animator.
             if(agente.velocity.magnitude > 0)
             {
                 animator.SetBool("Movendo", true);
@@ -64,7 +70,7 @@ public class Samurai : MonoBehaviour
             }
 
             /*
-            transform.LookAt(alvo.transform.position);
+            transform.LookAt(alvo.transform.position); Protótipo
 
             Vector3 resetar = transform.rotation.eulerAngles;
             resetar.x = 0;
@@ -73,6 +79,7 @@ public class Samurai : MonoBehaviour
             transform.rotation = Quaternion.Euler(resetar);
             */
 
+            // Olhar para o alvo gradualmente.
             Vector3 dir = alvo.transform.position - transform.position;
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 4f).eulerAngles;
@@ -87,6 +94,7 @@ public class Samurai : MonoBehaviour
         }
         else
         {
+            // Ficar parado.
             agente.destination = transform.position;
             animator.SetBool("Movendo", false);
         }
@@ -131,6 +139,7 @@ public class Samurai : MonoBehaviour
             animator.Play("Death");
         }
 
+        // Ficar parado.
         agente.destination = transform.position;
     }
 
@@ -142,6 +151,7 @@ public class Samurai : MonoBehaviour
 
     IEnumerator LevarDanoCoroutine()
     {
+        // Se afasta por alguns segundos sem atacar, depois volta ao normal.
         yield return new WaitForSeconds(0.5f);
         levandoDano = true;
         yield return new WaitForSeconds(3f);

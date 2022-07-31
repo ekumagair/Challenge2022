@@ -54,6 +54,7 @@ public class Personagem : MonoBehaviour
 
         if(destruirAoMorrer != null)
         {
+            // Destroi um objeto que faz parte do personagem. Usado pelo gladiador, para deletar seu machado quando ele morre.
             Destroy(destruirAoMorrer);
         }
 
@@ -61,7 +62,11 @@ public class Personagem : MonoBehaviour
         {
             StaticClass.inimigosMortos++;
             Jogador.inimigosMortosHabilidade++;
-            Debug.Log("INIMIGOS MORTOS: " + StaticClass.inimigosMortos);
+
+            if (StaticClass.debug == true)
+            {
+                Debug.Log("INIMIGOS MORTOS: " + StaticClass.inimigosMortos);
+            }
         }
 
         StartCoroutine(DestruirComponentes());
@@ -83,6 +88,7 @@ public class Personagem : MonoBehaviour
 
     public void ScreenShakeJogador()
     {
+        // Chacoalhar a câmera do jogador.
         GetComponent<Jogador>().HitShake();
     }
 
