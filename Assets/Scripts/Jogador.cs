@@ -81,22 +81,37 @@ public class Jogador : MonoBehaviour
         // Instruções
         if(StaticClass.faseAtual == 1)
         {
-            StartCoroutine(CriarInstrucao("Use W, A, S, D para se mover.", 5f, 0f));
-            StartCoroutine(CriarInstrucao("Ataque com o botão esquerdo do mouse. Defenda segurando o botão direito do mouse.", 5f, 5f));
-            StartCoroutine(CriarInstrucao("Segure o Shift para correr.", 5f, 20f));
-            StartCoroutine(CriarInstrucao("Você precisa de energia (barra verde) para realizar essas ações.", 5f, 25f));
+            StartCoroutine(CriarInstrucao("Use [W], [A], [S], [D] para se mover.", 6f, 0f));
+            StartCoroutine(CriarInstrucao("Ataque com o [botão esquerdo do mouse]. Defenda segurando o [botão direito do mouse].", 6f, 6f));
+            StartCoroutine(CriarInstrucao("Segure o [Shift] para correr.", 6f, 24f));
+            StartCoroutine(CriarInstrucao("Você precisa de energia (barra verde) para realizar essas ações.", 6f, 30f));
+            StartCoroutine(CriarInstrucao("Você pode apertar a tecla [Tab] para travar/destravar a mira em um inimigo específico.", 6f, 36f));
         }
         else if (StaticClass.faseAtual == 2)
         {
-            StartCoroutine(CriarInstrucao("Use Q para rolar.", 5f, 0f));
-            StartCoroutine(CriarInstrucao("Aperte E para realizar um ataque mais forte.", 5f, 5f));
-            StartCoroutine(CriarInstrucao("Troque de arma/item com as teclas 1, 2 e 3.", 5f, 20f));
-            StartCoroutine(CriarInstrucao("O machado causa mais dano, mas consome mais energia quando você ataca.", 5f, 25f));
+            StartCoroutine(CriarInstrucao("Use [Q] para rolar.", 6f, 0f));
+            StartCoroutine(CriarInstrucao("Aperte [E] para realizar um ataque mais forte.", 6f, 6f));
+            StartCoroutine(CriarInstrucao("Troque de arma/item com as teclas [1], [2] e [3].", 6f, 24f));
+            StartCoroutine(CriarInstrucao("O machado causa mais dano, mas consome mais energia quando você ataca.", 6f, 30f));
+            StartCoroutine(CriarInstrucao("As poções largadas por inimigos te curam quando usadas.", 6f, 36f));
         }
         else if (StaticClass.faseAtual == 3)
         {
-            StartCoroutine(CriarInstrucao("Use a Barra De Espaço para pular.", 5f, 0f));
-            StartCoroutine(CriarInstrucao("Alguns inimigos atiram projéteis. Você pode pular para desviar deles.", 5f, 5f));
+            StartCoroutine(CriarInstrucao("Use a [Barra De Espaço] para pular.", 6f, 0f));
+            StartCoroutine(CriarInstrucao("Alguns inimigos atiram projéteis. Você pode pular para desviar deles.", 6f, 6f));
+            StartCoroutine(CriarInstrucao("Evite ficar parado por muito tempo enquanto inimigos que atacam com projéteis estão presentes.", 6f, 12f));
+        }
+        else if (StaticClass.faseAtual == 6)
+        {
+            StartCoroutine(CriarInstrucao("Por quanto tempo você consegue sobreviver?", 6f, 0f));
+        }
+        else if (StaticClass.faseAtual == 7)
+        {
+            StartCoroutine(CriarInstrucao("Fase de teste.", 6f, 0f));
+        }
+        else if (StaticClass.faseAtual > 7)
+        {
+            StartCoroutine(CriarInstrucao("Fase inválida.", 6f, 0f));
         }
 
         // Texto de Introdução
@@ -274,6 +289,7 @@ public class Jogador : MonoBehaviour
         //textAtaqueEspecial.text = ((255 / inimigosMortosHabilidadeObjetivo) * inimigosMortosHabilidade).ToString();
     }
 
+    // Função executada quando um item é usado.
     public void InputAtaque()
     {
         // Efeito visual do rastro da arma.
@@ -327,6 +343,7 @@ public class Jogador : MonoBehaviour
                 Debug.Log("Curar");
             }
 
+            InputAtaque();
             vida.AddHealth(cura);
             armasQuantidade[slot]--;
 

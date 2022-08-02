@@ -14852,7 +14852,7 @@ AnimatorStateMachine:
     m_Position: {x: 492, y: 72, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 110752648}
-    m_Position: {x: 492, y: 132, z: 0}
+    m_Position: {x: 490, y: 130, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 110751810}
     m_Position: {x: 240, y: 96, z: 0}
@@ -16122,7 +16122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDamage: 0.1
-  endDamage: 0.55
+  endDamage: 0.6
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
@@ -16178,7 +16178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDamage: 0.1
-  endDamage: 0.75
+  endDamage: 0.6
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
@@ -16402,8 +16402,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 106114, guid: dfea19d1d34dd174d87195f78cb44ae7, type: 3}
   sounds:
-  - {fileID: 8300000, guid: 224b63efdb81fec4fad3a6a5cfde8bc8, type: 3}
-  triggerTime: 0
+  - {fileID: 8300000, guid: 120ca9a014e82f34e9012ca4e5cb03dd, type: 3}
+  - {fileID: 8300000, guid: 7269e3bac54d043479215bf2b819f953, type: 3}
+  - {fileID: 8300000, guid: 269392d7494f1424691ae7464387107e, type: 3}
+  triggerTime: 0.4
 --- !u!114 &114215453694696434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17493,7 +17495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDamage: 0.1
-  endDamage: 0.7
+  endDamage: 0.6
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
