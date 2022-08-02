@@ -8,6 +8,8 @@ public class MenuScript : MonoBehaviour
 {
     public Slider sliderMouse;
     public Slider sliderVolume;
+    public Text mouseValor;
+    public Text volumeValor;
     public Text textBuild;
     public bool escSair;
 
@@ -56,6 +58,15 @@ public class MenuScript : MonoBehaviour
                 IrParaTitulo();
             }
         }
+
+        if (mouseValor != null)
+        {
+            mouseValor.text = "(" + Mathf.RoundToInt(StaticClass.sensibilidadeMouse).ToString() + ")";
+        }
+        if (volumeValor != null)
+        {
+            volumeValor.text = "(" + Mathf.RoundToInt(StaticClass.volumeGlobal * 100f).ToString() + "%)";
+        }
     }
 
     public void IrParaJogo()
@@ -87,6 +98,12 @@ public class MenuScript : MonoBehaviour
     {
         //SceneManager.LoadScene("Opcoes"); Protótipo
         StartCoroutine(IrPara("Opcoes"));
+    }
+
+    public void IrParaControles()
+    {
+        //SceneManager.LoadScene("Controles"); Protótipo
+        StartCoroutine(IrPara("Controles"));
     }
 
     public void SairDoJogo()

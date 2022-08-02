@@ -48,7 +48,7 @@ public class CameraShake : MonoBehaviour
             if (StaticClass.estadoDeJogo != 2)
             {
                 // Chacoalha a câmera se o jogo não está pausado.
-                cameraTransform.localPosition = orignalCameraPos + Random.insideUnitSphere * shakeAmount;
+                cameraTransform.localPosition = orignalCameraPos + Random.insideUnitSphere * shakeAmount * StaticClass.shakeMult;
                 _shakeTimer -= Time.deltaTime;
             }
         }
