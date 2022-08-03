@@ -105,7 +105,7 @@ namespace Invector.vCharacterController
                 return;
             }
 
-            if (weakAttackInput.GetButtonDown() && MeleeAttackStaminaConditions() && Jogador.armaDelay < 0.6f)
+            if (weakAttackInput.GetButtonDown() && MeleeAttackStaminaConditions() && Jogador.armaDelay < 0.1f)
             {
                 TriggerWeakAttack();
                 Jogador.armaDelay = 1f;

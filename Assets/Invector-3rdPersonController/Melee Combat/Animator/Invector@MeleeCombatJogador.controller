@@ -965,13 +965,7 @@ MonoBehaviour:
   tags:
   - tagName: LockMovement
     tagType: 0
-    normalizedTime: {x: 0, y: 0.3}
-  - tagName: LockMovement
-    tagType: 0
-    normalizedTime: {x: 0.8, y: 1}
-  - tagName: LockRotation
-    tagType: 0
-    normalizedTime: {x: 0, y: 1}
+    normalizedTime: {x: 0, y: 0.1}
 --- !u!114 &-5106391156787183793
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15347,7 +15341,7 @@ AnimatorStateMachine:
     m_Position: {x: -290, y: -110, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 1107872661057384810}
-    m_Position: {x: -288, y: -168, z: 0}
+    m_Position: {x: -290, y: -170, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 1107292154604038212}
     m_Position: {x: -288, y: -228, z: 0}

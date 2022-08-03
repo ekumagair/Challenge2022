@@ -35,6 +35,7 @@ TagManager:
   - Destino
   - CameraShake
   - HUD
+  - RefletirProjeteis
   layers:
   - Default
   - TransparentFX

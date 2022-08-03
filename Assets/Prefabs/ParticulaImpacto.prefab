@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1045003397945270539}
   - component: {fileID: 2308663609716189282}
   - component: {fileID: 3549846949631359780}
+  - component: {fileID: 4239007455301896668}
   m_Layer: 0
   m_Name: ParticulaImpacto
   m_TagString: Untagged
@@ -115,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.4
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -222,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.23529412, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3786,7 +3787,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3838,14 +3839,14 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 1
+    radiusScale: 0.5
     collidesWith:
       serializedVersion: 2
-      m_Bits: 249859
+      m_Bits: 1
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4862,3 +4863,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &4239007455301896668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309877448753314056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9d93b77b535e648adf36e270e988ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  criarNoImpacto: {fileID: 6582480816626103481, guid: 189d8cfc1146daf4bbf605db958c0d91, type: 3}
+  criarNoImpactoTag: Dirt

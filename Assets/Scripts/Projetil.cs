@@ -8,6 +8,7 @@ public class Projetil : MonoBehaviour
     public string ignorar = "";
     public int dano = 20;
     public int efeitoAoAtingir = 0;
+    public bool podeSerRefletido = false;
     public GameObject particulaImpacto;
     public GameObject particulaRastro;
     public GameObject audioSource;
@@ -37,42 +38,61 @@ public class Projetil : MonoBehaviour
             // Se o objeto atingido tem vida, causa dano nele.
             if(collision.gameObject.GetComponent<Invector.vHealthController>() != null)
             {
+                if(collision.gameObject.GetComponent<Invector.vHealthController>().currentHealth - dano <= 0 && efeitoAoAtingir == 1)
+                {
+                    efeitoAoAtingir = 2;
+                }
+
                 collision.gameObject.GetComponent<Invector.vHealthController>().AddHealth(dano * -1);
             }
 
-            // Partícula de impacto.
-            if (particulaImpacto != null)
-            {
-                Instantiate(particulaImpacto, transform.position, transform.rotation);
-            }
+            ParticulaDeImpacto();
+            SomDeImpacto();
 
-            // Som de impacto.
-            if (audioSource != null)
-            {
-                var snd = Instantiate(audioSource, transform.position + transform.up, transform.rotation);
-                snd.GetComponent<AudioSource>().clip = clipAtingir[Random.Range(0, clipAtingir.Length)];
-                snd.GetComponent<AudioSource>().PlayOneShot(snd.GetComponent<AudioSource>().clip, 1);
-            }
-
-            // Efeitos visuais de impacto.
-            if (efeitoAoAtingir == 0)
-            {
-                // Apenas destruir.
-                Destroy(gameObject);
-            }
-            else if (efeitoAoAtingir == 1)
-            {
-                // Prender no objeto atingido.
-                StartCoroutine(Atingiu1(collision.gameObject));
-            }
-            else if (efeitoAoAtingir == 2)
-            {
-                // Ativar gravidade.
-                StartCoroutine(Atingiu2());
-            }
-
-            atingiu = true;
+            Atingiu(collision.gameObject);
         }
+    }
+
+    void ParticulaDeImpacto()
+    {
+        // Partícula de impacto.
+        if (particulaImpacto != null)
+        {
+            Instantiate(particulaImpacto, transform.position, transform.rotation);
+        }
+    }
+
+    void SomDeImpacto()
+    {
+        // Som de impacto.
+        if (audioSource != null)
+        {
+            var snd = Instantiate(audioSource, transform.position + transform.up, transform.rotation);
+            snd.GetComponent<AudioSource>().clip = clipAtingir[Random.Range(0, clipAtingir.Length)];
+            snd.GetComponent<AudioSource>().PlayOneShot(snd.GetComponent<AudioSource>().clip, 1);
+        }
+    }
+
+    void Atingiu(GameObject atingido)
+    {
+        // Efeitos visuais de impacto.
+        if (efeitoAoAtingir == 0)
+        {
+            // Apenas destruir.
+            Destroy(gameObject);
+        }
+        else if (efeitoAoAtingir == 1)
+        {
+            // Prender no objeto atingido.
+            StartCoroutine(Atingiu1(atingido));
+        }
+        else if (efeitoAoAtingir == 2)
+        {
+            // Ativar gravidade.
+            StartCoroutine(Atingiu2());
+        }
+
+        atingiu = true;
     }
 
     IEnumerator Atingiu1(GameObject atingido)
@@ -113,5 +133,27 @@ public class Projetil : MonoBehaviour
         yield return new WaitForSeconds(10f);
 
         Destroy(gameObject);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.tag == "RefletirProjeteis" && podeSerRefletido == true && ignorar != "Player" && atingiu == false)
+        {
+            ignorar = "Player";
+            transform.forward *= -1f;
+            //transform.forward = GameObject.FindGameObjectWithTag("Player").transform.forward;
+            velocidade *= 1.5f;
+            dano *= 3;
+
+            if (GetComponent<BoxCollider>() != null)
+            {
+                GetComponent<BoxCollider>().size *= 1.3f;
+            }
+
+            atingiu = false;
+
+            ParticulaDeImpacto();
+            SomDeImpacto();
+        }
     }
 }

@@ -8186,6 +8186,7 @@ MonoBehaviour:
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   destruirAoMorrer: {fileID: 2933325659696598412}
   localPes: {fileID: 0}
+  ragdoll: {fileID: 0}
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

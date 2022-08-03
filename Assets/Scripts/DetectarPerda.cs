@@ -189,7 +189,7 @@ public class DetectarPerda : MonoBehaviour
     // Mostra uma dica aleatória quando o jogador perde. As dicas são para todas as fases.
     public void MostrarDica()
     {
-        int dica = Random.Range(0, 5);
+        int dica = Random.Range(0, 6);
         if (dica == 0)
         {
             menuTextoExtraText.text = "Dica: Durante um rolamento (tecla [Q]), você não leva dano de ataques corpo a corpo, mas inimigos ainda perderão tempo tentando te atacar.";
@@ -209,6 +209,10 @@ public class DetectarPerda : MonoBehaviour
         else if (dica == 4)
         {
             menuTextoExtraText.text = "Dica: Depois de derrotar inimigos o suficiente, você pode executar um ataque especial apertando a tecla [F], causando dano nos inimigos perto de você.";
+        }
+        else if (dica == 5)
+        {
+            menuTextoExtraText.text = "Dica: Ataques com a espada podem refletir projéteis, fazendo com que causem dano em inimigos.";
         }
     }
 }

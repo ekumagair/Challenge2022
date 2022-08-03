@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6904922883094311852}
   - component: {fileID: 6904922883094311851}
   - component: {fileID: 6380121870260680776}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MachadoSplash
   m_TagString: TriggerDano
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}

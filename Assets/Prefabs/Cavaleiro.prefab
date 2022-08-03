@@ -9341,7 +9341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 1
+  selectedToolbar: 4
   _isDead: 0
   _currentHealth: 0
   isImmortal: 0
@@ -9390,8 +9390,8 @@ MonoBehaviour:
   onResetHealth:
     m_PersistentCalls:
       m_Calls: []
-  deathBy: 0
-  removeComponentsAfterDie: 1
+  deathBy: 2
+  removeComponentsAfterDie: 0
   debugActionListener: 0
   OnCrouch:
     m_PersistentCalls:
@@ -9459,7 +9459,7 @@ MonoBehaviour:
   maxTimeToAttack: 2
   maxAttackCount: 3
   randomAttackCount: 1
-  chanceToRoll: 0.2
+  chanceToRoll: 0.1
   chanceToBlockInStrafe: 0.1
   chanceToBlockAttack: 0.1
   raiseShield: 2
@@ -9677,6 +9677,7 @@ MonoBehaviour:
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   destruirAoMorrer: {fileID: 0}
   localPes: {fileID: 0}
+  ragdoll: {fileID: 8542825794784507022, guid: 7f450f08093641149b7c6095e272c3cb, type: 3}
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

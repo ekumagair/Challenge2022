@@ -8,12 +8,18 @@ public class MenuScript : MonoBehaviour
 {
     public Slider sliderMouse;
     public Slider sliderVolume;
+    public Slider sliderVolumeHit;
+    public AudioSource sliderVolumeHitAS;
+    public Slider sliderShakeMult;
     public Text mouseValor;
     public Text volumeValor;
+    public Text volumeHitValor;
+    public Text shakeMultValor;
+
     public Text textBuild;
     public bool escSair;
 
-    private void Start()
+    void Start()
     {
         if(sliderMouse != null && StaticClass.sensibilidadeMouse != 0f)
         {
@@ -25,7 +31,17 @@ public class MenuScript : MonoBehaviour
             sliderVolume.value = StaticClass.volumeGlobal;
         }
 
-        if(textBuild != null)
+        if (sliderVolumeHit != null)
+        {
+            sliderVolumeHit.value = StaticClass.volumeHitSound;
+        }
+
+        if (sliderShakeMult != null)
+        {
+            sliderShakeMult.value = StaticClass.shakeMult;
+        }
+
+        if (textBuild != null)
         {
             if (StaticClass.debug)
             {
@@ -41,6 +57,7 @@ public class MenuScript : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 1;
 
+        StaticClass.totalDeInimigos = 0;
         StaticClass.clicouEmBotao = false;
     }
 
@@ -66,6 +83,14 @@ public class MenuScript : MonoBehaviour
         if (volumeValor != null)
         {
             volumeValor.text = "(" + Mathf.RoundToInt(StaticClass.volumeGlobal * 100f).ToString() + "%)";
+        }
+        if (volumeHitValor != null)
+        {
+            volumeHitValor.text = "(" + Mathf.RoundToInt(StaticClass.volumeHitSound * 100f).ToString() + "%)";
+        }
+        if (shakeMultValor != null)
+        {
+            shakeMultValor.text = "(" + Mathf.RoundToInt(StaticClass.shakeMult).ToString() + "x)";
         }
     }
 
@@ -132,5 +157,16 @@ public class MenuScript : MonoBehaviour
     {
         StaticClass.volumeGlobal = sliderVolume.value;
         AudioListener.volume = StaticClass.volumeGlobal;
+    }
+
+    public void MudarVolumeHit()
+    {
+        StaticClass.volumeHitSound = sliderVolumeHit.value;
+        sliderVolumeHitAS.volume = StaticClass.volumeHitSound;
+    }
+
+    public void MudarShakeMult()
+    {
+        StaticClass.shakeMult = sliderShakeMult.value;
     }
 }

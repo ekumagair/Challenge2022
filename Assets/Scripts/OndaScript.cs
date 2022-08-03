@@ -24,9 +24,11 @@ public class OndaScript : MonoBehaviour
     private void Start()
     {
         StaticClass.ondasPassadas = 0;
+        StaticClass.totalDeInimigos = 0;
         StaticClass.inimigosMortos = 0;
         StaticClass.inimigosVivos = 0;
         StartCoroutine(EsperarInimigos());
+        StartCoroutine(ContarInimigos());
     }
 
     IEnumerator EsperarInimigos()
@@ -84,6 +86,17 @@ public class OndaScript : MonoBehaviour
         {
             StaticClass.ondasPassadas++;
             Destroy(gameObject);
+        }
+    }
+
+    IEnumerator ContarInimigos()
+    {
+        yield return new WaitForSeconds(3f);
+        StaticClass.totalDeInimigos += quantos * repetir;
+
+        if (StaticClass.debug)
+        {
+            Debug.Log("TOTAL DE INIMIGOS: " + StaticClass.totalDeInimigos);
         }
     }
 }

@@ -10,6 +10,7 @@ public class Jogador : MonoBehaviour
     public GameObject splashMachado;
     public GameObject splashGiratorio;
     public GameObject splashGiratorio2;
+    public GameObject refletirProjeteis;
     public GameObject fumacaAtaqueGiratorio;
     public static int armaEquipada;
     public static float armaDelay = 0.0f;
@@ -28,6 +29,7 @@ public class Jogador : MonoBehaviour
     public Image inventarioUnicoFundo;
     public Sprite[] inventarioUnicoSprites;
     public Image[] inventarioIcones;
+    public Sprite[] itensSprites;
     public Image hudAtaqueEspecial;
     Color32 hudAtaqueEspecialCor = new Color(255, 255, 255, 255);
     public Text textAtaqueEspecial;
@@ -42,12 +44,16 @@ public class Jogador : MonoBehaviour
     public AudioClip clipUsarPocao;
     public AudioClip[] clipMochila;
     public AudioClip[] clipSwoosh;
+    public GameObject hitSound;
 
     // Instruções
     public GameObject instrucao;
 
     // Texto Intro
     public Text textIntro;
+
+    // Texto Progresso
+    public Text textProgresso;
 
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
@@ -71,6 +77,11 @@ public class Jogador : MonoBehaviour
         vida.isImmortal = false;
         girando = false;
         StaticClass.clicouEmBotao = false;
+
+        if(hitSound != null)
+        {
+            hitSound.GetComponent<AudioSource>().volume = StaticClass.volumeHitSound;
+        }
 
         //StartCoroutine(CriarInstrucao("Teste!", 3f, 0f));
 
@@ -100,6 +111,11 @@ public class Jogador : MonoBehaviour
             StartCoroutine(CriarInstrucao("Use a [Barra De Espaço] para pular.", 6f, 0f));
             StartCoroutine(CriarInstrucao("Alguns inimigos atiram projéteis. Você pode pular para desviar deles.", 6f, 6f));
             StartCoroutine(CriarInstrucao("Evite ficar parado por muito tempo enquanto inimigos que atacam com projéteis estão presentes.", 6f, 12f));
+        }
+        else if (StaticClass.faseAtual == 4)
+        {
+            StartCoroutine(CriarInstrucao("Se seu ataque for preciso, você pode usar a espada para refletir projéteis e usá-los para causar dano em inimigos!", 10f, 0f));
+            StartCoroutine(CriarInstrucao("O machado não reflete projéteis.", 10f, 10f));
         }
         else if (StaticClass.faseAtual == 6)
         {
@@ -135,29 +151,59 @@ public class Jogador : MonoBehaviour
         {
             if (armaDelay == 0 && girando == false)
             {
-                // Escolher a espada
-                if (Input.GetKeyDown(KeyCode.Alpha1) && armasDisponiveis[0] == true && armaEquipada != 0)
+                if (StaticClass.tipoDeInventario == 0)
                 {
-                    armaEquipada = 0;
-                    Jogador.armaDelay = 0.4f;
-                    animator.Play("Longs_Equip", 3);
-                    CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                    // Escolher a espada
+                    if (Input.GetKeyDown(KeyCode.Alpha1) && armasDisponiveis[0] == true && armaEquipada != 0)
+                    {
+                        armaEquipada = 0;
+                        Jogador.armaDelay = 0.4f;
+                        animator.Play("Longs_Equip", 3);
+                        CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                    }
+                    // Escolher o machado
+                    if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[1] == true && armaEquipada != 1)
+                    {
+                        armaEquipada = 1;
+                        Jogador.armaDelay = 0.8f;
+                        animator.Play("WeaponUnsheath", 3);
+                        CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                    }
+                    // Escolher a poção
+                    if (Input.GetKeyDown(KeyCode.Alpha3) && armasDisponiveis[2] == true && armaEquipada != 2)
+                    {
+                        armaEquipada = 2;
+                        Jogador.armaDelay = 0.2f;
+                        animator.Play("WeaponSheath", 3);
+                        CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                    }
                 }
-                // Escolher o machado
-                if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[1] == true && armaEquipada != 1)
+                else if (StaticClass.tipoDeInventario == 1)
                 {
-                    armaEquipada = 1;
-                    Jogador.armaDelay = 0.8f;
-                    animator.Play("WeaponUnsheath", 3);
-                    CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
-                }
-                // Escolher a poção
-                if (Input.GetKeyDown(KeyCode.Alpha3) && armasDisponiveis[2] == true && armaEquipada != 2)
-                {
-                    armaEquipada = 2;
-                    Jogador.armaDelay = 0.2f;
-                    animator.Play("WeaponSheath", 3);
-                    CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                    // Alternar arma
+                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    {
+                        if(armaEquipada == 0 && armasDisponiveis[1] == true)
+                        {
+                            armaEquipada = 1;
+                            Jogador.armaDelay = 0.8f;
+                            animator.Play("WeaponUnsheath", 3);
+                            CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                        }
+                        else if (armaEquipada == 1 && armasDisponiveis[0] == true)
+                        {
+                            armaEquipada = 0;
+                            Jogador.armaDelay = 0.4f;
+                            animator.Play("Longs_Equip", 3);
+                            CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                        }
+                    }
+
+                    // Usar a poção
+                    if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[2] == true)
+                    {
+                        ItemDeCura(2, 25);
+                    }
                 }
 
                 // Ataque especial (giratório)
@@ -246,7 +292,41 @@ public class Jogador : MonoBehaviour
             }
 
             // Mudar sprite do inventário de acordo com o item equipado.
-            inventarioUnicoFundo.sprite = inventarioUnicoSprites[armaEquipada];
+            if (StaticClass.tipoDeInventario == 0)
+            {
+                inventarioUnicoFundo.sprite = inventarioUnicoSprites[armaEquipada];
+
+                // Mudar sprite do inventário quando o jogador usa uma poção de cura.
+                if (armaEquipada == 2 && Input.GetMouseButton(0))
+                {
+                    inventarioUnicoFundo.sprite = inventarioUnicoSprites[3];
+                }
+            }
+            else if (StaticClass.tipoDeInventario == 1)
+            {
+                if(armaEquipada == 0)
+                {
+                    inventarioIcones[0].sprite = itensSprites[0];
+                    inventarioIcones[1].sprite = itensSprites[1];
+                }
+                else if (armaEquipada == 1)
+                {
+                    inventarioIcones[0].sprite = itensSprites[1];
+                    inventarioIcones[1].sprite = itensSprites[0];
+                }
+
+                for (int i = 0; i < armasQuantidade.Length; i++)
+                {
+                    if (armasQuantidade[i] > 0)
+                    {
+                        inventarioIcones[i].enabled = true;
+                    }
+                    else
+                    {
+                        inventarioIcones[i].enabled = false;
+                    }
+                }
+            }
 
             // Mudar parâmetro do animator de acordo com item equipado.
             animator.SetInteger("ArmaAtual", armaEquipada);
@@ -267,12 +347,6 @@ public class Jogador : MonoBehaviour
             hudAtaqueEspecialCor = new Color32((byte) corHab, (byte) corHab, (byte) corHab, 255);
             hudAtaqueEspecial.color = hudAtaqueEspecialCor;
 
-            // Mudar sprite do inventário quando o jogador usa uma poção de cura.
-            if (armaEquipada == 2 && Input.GetMouseButton(0))
-            {
-                inventarioUnicoFundo.sprite = inventarioUnicoSprites[3];
-            }
-
             // Subtrair o valor da demora da arma. Se esse valor for > 0, o jogador não pode trocar de armas ou usá-las. Ele só pode fazer isso se o valor for = 0.
             // Esse delay é contado em segundos.
             if(armaDelay > 0)
@@ -287,6 +361,23 @@ public class Jogador : MonoBehaviour
 
         textAtaqueEspecial.text = inimigosMortosHabilidade.ToString() + "/" + inimigosMortosHabilidadeObjetivo.ToString();
         //textAtaqueEspecial.text = ((255 / inimigosMortosHabilidadeObjetivo) * inimigosMortosHabilidade).ToString();
+
+        // Mostrar progresso da fase.
+        if (StaticClass.totalDeInimigos > 0)
+        {
+            if (StaticClass.estadoDeJogo != 1)
+            {
+                textProgresso.text = "Progresso: " + Mathf.RoundToInt(((float)StaticClass.inimigosMortos / (float)StaticClass.totalDeInimigos) * 100f).ToString() + "%";
+            }
+            else
+            {
+                textProgresso.text = "Progresso: 100%";
+            }
+        }
+        else
+        {
+            textProgresso.text = "";
+        }
     }
 
     // Função executada quando um item é usado.
@@ -296,6 +387,12 @@ public class Jogador : MonoBehaviour
         if (armasTrail[armaEquipada] != null)
         {
             armasTrail[armaEquipada].Play();
+        }
+
+        // Refletir projéteis. Apenas com a espada.
+        if(refletirProjeteis != null && armaEquipada == 0)
+        {
+            Instantiate(refletirProjeteis, transform.position + (transform.forward * 1.25f) + transform.up, transform.rotation);
         }
     }
 
@@ -343,7 +440,8 @@ public class Jogador : MonoBehaviour
                 Debug.Log("Curar");
             }
 
-            InputAtaque();
+            //InputAtaque();
+            armasTrail[2].Play();
             vida.AddHealth(cura);
             armasQuantidade[slot]--;
 

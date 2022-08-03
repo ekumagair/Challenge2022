@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 1413438260738966551}
   - component: {fileID: 1996276460166526549}
   - component: {fileID: 6380732129230132416}
+  - component: {fileID: 71692350897682679}
   m_Layer: 9
   m_Name: Ninja
   m_TagString: Enemy
@@ -322,6 +323,9 @@ MonoBehaviour:
   particulaDano: {fileID: 309877448753314056, guid: 96b9324030163834d94a85b88b4bead1, type: 3}
   particulaBlock: {fileID: 309877448753314056, guid: b0df4d508a77bc346bf7718996362a7f, type: 3}
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
+  destruirAoMorrer: {fileID: 0}
+  localPes: {fileID: 0}
+  ragdoll: {fileID: 0}
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}
@@ -330,6 +334,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4a36888064271f64ab205dd5bd5cd95b, type: 3}
   - {fileID: 8300000, guid: d13e056752e75fd49b63dd6b27966a37, type: 3}
   - {fileID: 8300000, guid: fec5eb4353345d240b89bd7c8ec0e4b6, type: 3}
+--- !u!114 &71692350897682679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413438260738966762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d65c6c4769fbba4d9dbafaa040e0550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 6020708913455267028, guid: 1887d2cb5318b83428143721d6141956, type: 3}
+  chance: 4
 --- !u!1 &1413438261169200654
 GameObject:
   m_ObjectHideFlags: 0
