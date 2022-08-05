@@ -105,7 +105,7 @@ namespace Invector.vCharacterController
                 return;
             }
 
-            if (weakAttackInput.GetButtonDown() && MeleeAttackStaminaConditions() && Jogador.armaDelay < 0.6f)
+            if (weakAttackInput.GetButtonDown() && MeleeAttackStaminaConditions() && Jogador.armaDelay < 0.01f)
             {
                 TriggerWeakAttack();
                 Jogador.armaDelay = 1f;
@@ -129,7 +129,7 @@ namespace Invector.vCharacterController
                 return;
             }
 
-            if (strongAttackInput.GetButtonDown() && (!meleeManager.CurrentActiveAttackWeapon || meleeManager.CurrentActiveAttackWeapon.useStrongAttack) && MeleeAttackStaminaConditions())
+            if (strongAttackInput.GetButtonDown() && (!meleeManager.CurrentActiveAttackWeapon || meleeManager.CurrentActiveAttackWeapon.useStrongAttack) && MeleeAttackStaminaConditions() && Jogador.armaDelay == 0.0f)
             {
                 TriggerStrongAttack();
                 GameObject.FindGameObjectWithTag("Player").GetComponent<Jogador>().InputAtaque();

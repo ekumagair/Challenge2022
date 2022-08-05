@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8453175164746908658}
   - component: {fileID: 8453175164746908659}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MudarCeu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,4 +46,4 @@ MonoBehaviour:
   qualFase: 1
   cor: {r: 1, g: 1, b: 1, a: 1}
   intensidade: 1
-  skyboxMaterial: {fileID: 2100000, guid: efd1c33efd2d58340b88804268e6833f, type: 2}
+  skyboxMaterial: {fileID: 0}

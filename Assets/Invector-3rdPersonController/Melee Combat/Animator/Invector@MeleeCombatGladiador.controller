@@ -17452,7 +17452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateInfos: []
   tags:
-  - LockMovement
+  - LockMovement1
 --- !u!114 &114790590439853166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -33079,7 +33079,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102000010528555366}
-    m_Position: {x: 288, y: 12, z: 0}
+    m_Position: {x: 290, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000012545787238}
     m_Position: {x: 288, y: 72, z: 0}

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Personagem : MonoBehaviour
 {
+    // Script usado por todos os personagens.
+    // Se "jogador" = true, significa que este personagem é o jogador. Senão, é um inimigo.
+
     public bool jogador = false;
     public ParticleSystem rastroDeAtaque;
     public GameObject particulaDano;
@@ -11,6 +14,8 @@ public class Personagem : MonoBehaviour
     public GameObject audioSource;
     public GameObject destruirAoMorrer;
     public GameObject localPes;
+    public GameObject spine;
+    public GameObject ragdoll;
     public AudioClip[] clipDano;
     public AudioClip[] clipBlock;
 
@@ -19,6 +24,19 @@ public class Personagem : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+    }
+
+    private void Awake()
+    {
+        if (jogador == false)
+        {
+            StaticClass.inimigosVivos++;
+
+            if (StaticClass.debug == true)
+            {
+                Debug.Log("INIMIGOS VIVOS: " + StaticClass.inimigosVivos);
+            }
+        }
     }
 
     private void Update()
@@ -66,6 +84,7 @@ public class Personagem : MonoBehaviour
             if (StaticClass.debug == true)
             {
                 Debug.Log("INIMIGOS MORTOS: " + StaticClass.inimigosMortos);
+                Debug.Log(Mathf.RoundToInt(((float) StaticClass.inimigosMortos / (float) StaticClass.totalDeInimigos) * 100f).ToString());
             }
         }
 
@@ -102,31 +121,50 @@ public class Personagem : MonoBehaviour
 
     IEnumerator DestruirComponentes()
     {
-        yield return new WaitForSeconds(0.2f);
+        if (ragdoll == null)
+        {
+            yield return new WaitForSeconds(0.2f);
 
-        if (GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>() != null)
-        {
-            Destroy(GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>());
+            if (GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>() != null)
+            {
+                Destroy(GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>());
+            }
+            if (GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Motor>() != null)
+            {
+                Destroy(GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Motor>());
+            }
+            if (GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Animator>() != null)
+            {
+                Destroy(GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Animator>());
+            }
+            if (GetComponent<Invector.vMelee.vMeleeAttackObject>() != null)
+            {
+                Destroy(GetComponent<Invector.vMelee.vMeleeAttackObject>());
+            }
+            if (GetComponent<Rigidbody>() != null)
+            {
+                Destroy(GetComponent<Rigidbody>());
+            }
+            if (GetComponent<Collider>() != null)
+            {
+                Destroy(GetComponent<Collider>());
+            }
         }
-        if (GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Motor>() != null)
+        else
         {
-            Destroy(GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Motor>());
-        }
-        if (GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Animator>() != null)
-        {
-            Destroy(GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Animator>());
-        }
-        if (GetComponent<Invector.vMelee.vMeleeAttackObject>() != null)
-        {
-            Destroy(GetComponent<Invector.vMelee.vMeleeAttackObject>());
-        }
-        if (GetComponent<Rigidbody>() != null)
-        {
-            Destroy(GetComponent<Rigidbody>());
-        }
-        if (GetComponent<Collider>() != null)
-        {
-            Destroy(GetComponent<Collider>());
+            var rag = Instantiate(ragdoll, transform.position, transform.rotation);
+            rag.GetComponent<Animator>().Play("Big_From_Front");
+
+            if(StaticClass.debug)
+            {
+                Debug.Log(GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name);
+            }
+
+            yield return new WaitForSeconds(0.01f);
+
+            Destroy(rag.GetComponent<Animator>());
+
+            Destroy(gameObject);
         }
     }
 }

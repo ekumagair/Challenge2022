@@ -8,6 +8,7 @@ public static class StaticClass
     public static int inimigosMortos = 0;
     public static int inimigosVivos = 0;
     public static int ondasPassadas = 0;
+    public static int totalDeInimigos = 0;
 
     public static bool clicouEmBotao = false;
     // Usado nos menus.
@@ -22,7 +23,13 @@ public static class StaticClass
     public static float sensibilidadeMouse = 8f;
     public static float volumeGlobal = 1.0f;
     public static float shakeMult = 1.0f;
+    public static float volumeHitSound = 0.5f;
 
     // Modo debug: Permite algumas trapaças e outras funções se ativado. Deve ser desativado na build definitiva do jogo.
     public static bool debug = true;
+
+    // Tipo de inventário
+    public static int tipoDeInventario = 1;
+    // 0 = Usar as teclas 1, 2 e 3 para escolher os itens.
+    // 1 = Usar uma tecla para alternar entre 2 armas e usar outra tecla para usar a poção.
 }
