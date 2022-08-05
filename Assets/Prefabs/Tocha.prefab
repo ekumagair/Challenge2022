@@ -4848,12 +4848,12 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.6096754, b: 0, a: 1}
   m_Intensity: 1.2
-  m_Range: 12
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4881,7 +4881,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -4906,6 +4906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4051211041122919509}
+  - component: {fileID: 2968784913360832274}
   m_Layer: 0
   m_Name: Tocha
   m_TagString: Untagged
@@ -4931,6 +4932,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2968784913360832274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2399553268507833142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e387c1f4cfdcc904c93bd4dc2564b570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objFogo: {fileID: 1020261658822369442}
+  objFumaca: {fileID: 7660539556715354266}
+  luz: {fileID: 2986180494121471541}
+  destaque: 0
 --- !u!1 &7660539556715354266
 GameObject:
   m_ObjectHideFlags: 0

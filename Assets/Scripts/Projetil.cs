@@ -106,12 +106,21 @@ public class Projetil : MonoBehaviour
             Destroy(particulaRastro);
         }
 
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.015f);
 
         velocidade = 0;
-        transform.parent = atingido.transform;
 
-        yield return new WaitForSeconds(2f);
+        if (atingido.GetComponent<Personagem>() == null)
+        {
+            transform.parent = atingido.transform;
+        }
+        else
+        {
+            transform.parent = atingido.GetComponent<Personagem>().spine.transform;
+            transform.position = atingido.transform.position + Vector3.up;
+        }
+
+        yield return new WaitForSeconds(10f);
 
         Destroy(gameObject);
     }

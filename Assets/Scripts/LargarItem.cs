@@ -5,7 +5,6 @@ using UnityEngine;
 public class LargarItem : MonoBehaviour
 {
     // Este script faz um personagem ter a chance aleatória de deixar um item ao morrer.
-    // Personagens com este script são considerados inimigos.
 
     public GameObject item;
     public int chance = 1;
@@ -16,13 +15,7 @@ public class LargarItem : MonoBehaviour
     void Awake()
     {
         vida = GetComponent<Invector.vHealthController>();
-        StaticClass.inimigosVivos++;
         criou = false;
-
-        if(StaticClass.debug == true)
-        {
-            Debug.Log("INIMIGOS VIVOS: " + StaticClass.inimigosVivos);
-        }
 
         // O cálculo de chance não funciona se o valor "chance" for menor que 1.
         if(chance < 1)

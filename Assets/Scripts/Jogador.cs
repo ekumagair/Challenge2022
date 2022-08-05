@@ -52,8 +52,9 @@ public class Jogador : MonoBehaviour
     // Texto Intro
     public Text textIntro;
 
-    // Texto Progresso
+    // Progresso
     public Text textProgresso;
+    public Image imageProgresso;
 
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
@@ -373,10 +374,13 @@ public class Jogador : MonoBehaviour
             {
                 textProgresso.text = "Progresso: 100%";
             }
+
+            imageProgresso.enabled = true;
         }
         else
         {
             textProgresso.text = "";
+            imageProgresso.enabled = false;
         }
     }
 
@@ -392,7 +396,7 @@ public class Jogador : MonoBehaviour
         // Refletir projéteis. Apenas com a espada.
         if(refletirProjeteis != null && armaEquipada == 0)
         {
-            Instantiate(refletirProjeteis, transform.position + (transform.forward * 1.25f) + transform.up, transform.rotation);
+            Instantiate(refletirProjeteis, transform.position + (transform.forward * 1.3f) + transform.up, transform.rotation);
         }
     }
 

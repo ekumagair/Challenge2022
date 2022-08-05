@@ -74,6 +74,8 @@ public class OndaScript : MonoBehaviour
             Instantiate(inimigo, local[escolha].position, local[escolha].rotation);
         }
 
+        local[escolha].GetComponent<PontoDeSpawn>().DestaqueTochas();
+
         repetir--;
 
         // Se vai repetir, espera "delayRepetir" segundos e chama a corrotina de novo. Senão, destroi esta onda e ela é considerada totalmente criada.

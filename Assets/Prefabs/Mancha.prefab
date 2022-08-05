@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5643774203815097459}
   - component: {fileID: 4604918914465064976}
   - component: {fileID: 8327046804176490124}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mancha
   m_TagString: Untagged
   m_Icon: {fileID: 0}

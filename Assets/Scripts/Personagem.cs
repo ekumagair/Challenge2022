@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Personagem : MonoBehaviour
 {
+    // Script usado por todos os personagens.
+    // Se "jogador" = true, significa que este personagem é o jogador. Senão, é um inimigo.
+
     public bool jogador = false;
     public ParticleSystem rastroDeAtaque;
     public GameObject particulaDano;
@@ -11,6 +14,7 @@ public class Personagem : MonoBehaviour
     public GameObject audioSource;
     public GameObject destruirAoMorrer;
     public GameObject localPes;
+    public GameObject spine;
     public GameObject ragdoll;
     public AudioClip[] clipDano;
     public AudioClip[] clipBlock;
@@ -20,6 +24,19 @@ public class Personagem : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+    }
+
+    private void Awake()
+    {
+        if (jogador == false)
+        {
+            StaticClass.inimigosVivos++;
+
+            if (StaticClass.debug == true)
+            {
+                Debug.Log("INIMIGOS VIVOS: " + StaticClass.inimigosVivos);
+            }
+        }
     }
 
     private void Update()
