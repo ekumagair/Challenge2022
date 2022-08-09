@@ -103,7 +103,7 @@ public class Jogador : MonoBehaviour
         {
             StartCoroutine(CriarInstrucao("Use [Q] para rolar.", 6f, 0f));
             StartCoroutine(CriarInstrucao("Aperte [E] para realizar um ataque mais forte.", 6f, 6f));
-            StartCoroutine(CriarInstrucao("Troque de arma/item com as teclas [1], [2] e [3].", 6f, 24f));
+            StartCoroutine(CriarInstrucao("Alterne de arma com a tecla [1]. Use a poção com a tecla [2].", 6f, 24f));
             StartCoroutine(CriarInstrucao("O machado causa mais dano, mas consome mais energia quando você ataca.", 6f, 30f));
             StartCoroutine(CriarInstrucao("As poções largadas por inimigos te curam quando usadas.", 6f, 36f));
         }
@@ -116,7 +116,7 @@ public class Jogador : MonoBehaviour
         else if (StaticClass.faseAtual == 4)
         {
             StartCoroutine(CriarInstrucao("Se seu ataque for preciso, você pode usar a espada para refletir projéteis e usá-los para causar dano em inimigos!", 10f, 0f));
-            StartCoroutine(CriarInstrucao("O machado não reflete projéteis.", 10f, 10f));
+            StartCoroutine(CriarInstrucao("O machado não reflete projéteis. Ele os derruba.", 10f, 10f));
         }
         else if (StaticClass.faseAtual == 6)
         {
@@ -393,8 +393,8 @@ public class Jogador : MonoBehaviour
             armasTrail[armaEquipada].Play();
         }
 
-        // Refletir projéteis. Apenas com a espada.
-        if(refletirProjeteis != null && armaEquipada == 0)
+        // Refletir projéteis com a espada. Ou derrubar projéteis com o machado.
+        if(refletirProjeteis != null)
         {
             Instantiate(refletirProjeteis, transform.position + (transform.forward * 1.3f) + transform.up, transform.rotation);
         }

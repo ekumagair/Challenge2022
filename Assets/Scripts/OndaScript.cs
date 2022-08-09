@@ -71,7 +71,16 @@ public class OndaScript : MonoBehaviour
         for (int i = 0; i < quantos; i++)
         {
             // Criar o objeto do inimigo.
-            Instantiate(inimigo, local[escolha].position, local[escolha].rotation);
+            var ini = Instantiate(inimigo, local[escolha].position, local[escolha].rotation);
+
+            if(ini.GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>() != null)
+            {
+                // Se o inimigo pode rolar, remove essa habilidade se ainda estiver no início da fase.
+                if(StaticClass.ondasPassadas < 3)
+                {
+                    ini.GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().chanceToRoll = 0.0f;
+                }
+            }
         }
 
         local[escolha].GetComponent<PontoDeSpawn>().DestaqueTochas();

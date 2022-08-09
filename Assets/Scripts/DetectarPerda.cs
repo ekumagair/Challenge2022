@@ -212,7 +212,7 @@ public class DetectarPerda : MonoBehaviour
         }
         else if (dica == 5)
         {
-            menuTextoExtraText.text = "Dica: Ataques feitos com a espada podem refletir projéteis, fazendo com que causem dano em inimigos.";
+            menuTextoExtraText.text = "Dica: Ataques feitos com a espada podem refletir projéteis, fazendo com que causem dano em inimigos. Ataques feitos com o machado podem derrubar projéteis, inutilizando-os.";
         }
         else if (dica == 6)
         {

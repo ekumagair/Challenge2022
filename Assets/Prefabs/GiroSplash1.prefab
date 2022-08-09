@@ -81,7 +81,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   tags:
-    tags: []
+    tags:
+    - Enemy
   continuousDamage: 0
   damageFrequency: 0.05
   onHit:

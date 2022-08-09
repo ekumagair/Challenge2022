@@ -120,7 +120,7 @@ public class Projetil : MonoBehaviour
             transform.position = atingido.transform.position + Vector3.up;
         }
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(15f);
 
         Destroy(gameObject);
     }
@@ -139,7 +139,14 @@ public class Projetil : MonoBehaviour
             Destroy(particulaRastro);
         }
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(0.2f);
+
+        if (GetComponent<SomAoColidir>() != null)
+        {
+            GetComponent<SomAoColidir>().ativado = true;
+        }
+
+        yield return new WaitForSeconds(15f);
 
         Destroy(gameObject);
     }
@@ -148,18 +155,26 @@ public class Projetil : MonoBehaviour
     {
         if(other.gameObject.tag == "RefletirProjeteis" && podeSerRefletido == true && ignorar != "Player" && atingiu == false)
         {
-            ignorar = "Player";
-            transform.forward *= -1f;
-            //transform.forward = GameObject.FindGameObjectWithTag("Player").transform.forward;
-            velocidade *= 1.5f;
-            dano *= 3;
-
-            if (GetComponent<BoxCollider>() != null)
+            if (Jogador.armaEquipada == 0)
             {
-                GetComponent<BoxCollider>().size *= 1.3f;
-            }
+                ignorar = "Player";
+                transform.forward *= -1f;
+                //transform.forward = GameObject.FindGameObjectWithTag("Player").transform.forward;
+                velocidade *= 1.5f;
+                dano *= 4;
 
-            atingiu = false;
+                if (GetComponent<BoxCollider>() != null)
+                {
+                    GetComponent<BoxCollider>().size *= 1.3f;
+                }
+
+                atingiu = false;
+            }
+            else if (Jogador.armaEquipada == 1)
+            {
+                efeitoAoAtingir = 2;
+                Atingiu(other.gameObject);
+            }
 
             ParticulaDeImpacto();
             SomDeImpacto();

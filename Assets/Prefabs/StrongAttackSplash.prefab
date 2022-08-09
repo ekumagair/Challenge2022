@@ -62,7 +62,7 @@ MonoBehaviour:
   openCloseWindow: 1
   selectedToolbar: 0
   damage:
-    damageValue: 22
+    damageValue: 30
     staminaBlockCost: 5
     staminaRecoveryDelay: 1
     ignoreDefense: 1
@@ -79,9 +79,10 @@ MonoBehaviour:
   overrideDamageSender: {fileID: 0}
   layerToCollide:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   tags:
-    tags: []
+    tags:
+    - Enemy
   continuousDamage: 0
   damageFrequency: 0.08
   onHit:

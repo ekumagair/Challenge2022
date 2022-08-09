@@ -8,6 +8,7 @@ public class Samurai : MonoBehaviour
     // O samurai atira flechas no jogador de longe. Ele não é muito ágil, para ser justo com o jogador que só tem armas corpo a corpo.
 
     public bool destruirAoMorrer = false;
+    public float tempoAteAtacarMultiplicador = 1.0f;
     bool morto = false;
 
     float tempoAteAtacar = 5;
@@ -122,7 +123,7 @@ public class Samurai : MonoBehaviour
 
     public void ResetarTempoDeAtaque()
     {
-        tempoAteAtacar = Random.Range(3f, 5f);
+        tempoAteAtacar = Random.Range(3f, 5f) * tempoAteAtacarMultiplicador;
     }
 
     public void Morrer()
