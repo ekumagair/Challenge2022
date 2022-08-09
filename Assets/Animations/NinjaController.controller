@@ -252,6 +252,24 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &2109032745415179658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6dcf6552bd02645a9ceb894d7a6cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
+  sounds:
+  - {fileID: 8300000, guid: 776a02aef46ac7248bed419713a59490, type: 3}
+  - {fileID: 8300000, guid: 3165e5e8498d66f44ad94c137295eae9, type: 3}
+  - {fileID: 8300000, guid: 316e69ab29fd0af4dae8d2ba7b259fc9, type: 3}
+  triggerTime: 0
 --- !u!1101 &2634213082900270004
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -342,7 +360,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7414190677960319715}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 2109032745415179658}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

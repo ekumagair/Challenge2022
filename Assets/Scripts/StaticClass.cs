@@ -23,7 +23,7 @@ public static class StaticClass
     public static float sensibilidadeMouse = 8f;
     public static float volumeGlobal = 1.0f;
     public static float shakeMult = 1.0f;
-    public static float volumeHitSound = 0.5f;
+    public static float volumeHitSound = 0.2f;
 
     // Modo debug: Permite algumas trapaças e outras funções se ativado. Deve ser desativado na build definitiva do jogo.
     public static bool debug = true;

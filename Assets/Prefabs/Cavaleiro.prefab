@@ -8127,12 +8127,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 2
+  selectedToolbar: 0
   _isDead: 0
-  _currentHealth: 0
+  _currentHealth: 75
   isImmortal: 0
   fillHealthOnStart: 1
-  maxHealth: 50
+  maxHealth: 75
   healthRecovery: 0
   healthRecoveryDelay: 0
   currentHealthRecoveryDelay: 0

@@ -1022,12 +1022,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 1
+  selectedToolbar: 0
   _isDead: 0
-  _currentHealth: 60
+  _currentHealth: 80
   isImmortal: 0
   fillHealthOnStart: 1
-  maxHealth: 60
+  maxHealth: 80
   healthRecovery: 0
   healthRecoveryDelay: 0
   currentHealthRecoveryDelay: 0

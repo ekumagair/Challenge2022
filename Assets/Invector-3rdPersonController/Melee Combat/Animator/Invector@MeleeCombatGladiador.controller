@@ -16121,8 +16121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.2
-  endDamage: 0.6
+  startDamage: 0.3
+  endDamage: 0.7
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
@@ -16177,7 +16177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.2
+  startDamage: 0.3
   endDamage: 0.7
   damageMultiplier: 0
   recoilID: 0
@@ -17495,7 +17495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9058122f6ec699438581f28f117350d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDamage: 0.2
+  startDamage: 0.3
   endDamage: 0.7
   damageMultiplier: 0
   recoilID: 0
