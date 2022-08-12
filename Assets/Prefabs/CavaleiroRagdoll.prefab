@@ -3882,6 +3882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9062903129281719860}
   - component: {fileID: 3109113994156258382}
+  - component: {fileID: 221025532341764993}
   m_Layer: 15
   m_Name: CavaleiroRagdoll
   m_TagString: Untagged
@@ -3954,6 +3955,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &221025532341764993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542825794784507022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd39039863a63e48ad1e9260ed01bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openCloseEvents: 0
+  openCloseWindow: 0
+  selectedToolbar: 0
+  delay: 15
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8554121258618426160
 GameObject:
   m_ObjectHideFlags: 0

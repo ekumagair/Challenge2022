@@ -11,19 +11,24 @@ public class Personagem : MonoBehaviour
     public ParticleSystem rastroDeAtaque;
     public GameObject particulaDano;
     public GameObject particulaBlock;
+    public GameObject particulaDeCura;
     public GameObject audioSource;
     public GameObject destruirAoMorrer;
     public GameObject localPes;
     public GameObject spine;
     public GameObject ragdoll;
+    public int faseInfinitaValor = 0;
     public AudioClip[] clipDano;
     public AudioClip[] clipBlock;
 
     Animator animator;
+    GameObject particulaDeCuraAtual = null;
+    Invector.vHealthController vida;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        vida = GetComponent<Invector.vHealthController>();
     }
 
     private void Awake()
@@ -41,9 +46,30 @@ public class Personagem : MonoBehaviour
 
     private void Update()
     {
+        // Caso o personagem caia do cenário, leva ele de volta para cima.
         if (transform.position.y < -10)
         {
             transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+        }
+
+        if (particulaDeCura != null)
+        {
+            if (vida.inHealthRecovery == true && particulaDeCuraAtual == null)
+            {
+                particulaDeCuraAtual = Instantiate(particulaDeCura, transform.position + (transform.up * 1.5f), transform.rotation);
+
+                ParticleSystem part = particulaDeCuraAtual.GetComponent<ParticleSystem>();
+                ParticleSystem.MainModule partMain = part.main;
+                partMain.startDelay = vida.healthRecoveryDelay;
+
+
+                particulaDeCuraAtual.transform.parent = gameObject.transform;
+                particulaDeCuraAtual.transform.forward = Vector3.up;
+            }
+            if (vida.inHealthRecovery == false && particulaDeCuraAtual != null)
+            {
+                Destroy(particulaDeCuraAtual);
+            }
         }
     }
 
@@ -64,6 +90,11 @@ public class Personagem : MonoBehaviour
         {
             ScreenShakeJogador();
         }
+
+        if(particulaDeCuraAtual != null)
+        {
+            Destroy(particulaDeCuraAtual);
+        }
     }
 
     public void MatouInimigo()
@@ -72,19 +103,24 @@ public class Personagem : MonoBehaviour
 
         if(destruirAoMorrer != null)
         {
-            // Destroi um objeto que faz parte do personagem. Usado pelo gladiador, para deletar seu machado quando ele morre.
+            // Destroi um objeto que faz parte do personagem. Usado, por exemplo, pelo gladiador, para deletar seu machado quando ele morre.
             Destroy(destruirAoMorrer);
         }
 
-        if (jogador == false && Jogador.girando == false)
+        if (jogador == false)
         {
             StaticClass.inimigosMortos++;
-            Jogador.inimigosMortosHabilidade++;
+            StaticClass.pontosDeDificuldade += faseInfinitaValor;
+
+            if (Jogador.girando == false)
+            {
+                Jogador.inimigosMortosHabilidade++;
+            }
 
             if (StaticClass.debug == true)
             {
                 Debug.Log("INIMIGOS MORTOS: " + StaticClass.inimigosMortos);
-                Debug.Log(Mathf.RoundToInt(((float) StaticClass.inimigosMortos / (float) StaticClass.totalDeInimigos) * 100f).ToString());
+                Debug.Log("Porcentagem da fase: " + Mathf.RoundToInt(((float) StaticClass.inimigosMortos / (float) StaticClass.totalDeInimigos) * 100f).ToString());
             }
         }
 
@@ -157,13 +193,19 @@ public class Personagem : MonoBehaviour
 
             if(StaticClass.debug)
             {
-                Debug.Log(GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name);
+                Debug.Log(gameObject + " estava tocando a animação " + GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name);
             }
 
             yield return new WaitForSeconds(0.01f);
 
             Destroy(rag.GetComponent<Animator>());
 
+            Destroy(gameObject);
+        }
+
+        if(StaticClass.faseAtual == 6)
+        {
+            yield return new WaitForSeconds(10f);
             Destroy(gameObject);
         }
     }

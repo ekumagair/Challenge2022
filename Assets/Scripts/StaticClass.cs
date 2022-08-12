@@ -10,8 +10,11 @@ public static class StaticClass
     public static int ondasPassadas = 0;
     public static int totalDeInimigos = 0;
 
-    public static bool clicouEmBotao = false;
+    // Usado na fase infinita.
+    public static int pontosDeDificuldade = 0;
+
     // Usado nos menus.
+    public static bool clicouEmBotao = false;
 
     public static int estadoDeJogo = 0;
     // 0 = Jogando

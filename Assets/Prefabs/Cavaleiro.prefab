@@ -7613,7 +7613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6981866172516650130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2054406000568203664}
@@ -8460,11 +8460,13 @@ MonoBehaviour:
   rastroDeAtaque: {fileID: 3090585134171713532}
   particulaDano: {fileID: 309877448753314056, guid: 96b9324030163834d94a85b88b4bead1, type: 3}
   particulaBlock: {fileID: 309877448753314056, guid: b0df4d508a77bc346bf7718996362a7f, type: 3}
+  particulaDeCura: {fileID: 0}
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
-  destruirAoMorrer: {fileID: 0}
+  destruirAoMorrer: {fileID: 6840382750536220530}
   localPes: {fileID: 0}
   spine: {fileID: 3644473963997628849}
   ragdoll: {fileID: 8542825794784507022, guid: 7f450f08093641149b7c6095e272c3cb, type: 3}
+  faseInfinitaValor: 15
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}
@@ -8891,8 +8893,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8996475391693020936}
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -0.404, y: 0.339, z: 0.006}
-  m_LocalScale: {x: 0.15000002, y: 0.15000002, z: 1.0758772}
+  m_LocalPosition: {x: -0.403, y: 0.34, z: 0.031}
+  m_LocalScale: {x: 0.15000002, y: 0.20675464, z: 1.2460696}
   m_Children: []
   m_Father: {fileID: 6113878303486172760}
   m_RootOrder: 2

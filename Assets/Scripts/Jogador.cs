@@ -118,6 +118,11 @@ public class Jogador : MonoBehaviour
             StartCoroutine(CriarInstrucao("Se seu ataque for preciso, você pode usar a espada para refletir projéteis e usá-los para causar dano em inimigos!", 10f, 0f));
             StartCoroutine(CriarInstrucao("O machado não reflete projéteis. Ele os derruba.", 10f, 10f));
         }
+        else if (StaticClass.faseAtual == 5)
+        {
+            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 0f));
+            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 10f));
+        }
         else if (StaticClass.faseAtual == 6)
         {
             StartCoroutine(CriarInstrucao("Por quanto tempo você consegue sobreviver?", 6f, 0f));
@@ -126,7 +131,8 @@ public class Jogador : MonoBehaviour
         {
             StartCoroutine(CriarInstrucao("Fase de teste.", 6f, 0f));
         }
-        else if (StaticClass.faseAtual > 7)
+
+        if (StaticClass.faseAtual < 1 || StaticClass.faseAtual > 7)
         {
             StartCoroutine(CriarInstrucao("Fase inválida.", 6f, 0f));
         }
@@ -150,7 +156,7 @@ public class Jogador : MonoBehaviour
 
         if (StaticClass.estadoDeJogo == 0)
         {
-            if (armaDelay == 0 && girando == false)
+            if (armaDelay == 0 && girando == false && vida.isDead == false)
             {
                 if (StaticClass.tipoDeInventario == 0)
                 {
@@ -201,7 +207,7 @@ public class Jogador : MonoBehaviour
                     }
 
                     // Usar a poção
-                    if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[2] == true)
+                    if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[2] == true && vida.isDead == false)
                     {
                         ItemDeCura(2, 25);
                     }
@@ -366,13 +372,20 @@ public class Jogador : MonoBehaviour
         // Mostrar progresso da fase.
         if (StaticClass.totalDeInimigos > 0)
         {
-            if (StaticClass.estadoDeJogo != 1)
+            if (StaticClass.faseAtual != 6)
             {
-                textProgresso.text = "Progresso: " + Mathf.RoundToInt(((float)StaticClass.inimigosMortos / (float)StaticClass.totalDeInimigos) * 100f).ToString() + "%";
+                if (StaticClass.estadoDeJogo != 1)
+                {
+                    textProgresso.text = "Progresso: " + Mathf.RoundToInt(((float)StaticClass.inimigosMortos / (float)StaticClass.totalDeInimigos) * 100f).ToString() + "%";
+                }
+                else
+                {
+                    textProgresso.text = "Progresso: 100%";
+                }
             }
             else
             {
-                textProgresso.text = "Progresso: 100%";
+                textProgresso.text = "Inimigos Derrotados: " + StaticClass.inimigosMortos.ToString();
             }
 
             imageProgresso.enabled = true;

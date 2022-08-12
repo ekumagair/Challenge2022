@@ -13,9 +13,12 @@ public class Samurai : MonoBehaviour
 
     float tempoAteAtacar = 5;
     bool atacando = false;
+    bool iniciouAtaque = false;
     public GameObject projetil;
+    public GameObject projetilModelo;
 
     bool levandoDano = false;
+    bool levandoDanoParar = false;
 
     float distanciaLimite = 5;
     public GameObject alvo;
@@ -31,16 +34,23 @@ public class Samurai : MonoBehaviour
         alvo = GameObject.FindGameObjectWithTag("Player");
         morto = false;
         atacando = false;
+        iniciouAtaque = false;
         levandoDano = false;
+        levandoDanoParar = false;
 
         ResetarTempoDeAtaque();
         tempoAteAtacar += 2f;
         distanciaLimite = Random.Range(8f, 13f);
+
+        if (projetilModelo != null)
+        {
+            projetilModelo.SetActive(false);
+        }
     }
 
     void Update()
     {
-        if (morto == false && atacando == false && alvo != null)
+        if (morto == false && atacando == false && alvo != null && levandoDanoParar == false)
         {
             if (Mathf.Abs(Vector3.Distance(alvo.transform.position, transform.position)) > distanciaLimite || levandoDano)
             {
@@ -88,7 +98,7 @@ public class Samurai : MonoBehaviour
 
             tempoAteAtacar -= Time.deltaTime;
 
-            if(tempoAteAtacar <= 0 && atacando == false)
+            if(tempoAteAtacar <= 0 && atacando == false && iniciouAtaque == false)
             {
                 StartCoroutine(Atacar());
             }
@@ -106,9 +116,14 @@ public class Samurai : MonoBehaviour
 
     IEnumerator Atacar()
     {
+        iniciouAtaque = true;
         atacando = true;
-        ResetarTempoDeAtaque();
         animator.Play("Fire-Straight");
+
+        if(projetilModelo != null)
+        {
+            projetilModelo.SetActive(true);
+        }
 
         yield return new WaitForSeconds(0.4f);
 
@@ -116,9 +131,16 @@ public class Samurai : MonoBehaviour
         flecha.GetComponent<Projetil>().ignorar = "Enemy";
         flecha.transform.rotation = transform.rotation;
 
-        yield return new WaitForSeconds(0.5f);
+        if (projetilModelo != null)
+        {
+            projetilModelo.SetActive(false);
+        }
 
+        yield return new WaitForSeconds(0.8f);
+
+        ResetarTempoDeAtaque();
         atacando = false;
+        iniciouAtaque = false;
     }
 
     public void ResetarTempoDeAtaque()
@@ -153,9 +175,15 @@ public class Samurai : MonoBehaviour
     IEnumerator LevarDanoCoroutine()
     {
         // Se afasta por alguns segundos sem atacar, depois volta ao normal.
+        levandoDanoParar = true;
+
         yield return new WaitForSeconds(0.5f);
+
+        levandoDanoParar = false;
         levandoDano = true;
+
         yield return new WaitForSeconds(3f);
+
         levandoDano = false;
     }
 }
