@@ -49,7 +49,7 @@ public class MenuScript : MonoBehaviour
             }
             else
             {
-                textBuild.text = "";
+                textBuild.text = "Versão " + Application.version.ToString();
             }
         }
 

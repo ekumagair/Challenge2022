@@ -11,6 +11,7 @@ public class Projetil : MonoBehaviour
     public bool podeSerRefletido = false;
     public GameObject particulaImpacto;
     public GameObject particulaRastro;
+    public GameObject modelo;
     public GameObject audioSource;
     public AudioClip[] clipAtingir;
 
@@ -38,11 +39,12 @@ public class Projetil : MonoBehaviour
             // Se o objeto atingido tem vida, causa dano nele.
             if(collision.gameObject.GetComponent<Invector.vHealthController>() != null)
             {
+                // Se este ataque for letal, não prende o projétil no alvo.
                 if(collision.gameObject.GetComponent<Invector.vHealthController>().currentHealth - dano <= 0 && efeitoAoAtingir == 1)
                 {
                     efeitoAoAtingir = 2;
                 }
-
+                
                 collision.gameObject.GetComponent<Invector.vHealthController>().AddHealth(dano * -1);
             }
 
@@ -75,6 +77,15 @@ public class Projetil : MonoBehaviour
 
     void Atingiu(GameObject atingido)
     {
+        if(modelo != null)
+        {
+            // Parar de girar modelo.
+            if(modelo.GetComponent<Invector.vRotateObject>() != null)
+            {
+                modelo.GetComponent<Invector.vRotateObject>().enabled = false;
+            }
+        }
+
         // Efeitos visuais de impacto.
         if (efeitoAoAtingir == 0)
         {

@@ -64,6 +64,9 @@ public class Ninja : MonoBehaviour
                 if (agente.remainingDistance < 1)
                 {
                     EscolherDestino(0);
+
+                    // Animação que faz a transição entre parado e andando mais suave.
+                    animator.Play("Jump");
                 }
             }
             else if (destino.tag == "Player")
@@ -110,7 +113,7 @@ public class Ninja : MonoBehaviour
             destino = destinos[0];
         }
 
-        if(podeFicarInvisivel == true)
+        if(podeFicarInvisivel == true && morto == false)
         {
             if (invisivel == false)
             {
