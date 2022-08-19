@@ -15987,12 +15987,13 @@ MonoBehaviour:
   - {fileID: 4041324420027178559, guid: b97fea6dc8f02f642a5568ea8c83a9da, type: 3}
   - {fileID: 8329258053292303919, guid: de0f85c843272ce449b09e13290557a4, type: 3}
   - {fileID: 1413438260738966762, guid: 66074f3f41724ce46ad6e6ebeff5c8c8, type: 3}
+  - {fileID: 8329258053292303919, guid: f9dc7764438312045a22d8246c5d90b0, type: 3}
   - {fileID: 8329258053292303919, guid: 4bfd95446110c7945bf9f1ea766906c7, type: 3}
   - {fileID: 4041324420027178559, guid: 7cd8f5b2829a1804296199be8c2cfaab, type: 3}
   - {fileID: 1413438260738966762, guid: cdc16ea11614f574aa4e077ec81dca3c, type: 3}
   - {fileID: 8329258053292303919, guid: 0794a0bd406bd2244bbf54228bd24586, type: 3}
-  inimigosCusto: 0a000000140000003c000000500000006400000096000000a000000090010000
-  inimigosChance: 01000000050000000a0000000c0000000f000000110000001400000016000000
+  inimigosCusto: 0a000000140000003c00000050000000500000006400000096000000a000000090010000
+  inimigosChance: 01000000050000000a0000000c0000000a0000000f000000110000001400000016000000
   locais:
   - {fileID: 1485207492}
   - {fileID: 292078126}
@@ -18494,7 +18495,7 @@ PrefabInstance:
     - target: {fileID: 7296603305397798249, guid: ac2df1e5f92f7ca4a825b44f2d4f9ff8, type: 3}
       propertyPath: inimigo
       value: 
-      objectReference: {fileID: 8329258053292303919, guid: 4bfd95446110c7945bf9f1ea766906c7, type: 3}
+      objectReference: {fileID: 8329258053292303919, guid: f9dc7764438312045a22d8246c5d90b0, type: 3}
     - target: {fileID: 7296603305397798249, guid: ac2df1e5f92f7ca4a825b44f2d4f9ff8, type: 3}
       propertyPath: quantos
       value: 1
@@ -20733,7 +20734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 8
   _isDead: 0
   _currentHealth: 100
   isImmortal: 0
@@ -20767,6 +20768,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1542900596}
         m_TargetAssemblyTypeName: Jogador, Assembly-CSharp
         m_MethodName: DestruirCamera
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1542900596}
+        m_TargetAssemblyTypeName: Jogador, Assembly-CSharp
+        m_MethodName: PararContagemDeTempo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40336,7 +40349,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5052192426243333698, guid: 0dfc15ee086bef741b044b00fe7456cb, type: 3}
+  - {fileID: 2100000, guid: 2a349930525490e4fa7474d0c3c828c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -42405,7 +42418,7 @@ GameObject:
   - component: {fileID: 6171669077455189648}
   - component: {fileID: 3069172809832098033}
   m_Layer: 0
-  m_Name: pPlane1
+  m_Name: Chao
   m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46264,7 +46277,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5052192426243333698, guid: 0dfc15ee086bef741b044b00fe7456cb, type: 3}
+  - {fileID: 2100000, guid: 2a349930525490e4fa7474d0c3c828c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -46320,7 +46333,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5052192426243333698, guid: 0dfc15ee086bef741b044b00fe7456cb, type: 3}
+  - {fileID: 2100000, guid: 2a349930525490e4fa7474d0c3c828c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48307,7 +48320,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5052192426243333698, guid: 0dfc15ee086bef741b044b00fe7456cb, type: 3}
+  - {fileID: 2100000, guid: 2a349930525490e4fa7474d0c3c828c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

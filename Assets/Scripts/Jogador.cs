@@ -78,6 +78,7 @@ public class Jogador : MonoBehaviour
         vida.isImmortal = false;
         girando = false;
         StaticClass.clicouEmBotao = false;
+        StaticClass.segundosVivo = 0;
 
         if(hitSound != null)
         {
@@ -89,6 +90,16 @@ public class Jogador : MonoBehaviour
         AudioListener.volume = StaticClass.volumeGlobal;
 
         //Debug.Log("Sensibilidade " + cameraThirdPerson.currentState.xMouseSensitivity);
+
+        // Modo de jogo
+        if(StaticClass.faseAtual != 6)
+        {
+            StaticClass.modoDeJogo = 0;
+        }
+        else
+        {
+            StaticClass.modoDeJogo = 1;
+        }
 
         // Instruções
         if(StaticClass.faseAtual == 1)
@@ -138,7 +149,7 @@ public class Jogador : MonoBehaviour
         }
 
         // Texto de Introdução
-        if (StaticClass.faseAtual != 6)
+        if (StaticClass.modoDeJogo != 1)
         {
             textIntro.text = "Fase " + StaticClass.faseAtual.ToString();
         }
@@ -146,6 +157,8 @@ public class Jogador : MonoBehaviour
         {
             textIntro.text = "Fase Infinita";
         }
+
+        StartCoroutine(ContarTempoVivo());
     }
 
     private void Update()
@@ -372,7 +385,7 @@ public class Jogador : MonoBehaviour
         // Mostrar progresso da fase.
         if (StaticClass.totalDeInimigos > 0)
         {
-            if (StaticClass.faseAtual != 6)
+            if (StaticClass.modoDeJogo == 0)
             {
                 if (StaticClass.estadoDeJogo != 1)
                 {
@@ -385,7 +398,14 @@ public class Jogador : MonoBehaviour
             }
             else
             {
-                textProgresso.text = "Inimigos Derrotados: " + StaticClass.inimigosMortos.ToString();
+                if (StaticClass.inimigosMortos < 2)
+                {
+                    textProgresso.text = "Inimigos Derrotados: " + StaticClass.inimigosMortos.ToString();
+                }
+                else
+                {
+                    textProgresso.text = StaticClass.inimigosMortos.ToString();
+                }
             }
 
             imageProgresso.enabled = true;
@@ -583,5 +603,20 @@ public class Jogador : MonoBehaviour
 
             Destroy(inst);
         }
+    }
+
+    // Tempo vivo.
+    IEnumerator ContarTempoVivo()
+    {
+        yield return new WaitForSeconds(1);
+
+        StaticClass.segundosVivo++;
+
+        StartCoroutine(ContarTempoVivo());
+    }
+
+    public void PararContagemDeTempo()
+    {
+        StopCoroutine(ContarTempoVivo());
     }
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

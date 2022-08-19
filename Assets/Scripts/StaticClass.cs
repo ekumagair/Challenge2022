@@ -9,13 +9,21 @@ public static class StaticClass
     public static int inimigosVivos = 0;
     public static int ondasPassadas = 0;
     public static int totalDeInimigos = 0;
+    public static int segundosVivo = 0;
 
-    // Usado na fase infinita.
+    // Modo de jogo
+    public static int modoDeJogo = 0;
+    // 0 = Normal. Fase pré-definida.
+    // 1 = Fase infinita.
+
+    // Usado na fase infinita
     public static int pontosDeDificuldade = 0;
+    public static int inimigosMortosRecorde = 0;
 
-    // Usado nos menus.
+    // Usado nos menus
     public static bool clicouEmBotao = false;
 
+    // Estado de jogo
     public static int estadoDeJogo = 0;
     // 0 = Jogando
     // 1 = Venceu

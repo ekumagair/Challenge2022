@@ -16,6 +16,7 @@ public class OndasInfinitas : MonoBehaviour
 
     void Start()
     {
+        StaticClass.inimigosMortos = 0;
         StaticClass.pontosDeDificuldade = 10;
         listaTamanho = inimigos.Length - 1;
         StartCoroutine(Comecar());
@@ -58,6 +59,9 @@ public class OndasInfinitas : MonoBehaviour
                         StaticClass.pontosDeDificuldade -= inimigosCusto[i];
                         inimigosCriados++;
                         StaticClass.totalDeInimigos++;
+
+                        // Destaque da tocha.
+                        locais[escolha].GetComponent<PontoDeSpawn>().DestaqueTochas();
 
                         Debug.Log("Criou inimigo " + i);
                     }

@@ -66,7 +66,16 @@ public class DetectarPerda : MonoBehaviour
         if (StaticClass.estadoDeJogo == -1)
         {
             menuPerdeu.SetActive(true);
-            menuTituloText.text = "DERROTA!";
+
+            if (StaticClass.modoDeJogo == 0)
+            {
+                menuTituloText.text = "DERROTA!";
+            }
+            else if (StaticClass.modoDeJogo == 1)
+            {
+                menuTituloText.text = "FIM DE JOGO!";
+            }
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -189,34 +198,41 @@ public class DetectarPerda : MonoBehaviour
     // Mostra uma dica aleatória quando o jogador perde. As dicas são para todas as fases.
     public void MostrarDica()
     {
-        int dica = Random.Range(0, 7);
-        if (dica == 0)
+        if (StaticClass.modoDeJogo == 0)
         {
-            menuTextoExtraText.text = "Dica: Durante um rolamento (tecla [Q]), você não leva dano de ataques corpo a corpo, mas inimigos ainda perderão tempo tentando te atacar.";
+            int dica = Random.Range(0, 7);
+            if (dica == 0)
+            {
+                menuTextoExtraText.text = "Dica: Durante um rolamento (tecla [Q]), você não leva dano de ataques corpo a corpo, mas inimigos ainda perderão tempo tentando te atacar.";
+            }
+            else if (dica == 1)
+            {
+                menuTextoExtraText.text = "Dica: Ao se defender (segurando o [botão direito do mouse]), você leva menos dano, mas ainda pode ser derrotado.";
+            }
+            else if (dica == 2)
+            {
+                menuTextoExtraText.text = "Dica: Você pode pular (com a [Barra De Espaço]) para desviar de projéteis e passar por cima de inimigos.";
+            }
+            else if (dica == 3)
+            {
+                menuTextoExtraText.text = "Dica: Ao usar um ataque forte (tecla [E]), você causa mais dano, mas gasta mais tempo que um ataque normal (feito com o [botão esquerdo do mouse]).";
+            }
+            else if (dica == 4)
+            {
+                menuTextoExtraText.text = "Dica: Depois de derrotar inimigos o suficiente, você pode executar um ataque especial apertando a tecla [F], causando dano nos inimigos perto de você.";
+            }
+            else if (dica == 5)
+            {
+                menuTextoExtraText.text = "Dica: Ataques feitos com a espada podem refletir projéteis, fazendo com que causem dano em inimigos. Ataques feitos com o machado podem derrubar projéteis, inutilizando-os.";
+            }
+            else if (dica == 6)
+            {
+                menuTextoExtraText.text = "Dica: Quando um inimigo aparece, as tochas do portão em que ele aparece ficam mais fortes temporariamente.";
+            }
         }
-        else if (dica == 1)
+        else if (StaticClass.modoDeJogo == 1)
         {
-            menuTextoExtraText.text = "Dica: Ao se defender (segurando o [botão direito do mouse]), você leva menos dano, mas ainda pode ser derrotado.";
-        }
-        else if (dica == 2)
-        {
-            menuTextoExtraText.text = "Dica: Você pode pular (com a [Barra De Espaço]) para desviar de projéteis e passar por cima de inimigos.";
-        }
-        else if (dica == 3)
-        {
-            menuTextoExtraText.text = "Dica: Ao usar um ataque forte (tecla [E]), você causa mais dano, mas gasta mais tempo que um ataque normal (feito com o [botão esquerdo do mouse]).";
-        }
-        else if (dica == 4)
-        {
-            menuTextoExtraText.text = "Dica: Depois de derrotar inimigos o suficiente, você pode executar um ataque especial apertando a tecla [F], causando dano nos inimigos perto de você.";
-        }
-        else if (dica == 5)
-        {
-            menuTextoExtraText.text = "Dica: Ataques feitos com a espada podem refletir projéteis, fazendo com que causem dano em inimigos. Ataques feitos com o machado podem derrubar projéteis, inutilizando-os.";
-        }
-        else if (dica == 6)
-        {
-            menuTextoExtraText.text = "Dica: Quando um inimigo aparece, as tochas do portão em que ele aparece ficam mais fortes temporariamente.";
+            menuTextoExtraText.text = "Por " + StaticClass.segundosVivo.ToString() + " segundos, você derrotou " + StaticClass.inimigosMortos.ToString() + " inimigo(s). Seu recorde é de " + StaticClass.inimigosMortosRecorde.ToString() + ".";
         }
     }
 }
