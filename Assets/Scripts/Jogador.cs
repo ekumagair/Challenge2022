@@ -20,6 +20,7 @@ public class Jogador : MonoBehaviour
     public int[] armasQuantidade;
     public GameObject[] armasModelos;
     public ParticleSystem[] armasTrail;
+    public GameObject hudObj;
 
     // Fazendo ataque especial
     public static bool girando = false;
@@ -33,6 +34,7 @@ public class Jogador : MonoBehaviour
     public Image hudAtaqueEspecial;
     Color32 hudAtaqueEspecialCor = new Color(255, 255, 255, 255);
     public Text textAtaqueEspecial;
+    public Image hudAtaqueForte;
 
     // Lista de itens:
     // 0 = Espada. Equipada por padrão.
@@ -238,6 +240,12 @@ public class Jogador : MonoBehaviour
                     inimigosMortosHabilidade += 10;
                 }
 
+                // Esconder ou mostrar HUD
+                if(Input.GetKeyDown(KeyCode.I) && StaticClass.debug)
+                {
+                    hudObj.SetActive(!hudObj.activeSelf);
+                }
+
                 // O custo de energia/stamina é controlado aqui. O dano da arma é controlado nas animações.
                 if (armaEquipada == 0)
                 {
@@ -433,6 +441,13 @@ public class Jogador : MonoBehaviour
         }
     }
 
+    // Função executada quando o ataque forte é feito.
+    public void InputAtaqueForte()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Jogador>().InputAtaque();
+        hudAtaqueForte.GetComponent<Animator>().Play("AtaqueForteHUDApertar");
+    }
+
     // Criar objeto que causa dano em área, de acordo com a arma equipada.
     public void CriarSplash()
     {
@@ -605,7 +620,7 @@ public class Jogador : MonoBehaviour
         }
     }
 
-    // Tempo vivo.
+    // Tempo vivo
     IEnumerator ContarTempoVivo()
     {
         yield return new WaitForSeconds(1);

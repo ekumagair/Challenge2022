@@ -132,7 +132,8 @@ namespace Invector.vCharacterController
             if (strongAttackInput.GetButtonDown() && (!meleeManager.CurrentActiveAttackWeapon || meleeManager.CurrentActiveAttackWeapon.useStrongAttack) && MeleeAttackStaminaConditions() && Jogador.armaDelay == 0.0f)
             {
                 TriggerStrongAttack();
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Jogador>().InputAtaque();
+                Jogador.armaDelay = 2f;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Jogador>().InputAtaqueForte();
             }
         }
 
