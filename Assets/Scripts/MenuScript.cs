@@ -92,6 +92,16 @@ public class MenuScript : MonoBehaviour
         {
             shakeMultValor.text = "(" + Mathf.RoundToInt(StaticClass.shakeMult).ToString() + "x)";
         }
+
+        // Trapaças de teste
+        if (Input.GetKeyDown(KeyCode.Comma) && StaticClass.debug)
+        {
+            StaticClass.faseDesbloqueada--;
+        }
+        if (Input.GetKeyDown(KeyCode.Period) && StaticClass.debug)
+        {
+            StaticClass.faseDesbloqueada++;
+        }
     }
 
     public void IrParaJogo()

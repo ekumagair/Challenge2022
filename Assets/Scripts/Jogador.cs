@@ -20,6 +20,7 @@ public class Jogador : MonoBehaviour
     public int[] armasQuantidade;
     public GameObject[] armasModelos;
     public ParticleSystem[] armasTrail;
+    public GameObject hudObj;
 
     // Fazendo ataque especial
     public static bool girando = false;
@@ -33,6 +34,7 @@ public class Jogador : MonoBehaviour
     public Image hudAtaqueEspecial;
     Color32 hudAtaqueEspecialCor = new Color(255, 255, 255, 255);
     public Text textAtaqueEspecial;
+    public Image hudAtaqueForte;
 
     // Lista de itens:
     // 0 = Espada. Equipada por padrão.
@@ -78,6 +80,7 @@ public class Jogador : MonoBehaviour
         vida.isImmortal = false;
         girando = false;
         StaticClass.clicouEmBotao = false;
+        StaticClass.segundosVivo = 0;
 
         if(hitSound != null)
         {
@@ -89,6 +92,16 @@ public class Jogador : MonoBehaviour
         AudioListener.volume = StaticClass.volumeGlobal;
 
         //Debug.Log("Sensibilidade " + cameraThirdPerson.currentState.xMouseSensitivity);
+
+        // Modo de jogo
+        if(StaticClass.faseAtual != 6)
+        {
+            StaticClass.modoDeJogo = 0;
+        }
+        else
+        {
+            StaticClass.modoDeJogo = 1;
+        }
 
         // Instruções
         if(StaticClass.faseAtual == 1)
@@ -120,8 +133,9 @@ public class Jogador : MonoBehaviour
         }
         else if (StaticClass.faseAtual == 5)
         {
-            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 0f));
-            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 10f));
+            StartCoroutine(CriarInstrucao("Soldados Romanos usam lanças que não podem ser refletidas ou derrubadas, mas são afetadas pela gravidade.", 10f, 0f));
+            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 20f));
+            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 30f));
         }
         else if (StaticClass.faseAtual == 6)
         {
@@ -138,7 +152,7 @@ public class Jogador : MonoBehaviour
         }
 
         // Texto de Introdução
-        if (StaticClass.faseAtual != 6)
+        if (StaticClass.modoDeJogo != 1)
         {
             textIntro.text = "Fase " + StaticClass.faseAtual.ToString();
         }
@@ -146,6 +160,8 @@ public class Jogador : MonoBehaviour
         {
             textIntro.text = "Fase Infinita";
         }
+
+        StartCoroutine(ContarTempoVivo());
     }
 
     private void Update()
@@ -223,6 +239,12 @@ public class Jogador : MonoBehaviour
                 if(Input.GetKeyDown(KeyCode.P) && StaticClass.debug)
                 {
                     inimigosMortosHabilidade += 10;
+                }
+
+                // Esconder ou mostrar HUD
+                if(Input.GetKeyDown(KeyCode.I) && StaticClass.debug)
+                {
+                    hudObj.SetActive(!hudObj.activeSelf);
                 }
 
                 // O custo de energia/stamina é controlado aqui. O dano da arma é controlado nas animações.
@@ -372,7 +394,7 @@ public class Jogador : MonoBehaviour
         // Mostrar progresso da fase.
         if (StaticClass.totalDeInimigos > 0)
         {
-            if (StaticClass.faseAtual != 6)
+            if (StaticClass.modoDeJogo == 0)
             {
                 if (StaticClass.estadoDeJogo != 1)
                 {
@@ -385,7 +407,14 @@ public class Jogador : MonoBehaviour
             }
             else
             {
-                textProgresso.text = "Inimigos Derrotados: " + StaticClass.inimigosMortos.ToString();
+                if (StaticClass.inimigosMortos < 2)
+                {
+                    textProgresso.text = "Inimigos Derrotados: " + StaticClass.inimigosMortos.ToString();
+                }
+                else
+                {
+                    textProgresso.text = StaticClass.inimigosMortos.ToString();
+                }
             }
 
             imageProgresso.enabled = true;
@@ -411,6 +440,13 @@ public class Jogador : MonoBehaviour
         {
             Instantiate(refletirProjeteis, transform.position + (transform.forward * 1.3f) + transform.up, transform.rotation);
         }
+    }
+
+    // Função executada quando o ataque forte é feito.
+    public void InputAtaqueForte()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Jogador>().InputAtaque();
+        hudAtaqueForte.GetComponent<Animator>().Play("AtaqueForteHUDApertar");
     }
 
     // Criar objeto que causa dano em área, de acordo com a arma equipada.
@@ -583,5 +619,20 @@ public class Jogador : MonoBehaviour
 
             Destroy(inst);
         }
+    }
+
+    // Tempo vivo
+    IEnumerator ContarTempoVivo()
+    {
+        yield return new WaitForSeconds(1);
+
+        StaticClass.segundosVivo++;
+
+        StartCoroutine(ContarTempoVivo());
+    }
+
+    public void PararContagemDeTempo()
+    {
+        StopCoroutine(ContarTempoVivo());
     }
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

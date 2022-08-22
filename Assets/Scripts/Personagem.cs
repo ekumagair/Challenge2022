@@ -110,7 +110,16 @@ public class Personagem : MonoBehaviour
         if (jogador == false)
         {
             StaticClass.inimigosMortos++;
-            StaticClass.pontosDeDificuldade += faseInfinitaValor;
+
+            if (StaticClass.modoDeJogo == 1)
+            {
+                StaticClass.pontosDeDificuldade += faseInfinitaValor;
+
+                if(StaticClass.inimigosMortos > StaticClass.inimigosMortosRecorde)
+                {
+                    StaticClass.inimigosMortosRecorde = StaticClass.inimigosMortos;
+                }
+            }
 
             if (Jogador.girando == false)
             {

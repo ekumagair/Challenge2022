@@ -18,6 +18,7 @@ public class Ninja : MonoBehaviour
     public Material[] meshDefaultMat;
     public SkinnedMeshRenderer[] mesh;
     public Material materialInvisivel;
+    public ParticleSystem fumaca;
 
     public GameObject destino;
     public GameObject[] destinos;
@@ -178,6 +179,11 @@ public class Ninja : MonoBehaviour
         }
 
         invisivel = true;
+
+        if (fumaca != null)
+        {
+            fumaca.Play();
+        }
     }
 
     void FicarOpaco()

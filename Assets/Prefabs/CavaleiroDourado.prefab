@@ -8443,7 +8443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 6020708913455267028, guid: 1887d2cb5318b83428143721d6141956, type: 3}
-  chance: 3
+  chance: 2
 --- !u!114 &5299759301576069627
 MonoBehaviour:
   m_ObjectHideFlags: 0
