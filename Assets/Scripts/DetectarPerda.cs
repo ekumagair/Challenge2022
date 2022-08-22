@@ -50,11 +50,17 @@ public class DetectarPerda : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
+            // Executa uma só vez.
             if(venceu == false)
             {
                 venceu = true;
                 menuTitulo.GetComponent<Animator>().Play("CanvasBotoesTitulo");
                 menuTextoExtraText.text = "Todos os inimigos foram derrotados!";
+
+                if(StaticClass.faseAtual == StaticClass.faseDesbloqueada)
+                {
+                    StaticClass.faseDesbloqueada++;
+                }
             }
         }
         else

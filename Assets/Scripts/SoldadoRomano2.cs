@@ -16,6 +16,7 @@ public class SoldadoRomano2 : MonoBehaviour
     Personagem personagem;
     Invector.vHealthController vida;
     Invector.vCharacterController.AI.vSimpleMeleeAI_Motor melee;
+    Invector.vCharacterController.AI.vSimpleMeleeAI_Controller controller;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class SoldadoRomano2 : MonoBehaviour
         vida = GetComponent<Invector.vHealthController>();
         personagem = GetComponent<Personagem>();
         melee = GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>();
+        controller = GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>();
         timerLanca = 8f;
         atacando = false;
         girando = false;
@@ -31,7 +33,7 @@ public class SoldadoRomano2 : MonoBehaviour
 
     void Update()
     {
-        if (!atacando && !girando && !melee.isAttacking)
+        if (!atacando && !girando && !melee.isAttacking && !vida.isDead)
         {
             timerLanca -= Time.deltaTime;
 
@@ -40,7 +42,7 @@ public class SoldadoRomano2 : MonoBehaviour
                 StartCoroutine(Jogar());
             }
 
-            if (vida.currentHealth <= 40 && !fezAtaqueGiratorio && timerLanca >= 1f)
+            if (vida.currentHealth <= 40 && !fezAtaqueGiratorio && timerLanca >= 1f && !controller.isAttacking && !controller.isBlocking)
             {
                 StartCoroutine(AtaqueGiratorio());
             }
@@ -57,6 +59,7 @@ public class SoldadoRomano2 : MonoBehaviour
 
     IEnumerator Jogar()
     {
+        controller.maxAttackCount = 4;
         atacando = true;
         timerLanca = 5f;
         animator.Play("Throw", 0);
@@ -75,7 +78,8 @@ public class SoldadoRomano2 : MonoBehaviour
 
     IEnumerator AtaqueGiratorio()
     {
-        GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().OnEnableAttack();
+        //GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().OnEnableAttack();
+        controller.maxAttackCount = 0;
         StopCoroutine(Jogar());
 
         atacando = true;
@@ -95,6 +99,7 @@ public class SoldadoRomano2 : MonoBehaviour
 
         atacando = false;
         girando = false;
-        GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().FinishAttack();
+        controller.maxAttackCount = 4;
+        //GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().FinishAttack();
     }
 }

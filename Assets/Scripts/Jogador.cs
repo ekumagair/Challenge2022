@@ -133,8 +133,9 @@ public class Jogador : MonoBehaviour
         }
         else if (StaticClass.faseAtual == 5)
         {
-            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 0f));
-            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 10f));
+            StartCoroutine(CriarInstrucao("Soldados Romanos usam lanças que não podem ser refletidas ou derrubadas, mas são afetadas pela gravidade.", 10f, 0f));
+            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 20f));
+            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 30f));
         }
         else if (StaticClass.faseAtual == 6)
         {

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 170198387}
   - component: {fileID: 170198386}
   - component: {fileID: 170198385}
+  - component: {fileID: 170198388}
   - component: {fileID: 170198384}
   m_Layer: 5
   m_Name: Fase6
@@ -291,7 +292,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -365,6 +366,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170198382}
   m_CullTransparentMesh: 1
+--- !u!114 &170198388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170198382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dfe25f207b93545bff4ed81d716b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fase: 6
 --- !u!1 &259138857
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +391,7 @@ GameObject:
   - component: {fileID: 259138862}
   - component: {fileID: 259138861}
   - component: {fileID: 259138860}
+  - component: {fileID: 259138863}
   - component: {fileID: 259138859}
   m_Layer: 5
   m_Name: Fase3
@@ -533,7 +548,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -607,6 +622,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259138857}
   m_CullTransparentMesh: 1
+--- !u!114 &259138863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259138857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dfe25f207b93545bff4ed81d716b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fase: 3
 --- !u!1 &338219192
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +730,7 @@ GameObject:
   - component: {fileID: 341137137}
   - component: {fileID: 341137136}
   - component: {fileID: 341137135}
+  - component: {fileID: 341137138}
   - component: {fileID: 341137134}
   m_Layer: 5
   m_Name: Fase2
@@ -858,7 +887,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -932,6 +961,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341137132}
   m_CullTransparentMesh: 1
+--- !u!114 &341137138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341137132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dfe25f207b93545bff4ed81d716b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fase: 2
 --- !u!1 &357163657
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,6 +986,7 @@ GameObject:
   - component: {fileID: 357163662}
   - component: {fileID: 357163661}
   - component: {fileID: 357163660}
+  - component: {fileID: 357163663}
   - component: {fileID: 357163659}
   m_Layer: 5
   m_Name: Fase5
@@ -1100,7 +1143,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1174,6 +1217,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357163657}
   m_CullTransparentMesh: 1
+--- !u!114 &357163663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357163657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dfe25f207b93545bff4ed81d716b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fase: 5
 --- !u!1 &367075655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1548,7 @@ GameObject:
   - component: {fileID: 475226732}
   - component: {fileID: 475226731}
   - component: {fileID: 475226730}
+  - component: {fileID: 475226733}
   - component: {fileID: 475226729}
   m_Layer: 5
   m_Name: Fase4
@@ -1648,7 +1705,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1722,6 +1779,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475226727}
   m_CullTransparentMesh: 1
+--- !u!114 &475226733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475226727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dfe25f207b93545bff4ed81d716b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fase: 4
 --- !u!1 &737419064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,6 +2376,7 @@ GameObject:
   - component: {fileID: 1093334093}
   - component: {fileID: 1093334092}
   - component: {fileID: 1093334091}
+  - component: {fileID: 1093334094}
   - component: {fileID: 1093334090}
   m_Layer: 5
   m_Name: Fase1
@@ -2462,7 +2533,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 217b9573441381d42a2e2d9b711664e5, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -2536,6 +2607,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093334088}
   m_CullTransparentMesh: 1
+--- !u!114 &1093334094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093334088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dfe25f207b93545bff4ed81d716b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fase: 1
 --- !u!1 &1117000637
 GameObject:
   m_ObjectHideFlags: 0

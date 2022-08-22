@@ -28434,7 +28434,7 @@ PrefabInstance:
     - target: {fileID: 7296603305397798249, guid: ac2df1e5f92f7ca4a825b44f2d4f9ff8, type: 3}
       propertyPath: inimigo
       value: 
-      objectReference: {fileID: 8329258053292303919, guid: b9a6458d5e79332429e1fc5fc41f4969, type: 3}
+      objectReference: {fileID: 8329258053292303919, guid: f9dc7764438312045a22d8246c5d90b0, type: 3}
     - target: {fileID: 7296603305397798249, guid: ac2df1e5f92f7ca4a825b44f2d4f9ff8, type: 3}
       propertyPath: quantos
       value: 1
@@ -32808,6 +32808,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7296603305397798249, guid: ac2df1e5f92f7ca4a825b44f2d4f9ff8, type: 3}
+      propertyPath: esperarOndas
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296603305397798249, guid: ac2df1e5f92f7ca4a825b44f2d4f9ff8, type: 3}
       propertyPath: local.Array.data[0]
       value: 
       objectReference: {fileID: 365881226}
@@ -32823,6 +32827,10 @@ PrefabInstance:
       propertyPath: local.Array.data[3]
       value: 
       objectReference: {fileID: 292078126}
+    - target: {fileID: 7296603305397798249, guid: ac2df1e5f92f7ca4a825b44f2d4f9ff8, type: 3}
+      propertyPath: esperarInimigosMortos
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7296603305397798250, guid: ac2df1e5f92f7ca4a825b44f2d4f9ff8, type: 3}
       propertyPath: m_RootOrder
       value: 1
