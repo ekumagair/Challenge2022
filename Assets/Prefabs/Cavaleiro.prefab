@@ -12825,7 +12825,7 @@ MonoBehaviour:
   maxTimeToAttack: 2
   maxAttackCount: 3
   randomAttackCount: 1
-  chanceToRoll: 0.1
+  chanceToRoll: 0
   chanceToBlockInStrafe: 0.1
   chanceToBlockAttack: 0.1
   raiseShield: 1

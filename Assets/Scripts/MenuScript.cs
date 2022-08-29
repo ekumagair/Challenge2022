@@ -17,6 +17,7 @@ public class MenuScript : MonoBehaviour
     public Text shakeMultValor;
 
     public Text textBuild;
+    public Text textCarregando;
     public bool escSair;
 
     void Start()
@@ -51,6 +52,11 @@ public class MenuScript : MonoBehaviour
             {
                 textBuild.text = "Versão " + Application.version.ToString();
             }
+        }
+
+        if(textCarregando != null)
+        {
+            textCarregando.enabled = false;
         }
 
         Cursor.lockState = CursorLockMode.None;
@@ -141,6 +147,12 @@ public class MenuScript : MonoBehaviour
         StartCoroutine(IrPara("Controles"));
     }
 
+    public void IrParaCreditos()
+    {
+        //SceneManager.LoadScene("Creditos"); Protótipo
+        StartCoroutine(IrPara("Creditos"));
+    }
+
     public void SairDoJogo()
     {
         Application.Quit();
@@ -148,6 +160,12 @@ public class MenuScript : MonoBehaviour
 
     IEnumerator IrPara(string cena)
     {
+        // Se tem o texto de carregamento no layout, mostra ele.
+        if (textCarregando != null)
+        {
+            textCarregando.enabled = true;
+        }
+
         // Se não houver delay, o som dos botões não toca.
         if (StaticClass.clicouEmBotao == false)
         {

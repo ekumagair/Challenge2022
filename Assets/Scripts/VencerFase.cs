@@ -7,12 +7,10 @@ public class VencerFase : MonoBehaviour
     public int esperarOndas = 0;
     public float delay = 0;
     GameObject jogador;
-    Invector.vCharacterController.vThirdPersonInput jogadorInput;
 
     void Start()
     {
         jogador = GameObject.FindGameObjectWithTag("Player");
-        jogadorInput = jogador.GetComponent<Invector.vCharacterController.vThirdPersonInput>();
         StaticClass.estadoDeJogo = 0;
         StartCoroutine(Esperar());
     }
@@ -37,16 +35,8 @@ public class VencerFase : MonoBehaviour
         StaticClass.estadoDeJogo = 1;
         Cursor.lockState = CursorLockMode.None;
 
-        DesativarInputs();
+        jogador.GetComponent<Jogador>().DesativarInputs();
 
         Debug.Log("Venceu a fase");
-    }
-
-    public void DesativarInputs()
-    {
-        if (jogadorInput != null)
-        {
-            Destroy(jogadorInput);
-        }
     }
 }
