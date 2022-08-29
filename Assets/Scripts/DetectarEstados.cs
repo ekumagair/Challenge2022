@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class DetectarPerda : MonoBehaviour
+public class DetectarEstados : MonoBehaviour
 {
     // Objeto que detecta os diferentes estados de jogo e executa os efeitos necessários.
 
     Invector.vHealthController vidaJogador;
+    Jogador scriptJogador;
     bool perdeu = false;
     bool venceu = false;
     int cenaAtual;
@@ -19,6 +20,11 @@ public class DetectarPerda : MonoBehaviour
     public GameObject menuTitulo;
     public GameObject menuTextoExtra;
 
+    public AudioClip clipPrimeiroInimigo;
+    bool clipPrimeiroInimigoTocou = false;
+    public AudioClip clipVenceu;
+    public AudioClip clipPerdeu;
+
     Text menuTituloText;
     Text menuTextoExtraText;
 
@@ -26,20 +32,36 @@ public class DetectarPerda : MonoBehaviour
     {
         cenaAtual = SceneManager.GetActiveScene().buildIndex;
         vidaJogador = GameObject.FindGameObjectWithTag("Player").GetComponent<Invector.vHealthController>();
+        scriptJogador = GameObject.FindGameObjectWithTag("Player").GetComponent<Jogador>();
         menuTituloText = menuTitulo.GetComponent<Text>();
         menuTituloText.text = "";
         menuTextoExtraText = menuTextoExtra.GetComponent<Text>();
         menuTextoExtraText.text = "";
         StaticClass.estadoDeJogo = 0;
+        clipPrimeiroInimigoTocou = false;
         perdeu = false;
         venceu = false;
     }
 
     void Update()
     {
+        // Causar perda ao ficar sem vida
         if(vidaJogador.currentHealth <= 0 && perdeu == false)
         {
-            StartCoroutine(Perder());
+            StartCoroutine(Perder(3f));
+        }
+
+        // Causar perda ao ficar sem tempo
+        if (StaticClass.modoDeJogo == 2 && StaticClass.tempoLimitadoMinutos == 0 && StaticClass.tempoLimitadoSegundos == 0 && perdeu == false)
+        {
+            StartCoroutine(Perder(0f));
+        }
+
+        // Tocar som quando o primeiro inimigo aparecer
+        if (StaticClass.inimigosVivos > 0 && clipPrimeiroInimigoTocou == false && clipPrimeiroInimigo != null)
+        {
+            clipPrimeiroInimigoTocou = true;
+            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipPrimeiroInimigo);
         }
 
         // Venceu
@@ -56,6 +78,11 @@ public class DetectarPerda : MonoBehaviour
                 venceu = true;
                 menuTitulo.GetComponent<Animator>().Play("CanvasBotoesTitulo");
                 menuTextoExtraText.text = "Todos os inimigos foram derrotados!";
+
+                if(clipVenceu != null)
+                {
+                    scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipVenceu);
+                }
 
                 if(StaticClass.faseAtual == StaticClass.faseDesbloqueada)
                 {
@@ -80,6 +107,10 @@ public class DetectarPerda : MonoBehaviour
             else if (StaticClass.modoDeJogo == 1)
             {
                 menuTituloText.text = "FIM DE JOGO!";
+            }
+            else if (StaticClass.modoDeJogo == 2)
+            {
+                menuTituloText.text = "O TEMPO ACABOU!";
             }
 
             Cursor.lockState = CursorLockMode.None;
@@ -135,16 +166,23 @@ public class DetectarPerda : MonoBehaviour
         }
     }
 
-    IEnumerator Perder()
+    IEnumerator Perder(float delay)
     {
         if (StaticClass.debug)
         {
             Debug.Log("Morreu");
         }
 
-        perdeu = true;
+        if (clipPerdeu != null)
+        {
+            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipPerdeu);
+        }
 
-        yield return new WaitForSeconds(3f);
+        perdeu = true;
+        scriptJogador.PararContagemDeTempo();
+        scriptJogador.DestruirCamera();
+
+        yield return new WaitForSeconds(delay);
 
         StaticClass.estadoDeJogo = -1;
         menuTitulo.GetComponent<Animator>().Play("CanvasBotoesTitulo");
@@ -206,7 +244,7 @@ public class DetectarPerda : MonoBehaviour
     {
         if (StaticClass.modoDeJogo == 0)
         {
-            int dica = Random.Range(0, 7);
+            int dica = Random.Range(0, 8);
             if (dica == 0)
             {
                 menuTextoExtraText.text = "Dica: Durante um rolamento (tecla [Q]), você não leva dano de ataques corpo a corpo, mas inimigos ainda perderão tempo tentando te atacar.";
@@ -233,12 +271,68 @@ public class DetectarPerda : MonoBehaviour
             }
             else if (dica == 6)
             {
-                menuTextoExtraText.text = "Dica: Quando um inimigo aparece, as tochas do portão em que ele aparece ficam mais fortes temporariamente.";
+                menuTextoExtraText.text = "Dica: Quando um inimigo aparece, as tochas do portão em que ele estiver ficam mais fortes temporariamente.";
+            }
+            else if (dica == 7)
+            {
+                menuTextoExtraText.text = "Dica: Quando o primeiro inimigo de uma fase aparece, é possível ouvir trombetas.";
             }
         }
         else if (StaticClass.modoDeJogo == 1)
         {
-            menuTextoExtraText.text = "Por " + StaticClass.segundosVivo.ToString() + " segundos, você derrotou " + StaticClass.inimigosMortos.ToString() + " inimigo(s). Seu recorde é de " + StaticClass.inimigosMortosRecorde.ToString() + ".";
+            // Evitar valores impossíveis.
+            if (StaticClass.segundosVivo < 0)
+            {
+                StaticClass.segundosVivo = 0;
+            }
+            if (StaticClass.inimigosMortos < 0)
+            {
+                StaticClass.inimigosMortos = 0;
+            }
+            if (StaticClass.inimigosMortosRecorde < 0)
+            {
+                StaticClass.inimigosMortosRecorde = 0;
+            }
+
+            // Criar mensagem final da fase infinita.
+            if (StaticClass.segundosVivo < 60)
+            {
+                menuTextoExtraText.text = "Por " + StaticClass.segundosVivo.ToString() + " segundos, ";
+            }
+            else if (StaticClass.segundosVivo < 120)
+            {
+                menuTextoExtraText.text = "Por 1 minuto, ";
+            }
+            else
+            {
+                menuTextoExtraText.text = "Por " + Mathf.RoundToInt(StaticClass.segundosVivo / 60).ToString() + " minutos, ";
+            }
+
+            if (StaticClass.inimigosMortos == 0)
+            {
+                menuTextoExtraText.text += "você não derrotou nenhum inimigo.";
+            }
+            else if (StaticClass.inimigosMortos == 1)
+            {
+                menuTextoExtraText.text += "você derrotou 1 inimigo.";
+            }
+            else
+            {
+                menuTextoExtraText.text += "você derrotou " + StaticClass.inimigosMortos.ToString() + " inimigos.";
+            }
+
+            if (StaticClass.inimigosMortosRecorde == 1)
+            {
+                menuTextoExtraText.text += " Seu recorde é de " + StaticClass.inimigosMortosRecorde.ToString() + " inimigo.";
+            }
+            else
+            {
+                menuTextoExtraText.text += " Seu recorde é de " + StaticClass.inimigosMortosRecorde.ToString() + " inimigos.";
+            }
+        }
+        else if (StaticClass.modoDeJogo == 2)
+        {
+            menuTextoExtraText.text = "Tente novamente.";
         }
     }
 }

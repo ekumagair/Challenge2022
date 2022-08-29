@@ -169,8 +169,13 @@ public class Projetil : MonoBehaviour
             if (Jogador.armaEquipada == 0)
             {
                 ignorar = "Player";
+
+                // Faz o projétil inverter seu sentido, independente do ângulo do jogador.
                 transform.forward *= -1f;
+
+                // (ALTERNATIVO) Faz o projétil adotar o ângulo do jogador. É mais difícil de acertar quem atirou o projétil.
                 //transform.forward = GameObject.FindGameObjectWithTag("Player").transform.forward;
+
                 velocidade *= 1.5f;
                 dano *= 4;
 

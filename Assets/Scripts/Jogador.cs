@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Jogador : MonoBehaviour
 {
+    [Header("== Combate =========================================")]
     public GameObject splashEspada;
     public GameObject splashMachado;
     public GameObject splashGiratorio;
@@ -26,6 +27,7 @@ public class Jogador : MonoBehaviour
     public static bool girando = false;
 
     // Inventário
+    [Header("== Inventário =========================================")]
     public Text[] armasQuantidadeTexto;
     public Image inventarioUnicoFundo;
     public Sprite[] inventarioUnicoSprites;
@@ -42,28 +44,40 @@ public class Jogador : MonoBehaviour
     // 2 = Poção.
 
     // Áudio
+    [Header("== Áudio =========================================")]
     public GameObject audioSource2D;
     public AudioClip clipUsarPocao;
     public AudioClip[] clipMochila;
     public AudioClip[] clipSwoosh;
     public GameObject hitSound;
+    public AudioClip clipCampainha;
 
     // Instruções
+    [Header("== Texto =========================================")]
     public GameObject instrucao;
 
     // Texto Intro
     public Text textIntro;
 
     // Progresso
+    [Header("== Progresso =========================================")]
     public Text textProgresso;
     public Image imageProgresso;
+
+    // Tempo limitado
+    [Header("== Tempo limitado =========================================")]
+    public Text textTempoLimitado;
 
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
     Invector.vCharacterController.vThirdPersonMotor motor;
+    Invector.vCharacterController.vThirdPersonInput input;
+    Rigidbody rb;
     Animator animator;
     CameraShake cameraShaker;
     Personagem personagemScript;
+
+    [Header("== Câmera =========================================")]
     public Invector.vCamera.vThirdPersonCamera cameraThirdPerson;
 
     private void Start()
@@ -71,8 +85,10 @@ public class Jogador : MonoBehaviour
         arma = GetComponent<Invector.vMelee.vMeleeManager>();
         vida = GetComponent<Invector.vHealthController>();
         motor = GetComponent<Invector.vCharacterController.vThirdPersonMotor>();
+        input = GetComponent<Invector.vCharacterController.vThirdPersonInput>();
         animator = GetComponent<Animator>();
         personagemScript = GetComponent<Personagem>();
+        rb = GetComponent<Rigidbody>();
         cameraShaker = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         armaDelay = 0.0f;
         inimigosMortosHabilidade = 0;
@@ -87,24 +103,24 @@ public class Jogador : MonoBehaviour
             hitSound.GetComponent<AudioSource>().volume = StaticClass.volumeHitSound;
         }
 
-        //StartCoroutine(CriarInstrucao("Teste!", 3f, 0f));
-
         AudioListener.volume = StaticClass.volumeGlobal;
 
-        //Debug.Log("Sensibilidade " + cameraThirdPerson.currentState.xMouseSensitivity);
-
         // Modo de jogo
-        if(StaticClass.faseAtual != 6)
+        if(StaticClass.faseAtual > 0 && StaticClass.faseAtual < 6)
         {
             StaticClass.modoDeJogo = 0;
         }
-        else
+        if (StaticClass.faseAtual == 6)
         {
             StaticClass.modoDeJogo = 1;
         }
+        if (StaticClass.faseAtual > 6)
+        {
+            StaticClass.modoDeJogo = 2;
+        }
 
         // Instruções
-        if(StaticClass.faseAtual == 1)
+        if (StaticClass.faseAtual == 1)
         {
             StartCoroutine(CriarInstrucao("Use [W], [A], [S], [D] para se mover.", 6f, 0f));
             StartCoroutine(CriarInstrucao("Ataque com o [botão esquerdo do mouse]. Defenda segurando o [botão direito do mouse].", 6f, 6f));
@@ -134,31 +150,36 @@ public class Jogador : MonoBehaviour
         else if (StaticClass.faseAtual == 5)
         {
             StartCoroutine(CriarInstrucao("Soldados Romanos usam lanças que não podem ser refletidas ou derrubadas, mas são afetadas pela gravidade.", 10f, 0f));
-            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 20f));
-            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 30f));
+            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 30f));
+            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 40f));
         }
         else if (StaticClass.faseAtual == 6)
         {
             StartCoroutine(CriarInstrucao("Por quanto tempo você consegue sobreviver?", 6f, 0f));
         }
-        else if (StaticClass.faseAtual == 7)
+        else if (StaticClass.faseAtual == 11)
         {
             StartCoroutine(CriarInstrucao("Fase de teste.", 6f, 0f));
         }
 
-        if (StaticClass.faseAtual < 1 || StaticClass.faseAtual > 7)
+        if (StaticClass.faseAtual < 1)
         {
             StartCoroutine(CriarInstrucao("Fase inválida.", 6f, 0f));
         }
 
         // Texto de Introdução
-        if (StaticClass.modoDeJogo != 1)
+        if (StaticClass.modoDeJogo == 0)
         {
             textIntro.text = "Fase " + StaticClass.faseAtual.ToString();
         }
-        else
+        else if (StaticClass.modoDeJogo == 1)
         {
             textIntro.text = "Fase Infinita";
+        }
+        else if (StaticClass.modoDeJogo == 2)
+        {
+            textIntro.text = "";
+            StartCoroutine(ContarTempoLimitado());
         }
 
         StartCoroutine(ContarTempoVivo());
@@ -167,8 +188,9 @@ public class Jogador : MonoBehaviour
     private void Update()
     {
         // Mudar sensibilidade do mouse de acordo com o valor da opção do menu.
-        cameraThirdPerson.currentState.xMouseSensitivity = StaticClass.sensibilidadeMouse;
-        cameraThirdPerson.currentState.yMouseSensitivity = StaticClass.sensibilidadeMouse;
+        cameraThirdPerson.currentState.xMouseSensitivity = StaticClass.sensibilidadeMouse * 1f;
+        cameraThirdPerson.currentState.yMouseSensitivity = StaticClass.sensibilidadeMouse * 1f;
+        //Debug.Log("Sensibilidade do mouse: " + cameraThirdPerson.currentState.xMouseSensitivity);
 
         if (StaticClass.estadoDeJogo == 0)
         {
@@ -220,31 +242,24 @@ public class Jogador : MonoBehaviour
                             animator.Play("Longs_Equip", 3);
                             CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
                         }
+                        else if (armasDisponiveis[0] == false || armasDisponiveis[1] == false)
+                        {
+                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                        }
                     }
 
                     // Usar a poção
-                    if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[2] == true && vida.isDead == false)
+                    if (Input.GetKeyDown(KeyCode.Alpha2) && vida.isDead == false)
                     {
-                        ItemDeCura(2, 25);
+                        if (armasDisponiveis[2] == true)
+                        {
+                            ItemDeCura(2, 25);
+                        }
+                        else
+                        {
+                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                        }
                     }
-                }
-
-                // Ataque especial (giratório)
-                if(Input.GetKeyDown(KeyCode.F) && inimigosMortosHabilidade >= inimigosMortosHabilidadeObjetivo && motor.currentStamina >= 100 && (armaEquipada == 0 || armaEquipada == 1) && armaDelay < 0.1f)
-                {
-                    StartCoroutine(AtaqueGiratorio());
-                }
-
-                // Trapaça de teste
-                if(Input.GetKeyDown(KeyCode.P) && StaticClass.debug)
-                {
-                    inimigosMortosHabilidade += 10;
-                }
-
-                // Esconder ou mostrar HUD
-                if(Input.GetKeyDown(KeyCode.I) && StaticClass.debug)
-                {
-                    hudObj.SetActive(!hudObj.activeSelf);
                 }
 
                 // O custo de energia/stamina é controlado aqui. O dano da arma é controlado nas animações.
@@ -268,6 +283,31 @@ public class Jogador : MonoBehaviour
                         ItemDeCura(2, 25);
                     }
                 }
+            }
+
+            // Ataque especial (giratório)
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if(inimigosMortosHabilidade >= inimigosMortosHabilidadeObjetivo && motor.currentStamina > 0 && (armaEquipada == 0 || armaEquipada == 1) && armaDelay < 0.1f)
+                {
+                    StartCoroutine(AtaqueGiratorio());
+                }
+                else
+                {
+                    CriarObjetoDeSom(audioSource2D, clipCampainha);
+                }
+            }
+
+            // Trapaça de teste
+            if (Input.GetKeyDown(KeyCode.P) && StaticClass.debug)
+            {
+                inimigosMortosHabilidade += 10;
+            }
+
+            // Esconder ou mostrar HUD
+            if (Input.GetKeyDown(KeyCode.I) && StaticClass.debug)
+            {
+                hudObj.SetActive(!hudObj.activeSelf);
             }
 
             // Não deixar que a quantidade de itens seja negativa.
@@ -392,13 +432,25 @@ public class Jogador : MonoBehaviour
         //textAtaqueEspecial.text = ((255 / inimigosMortosHabilidadeObjetivo) * inimigosMortosHabilidade).ToString();
 
         // Mostrar progresso da fase.
-        if (StaticClass.totalDeInimigos > 0)
+        if (StaticClass.totalDeInimigos > 1)
         {
-            if (StaticClass.modoDeJogo == 0)
+            if (StaticClass.modoDeJogo == 0 || StaticClass.modoDeJogo == 2)
             {
                 if (StaticClass.estadoDeJogo != 1)
                 {
                     textProgresso.text = "Progresso: " + Mathf.RoundToInt(((float)StaticClass.inimigosMortos / (float)StaticClass.totalDeInimigos) * 100f).ToString() + "%";
+                    
+                    if(StaticClass.modoDeJogo == 2)
+                    {
+                        if (StaticClass.tempoLimitadoSegundos > 9)
+                        {
+                            textTempoLimitado.text = StaticClass.tempoLimitadoMinutos.ToString() + ":" + StaticClass.tempoLimitadoSegundos.ToString();
+                        }
+                        else
+                        {
+                            textTempoLimitado.text = StaticClass.tempoLimitadoMinutos.ToString() + ":0" + StaticClass.tempoLimitadoSegundos.ToString();
+                        }
+                    }
                 }
                 else
                 {
@@ -423,6 +475,7 @@ public class Jogador : MonoBehaviour
         {
             textProgresso.text = "";
             imageProgresso.enabled = false;
+            textTempoLimitado.text = "";
         }
     }
 
@@ -505,6 +558,8 @@ public class Jogador : MonoBehaviour
         }
         else
         {
+            CriarObjetoDeSom(audioSource2D, clipCampainha);
+
             if (StaticClass.debug)
             {
                 Debug.Log("Jogador já tem vida máxima");
@@ -547,7 +602,7 @@ public class Jogador : MonoBehaviour
         }
     }
 
-    void CriarObjetoDeSom(GameObject audioSource, AudioClip ac)
+    public void CriarObjetoDeSom(GameObject audioSource, AudioClip ac)
     {
         // Cria um objeto e imediatamente ativa o componente de AudioSource dele.
         var go = Instantiate(audioSource, transform.position, transform.rotation);
@@ -634,5 +689,47 @@ public class Jogador : MonoBehaviour
     public void PararContagemDeTempo()
     {
         StopCoroutine(ContarTempoVivo());
+        StopCoroutine(ContarTempoLimitado());
+    }
+
+    // Tempo limitado
+    IEnumerator ContarTempoLimitado()
+    {
+        yield return new WaitForSeconds(1);
+
+        StaticClass.tempoLimitadoSegundos--;
+
+        if(StaticClass.tempoLimitadoSegundos < 0)
+        {
+            StaticClass.tempoLimitadoSegundos = 59;
+            StaticClass.tempoLimitadoMinutos--;
+        }
+        if(StaticClass.tempoLimitadoMinutos < 0)
+        {
+            StaticClass.tempoLimitadoMinutos = 0;
+        }
+
+        if (StaticClass.estadoDeJogo != 1 && StaticClass.estadoDeJogo != -1)
+        {
+            if (StaticClass.tempoLimitadoMinutos > 0 || StaticClass.tempoLimitadoSegundos > 0)
+            {
+                StartCoroutine(ContarTempoLimitado());
+            }
+            else
+            {
+                DesativarInputs();
+            }
+        }
+    }
+
+    // Destruir inputs
+    public void DesativarInputs()
+    {
+        if (input != null)
+        {
+            Destroy(input);
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+        }
     }
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

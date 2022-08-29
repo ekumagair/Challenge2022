@@ -14,12 +14,17 @@ public static class StaticClass
 
     // Modo de jogo
     public static int modoDeJogo = 0;
-    // 0 = Normal. Fase pré-definida.
-    // 1 = Fase infinita.
+    // 0 = Normal (Fase pré-definida)
+    // 1 = Fase infinita
+    // 2 = Tempo limitado (Fase pré-definida)
 
     // Usado na fase infinita
     public static int pontosDeDificuldade = 0;
     public static int inimigosMortosRecorde = 0;
+
+    // Usado no modo de tempo limitado
+    public static int tempoLimitadoMinutos = 0;
+    public static int tempoLimitadoSegundos = 0;
 
     // Usado nos menus
     public static bool clicouEmBotao = false;

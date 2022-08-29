@@ -24,7 +24,7 @@ public class OndaScript : MonoBehaviour
     private void Start()
     {
         StaticClass.ondasPassadas = 0;
-        StaticClass.totalDeInimigos = 0;
+        StaticClass.totalDeInimigos = 1;
         StaticClass.inimigosMortos = 0;
         StaticClass.inimigosVivos = 0;
         StartCoroutine(EsperarInimigos());

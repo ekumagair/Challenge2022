@@ -43,12 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2b0568239418f43ac3aad913dec2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 6
+  delayInicial: 1
+  delayRepetir: 1
+  esperarOndas: 0
+  esperarInimigosMortos: 0
   inimigo: {fileID: 8329258053292303919, guid: b9a6458d5e79332429e1fc5fc41f4969, type: 3}
   local:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  quantos: 2
-  repetir: 999
+  quantos: 1
+  repetir: 1
