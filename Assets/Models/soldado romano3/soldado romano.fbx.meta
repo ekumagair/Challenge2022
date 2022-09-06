@@ -1,0 +1,933 @@
+fileFormatVersion: 2
+guid: beb7b92694eada545a3b53b24e4cfadc
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blusa
+    second: {fileID: 2100000, guid: f3fd0d45dd3a1c34496c9bb4df19ddd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: botas
+    second: {fileID: 2100000, guid: cb47c64b1d1e65846a459a66e6788b3b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cinto
+    second: {fileID: 2100000, guid: 325b9625675116f4ca2cacf13b2744ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: colete
+    second: {fileID: 2100000, guid: 1246338d7e1a18541823e01ad0ff908f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: corpo
+    second: {fileID: 2100000, guid: 4a7d501d623fe6e4cacac3d2c89da4a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: a05d5802dca9c24499403c8b3c39f1fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ombros
+    second: {fileID: 2100000, guid: 347e5cabdb2546f4ba1556f41b94bfb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: punhos
+    second: {fileID: 2100000, guid: 25c8114284b1ce944a200a61cc6296c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: saia1
+    second: {fileID: 2100000, guid: f00ae9240e6eb5f478736756d7772d25, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 8
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jbacia
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:JcoxaD
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jcoxa
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:JcanelaD
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jcanela
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jpe_01D
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jpe_01
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jcoluna_01
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jpescoco
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jcabeca_01
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jombro_01D
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jombro_03
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jombro_02D
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jombro_02
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jcotovelo_D
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jcotovelo_
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:JmaoD
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jpulso
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jpe_03D
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jpe_03
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jcabeca_02
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jdedao_01D
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jdedao_02D
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jdedao_03D
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_01D
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_02D
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_03D
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_01D
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_02D
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_03D
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Janelar_01D
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Janelar_02D
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Janelar_03D
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_01D
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_02D
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_03D
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:joint1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:joint2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:joint3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_01
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_02
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_03
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Janelar_01
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Janelar_02
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Janelar_03
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_01
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_02
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_03
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_01
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_02
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_03
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rig2:modelo_gladiador:ModeloSamurai:Jpeito
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: soldado romano(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: polySurface35
+      parentName: soldado romano(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jbacia
+      parentName: soldado romano(Clone)
+      position: {x: -0.009861981, y: 0.89925694, z: 0}
+      rotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jcoluna_01
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jbacia
+      position: {x: -0.15910849, y: 0.00013861949, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jcoluna_02
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jcoluna_01
+      position: {x: -0.11348293, y: 2.5198272e-17, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jcoluna_03
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jcoluna_02
+      position: {x: -0.09620726, y: 2.1501081e-17, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jpeito
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jcoluna_03
+      position: {x: -0.13415235, y: 0.00013861949, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jpescoco
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jpeito
+      position: {x: -0.17165129, y: 3.8114243e-17, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jcabeca_01
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jpescoco
+      position: {x: -0.10880506, y: 2.4159577e-17, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jcabeca_02
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jcabeca_01
+      position: {x: -0.15368918, y: 3.4125852e-17, z: 0}
+      rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jombro_01D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jpeito
+      position: {x: -0.06839233, y: -0.11325292, z: 0}
+      rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jombro_02D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jombro_01D
+      position: {x: -0.096190155, y: 0, z: 0}
+      rotation: {x: 0.00003647978, y: -0.003665396, z: 0.0004080533, w: 0.9999932}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jcotovelo_D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jombro_02D
+      position: {x: -0.29626566, y: 2.842171e-16, z: 0.026486808}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:JpulsoD
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jcotovelo_D
+      position: {x: -0.2603112, y: -1.1368684e-15, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:JmaoD
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JpulsoD
+      position: {x: -0.0731466, y: 0.0037745542, z: -0.0037520863}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Janelar_01D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JmaoD
+      position: {x: -0.049292725, y: 0, z: -0.008622202}
+      rotation: {x: -0.005497164, y: 0.036578964, z: -0.026440723, w: 0.9989658}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Janelar_02D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Janelar_01D
+      position: {x: -0.026784973, y: -0.0040253843, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Janelar_03D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Janelar_02D
+      position: {x: -0.02143494, y: -0.0031779348, z: 4.440892e-18}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Janelar_04D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Janelar_03D
+      position: {x: -0.029165449, y: -0.0036016596, z: -2.220446e-18}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jindicador_01D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JmaoD
+      position: {x: -0.047899645, y: -0.0040253843, z: 0.029495057}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.9463636, y: 0.9463636, z: 0.94636357}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jindicador_02D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_01D
+      position: {x: -0.03127453, y: 0.0002238699, z: 0.0035906075}
+      rotation: {x: -0.004614445, y: 0.009858948, z: -0.040806755, w: 0.99910784}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jindicador_03D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_02D
+      position: {x: -0.020698573, y: -0.0031779348, z: 0.0015727953}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jindicador_04D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_03D
+      position: {x: -0.028105626, y: -0.004287906, z: 0.0010008698}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_01D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JmaoD
+      position: {x: -0.04969909, y: 0, z: -0.02809365}
+      rotation: {x: -0.0062875706, y: 0.03854434, z: -0.030242437, w: 0.99877936}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_02D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_01D
+      position: {x: -0.024676401, y: -0.0040253843, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_03D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_02D
+      position: {x: -0.021558048, y: -0.0031779348, z: -0.0010641749}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_04D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_03D
+      position: {x: -0.02346545, y: -0.0036016596, z: -0.0026604375}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedao_01D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JmaoD
+      position: {x: -0.029959843, y: -0.0024252746, z: 0.03827408}
+      rotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedao_02D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jdedao_01D
+      position: {x: -0.02563873, y: -0.002422735, z: -0.013751554}
+      rotation: {x: -0.002250124, y: 0.060488626, z: -0.0064617074, w: 0.9981454}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedao_03D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jdedao_02D
+      position: {x: -0.019488148, y: -0.002449323, z: -0.016143128}
+      rotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_01D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JmaoD
+      position: {x: -0.047127184, y: 0, z: 0.009798182}
+      rotation: {x: -0.0014009391, y: 0.0076090894, z: -0.006738299, w: 0.9999474}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_02D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_01D
+      position: {x: -0.032166414, y: -0.0040253843, z: 0.0021418687}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_03D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_02D
+      position: {x: -0.020580191, y: -0.0031779348, z: 0.00019471534}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_04D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_03D
+      position: {x: -0.026836304, y: -0.0036016596, z: -2.220446e-18}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jombro_03
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jpeito
+      position: {x: -0.06839233, y: 0.117822185, z: 0.0022864607}
+      rotation: {x: -0.7070705, y: 0.7070705, z: -0.007160607, w: -0.007160607}
+      scale: {x: 1.0000004, y: 1, z: 1.0000004}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jombro_02
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jombro_03
+      position: {x: -0.096190155, y: -9.122377e-17, z: -2.9117333e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jcotovelo_
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jombro_02
+      position: {x: -0.29572928, y: 2.841626e-16, z: -0.026481377}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jpulso
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jcotovelo_
+      position: {x: -0.2954316, y: -8.448297e-16, z: -0.008883851}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jmao
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jpulso
+      position: {x: -0.0731466, y: 0.0037745542, z: -0.0048237476}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Janelar_01
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmao
+      position: {x: -0.049292725, y: 0, z: -0.008622202}
+      rotation: {x: 0.0017331617, y: -0.005354456, z: -0.017285286, w: 0.99983484}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Janelar_02
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Janelar_01
+      position: {x: -0.024712417, y: -0.0040253843, z: -0.0012309831}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Janelar_03
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Janelar_02
+      position: {x: -0.02143494, y: -0.0031779348, z: 4.440892e-18}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Janelar_04
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Janelar_03
+      position: {x: -0.029165449, y: -0.0036016596, z: -2.220446e-18}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jindicador_01
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmao
+      position: {x: -0.047899645, y: -0.0040253843, z: 0.029495057}
+      rotation: {x: -0.0004572742, y: -0.022612734, z: -0.0021836755, w: 0.9997418}
+      scale: {x: 0.94636416, y: 0.9463636, z: 0.94636416}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jindicador_02
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_01
+      position: {x: -0.021092108, y: 0.0002238699, z: 0.0021002053}
+      rotation: {x: -0.004108223, y: 0.006020949, z: -0.041900087, w: 0.99909526}
+      scale: {x: 1.0000006, y: 0.9999999, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jindicador_03
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_02
+      position: {x: -0.020698573, y: -0.0031779348, z: 0.0015727953}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jindicador_04
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jindicador_03
+      position: {x: -0.028105626, y: -0.004287906, z: 0.0010008698}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000005, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_01
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmao
+      position: {x: -0.04969909, y: 0, z: -0.02809365}
+      rotation: {x: 0.0016140065, y: 0.0024142258, z: -0.014019517, w: 0.9998975}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_02
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_01
+      position: {x: -0.024676401, y: -0.0040253843, z: -0.0035340542}
+      rotation: {x: 0.00069740665, y: -0.005011856, z: 0.0008390146, w: 0.9999868}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_03
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_02
+      position: {x: -0.021558048, y: -0.0031779348, z: -0.0010641749}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_04
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmindinho_03
+      position: {x: -0.02346545, y: -0.0036016596, z: -0.0026604375}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_01
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmao
+      position: {x: -0.047127184, y: 0, z: 0.009798182}
+      rotation: {x: 0.0017407208, y: -0.019843636, z: -0.021421371, w: 0.9995721}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_02
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_01
+      position: {x: -0.03026002, y: -0.0040253843, z: 0.001269791}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_03
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_02
+      position: {x: -0.020580191, y: -0.0031779348, z: 0.00019471534}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_04
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jdedomeio_03
+      position: {x: -0.026836304, y: -0.0036016596, z: -2.220446e-18}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1, z: 1.0000006}
+    - name: rig2:modelo_gladiador:ModeloSamurai:joint1
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jmao
+      position: {x: -0.024954593, y: 0.000029193483, z: -0.03504968}
+      rotation: {x: 0.00600314, y: -0.67411363, z: -0.047937322, w: 0.73704594}
+      scale: {x: 1.0000005, y: 1, z: 1.0000005}
+    - name: rig2:modelo_gladiador:ModeloSamurai:joint2
+      parentName: rig2:modelo_gladiador:ModeloSamurai:joint1
+      position: {x: -0.017475352, y: -0.0036728503, z: 0.008853739}
+      rotation: {x: 0.009311934, y: 0.6464208, z: 0.021069733, w: 0.7626332}
+      scale: {x: 1.0000005, y: 1, z: 1.0000005}
+    - name: rig2:modelo_gladiador:ModeloSamurai:joint3
+      parentName: rig2:modelo_gladiador:ModeloSamurai:joint2
+      position: {x: -0.022459699, y: -0.004534337, z: -0.026035747}
+      rotation: {x: -3.4694461e-18, y: -1, z: 3.4694461e-18, w: 0}
+      scale: {x: 0.9999998, y: 1, z: 0.9999998}
+    - name: rig2:modelo_gladiador:ModeloSamurai:JfemorD
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jbacia
+      position: {x: 0.034786243, y: -0.10812279, z: 0}
+      rotation: {x: -0, y: -0, z: 1, w: 0}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:JcoxaD
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JfemorD
+      position: {x: -0.1100483, y: -0.00013861949, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:JjoelhoD
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JcoxaD
+      position: {x: -0.20520566, y: -1.7763568e-17, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:JcanelaD
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JjoelhoD
+      position: {x: -0.17955495, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jfinal_pernaD
+      parentName: rig2:modelo_gladiador:ModeloSamurai:JcanelaD
+      position: {x: -0.17698987, y: 1.7763568e-17, z: 0}
+      rotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jpe_01D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jfinal_pernaD
+      position: {x: -0.00091870717, y: -0.061183255, z: -0.000034708137}
+      rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jpe_02D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jpe_01D
+      position: {x: -0.0991491, y: 0, z: 0}
+      rotation: {x: 0.5184423, y: 0.48085096, z: -0.48085096, w: 0.5184423}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jpe_03D
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jpe_02D
+      position: {x: -0.14373066, y: -5.551115e-17, z: 0}
+      rotation: {x: -0.026581075, y: -0.70660704, z: -0.026581075, w: 0.70660704}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jfemor1
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jbacia
+      position: {x: 0.034786243, y: 0.12770815, z: 0}
+      rotation: {x: -0, y: -0, z: 1, w: 0}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jcoxa
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jfemor1
+      position: {x: -0.13979636, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jjoelho
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jcoxa
+      position: {x: -0.17545761, y: -0.00013861949, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jcanela
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jjoelho
+      position: {x: -0.17955495, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jfinal_perna
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jcanela
+      position: {x: -0.17698987, y: 1.7763568e-17, z: 0}
+      rotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jpe_01
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jfinal_perna
+      position: {x: -0.00091870717, y: -0.061183255, z: -0.000034708137}
+      rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jpe_02
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jpe_01
+      position: {x: -0.0991491, y: 0, z: 0}
+      rotation: {x: 0.5184423, y: 0.48085096, z: -0.48085096, w: 0.5184423}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: rig2:modelo_gladiador:ModeloSamurai:Jpe_03
+      parentName: rig2:modelo_gladiador:ModeloSamurai:Jpe_02
+      position: {x: -0.14373066, y: -5.551115e-17, z: 0}
+      rotation: {x: -0.026581075, y: -0.70660704, z: -0.026581075, w: 0.70660704}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 8
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

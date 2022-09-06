@@ -10735,7 +10735,7 @@ MonoBehaviour:
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   destruirAoMorrer: {fileID: 2310891091844841853}
   localPes: {fileID: 0}
-  spine: {fileID: 0}
+  spine: {fileID: 2270351724747545602}
   ragdoll: {fileID: 0}
   faseInfinitaValor: 60
   clipDano:

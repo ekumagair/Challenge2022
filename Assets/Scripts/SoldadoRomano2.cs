@@ -24,7 +24,6 @@ public class SoldadoRomano2 : MonoBehaviour
         animator = GetComponent<Animator>();
         vida = GetComponent<Invector.vHealthController>();
         personagem = GetComponent<Personagem>();
-        melee = GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>();
         controller = GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>();
         timerLanca = 10f;
         atacando = false;
@@ -34,7 +33,7 @@ public class SoldadoRomano2 : MonoBehaviour
 
     void Update()
     {
-        if (!atacando && !girando && !melee.isAttacking && !vida.isDead)
+        if (!atacando && !girando && !controller.isAttacking && !vida.isDead && !controller.isBlocking && !controller.isCrouching)
         {
             timerLanca -= Time.deltaTime;
 
@@ -43,7 +42,7 @@ public class SoldadoRomano2 : MonoBehaviour
                 StartCoroutine(Jogar());
             }
 
-            if (vida.currentHealth <= 40 && !fezAtaqueGiratorio && timerLanca >= 1f && !controller.isAttacking && !controller.isBlocking)
+            if (vida.currentHealth <= 40 && !fezAtaqueGiratorio && timerLanca > 1f)
             {
                 StartCoroutine(AtaqueGiratorio());
             }
