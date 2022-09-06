@@ -45,16 +45,20 @@ public class DetectarEstados : MonoBehaviour
 
     void Update()
     {
-        // Causar perda ao ficar sem vida
-        if(vidaJogador.currentHealth <= 0 && perdeu == false)
+        // Detectar perda
+        if (perdeu == false && venceu == false)
         {
-            StartCoroutine(Perder(3f));
-        }
+            // Causar perda ao ficar sem vida
+            if (vidaJogador.currentHealth <= 0)
+            {
+                StartCoroutine(Perder(3f));
+            }
 
-        // Causar perda ao ficar sem tempo
-        if (StaticClass.modoDeJogo == 2 && StaticClass.tempoLimitadoMinutos == 0 && StaticClass.tempoLimitadoSegundos == 0 && perdeu == false)
-        {
-            StartCoroutine(Perder(0f));
+            // Causar perda ao ficar sem tempo
+            if (StaticClass.modoDeJogo == 2 && StaticClass.tempoLimitadoMinutos == 0 && StaticClass.tempoLimitadoSegundos == 0)
+            {
+                StartCoroutine(Perder(0f));
+            }
         }
 
         // Tocar som quando o primeiro inimigo aparecer
@@ -332,7 +336,16 @@ public class DetectarEstados : MonoBehaviour
         }
         else if (StaticClass.modoDeJogo == 2)
         {
-            menuTextoExtraText.text = "Tente novamente.";
+            //menuTextoExtraText.text = "Tente novamente.";
+            int dica = Random.Range(0, 2);
+            if (dica == 0)
+            {
+                menuTextoExtraText.text = "Dica: Refletir projéteis com a espada é mais rápido que perseguir os inimigos e acertá-los múltiplas vezes.";
+            }
+            else if (dica == 1)
+            {
+                menuTextoExtraText.text = "Dica: Se você tiver energia (barra verde) o suficiente, você pode segurar o [Shift] para correr.";
+            }
         }
     }
 }
