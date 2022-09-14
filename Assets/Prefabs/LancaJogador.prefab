@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8409314629070199480
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 753201467726303418, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: dano
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303418, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: velocidade
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.1576452
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.749454
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.8493862
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303419, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753201467726303429, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: m_Name
+      value: LancaJogador
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718655692038229787, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718655692038229787, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718655692038229787, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718655692038229787, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718655692038229787, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718655692038229787, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.9073358
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718655692038229787, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0.6650944
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ecd5311280f9aee46971e50f5f158be7, type: 3}

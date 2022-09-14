@@ -330,6 +330,8 @@ MonoBehaviour:
   spine: {fileID: 8476460706435638969}
   ragdoll: {fileID: 0}
   faseInfinitaValor: 80
+  cambalearNome: 
+  cambalearLayer: -1
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

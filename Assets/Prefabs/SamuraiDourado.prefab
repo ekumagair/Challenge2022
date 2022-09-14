@@ -3373,9 +3373,11 @@ MonoBehaviour:
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   destruirAoMorrer: {fileID: 8848945882822300962}
   localPes: {fileID: 0}
-  spine: {fileID: 3224584274895270848}
+  spine: {fileID: 4704903754166442923}
   ragdoll: {fileID: 0}
   faseInfinitaValor: 170
+  cambalearNome: 
+  cambalearLayer: -1
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

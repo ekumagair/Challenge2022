@@ -19,10 +19,13 @@ public class DetectarEstados : MonoBehaviour
     public GameObject menuPausado;
     public GameObject menuTitulo;
     public GameObject menuTextoExtra;
+    public GameObject menuControles;
 
+    public AudioClip clipBotao;
     public AudioClip clipPrimeiroInimigo;
     bool clipPrimeiroInimigoTocou = false;
     public AudioClip clipVenceu;
+    public AudioClip clipVenceuInstante;
     public AudioClip clipPerdeu;
 
     Text menuTituloText;
@@ -37,7 +40,10 @@ public class DetectarEstados : MonoBehaviour
         menuTituloText.text = "";
         menuTextoExtraText = menuTextoExtra.GetComponent<Text>();
         menuTextoExtraText.text = "";
+        menuPausado.SetActive(false);
+        menuControles.SetActive(false);
         StaticClass.estadoDeJogo = 0;
+        vidaJogador.isImmortal = false;
         clipPrimeiroInimigoTocou = false;
         perdeu = false;
         venceu = false;
@@ -45,6 +51,12 @@ public class DetectarEstados : MonoBehaviour
 
     void Update()
     {
+        // Detectar vitória
+        if(VencerFase.matouTodosOsInimigos == true && perdeu == false && venceu == false)
+        {
+            StartCoroutine(Vencer(3f));
+        }
+
         // Detectar perda
         if (perdeu == false && venceu == false)
         {
@@ -82,11 +94,6 @@ public class DetectarEstados : MonoBehaviour
                 venceu = true;
                 menuTitulo.GetComponent<Animator>().Play("CanvasBotoesTitulo");
                 menuTextoExtraText.text = "Todos os inimigos foram derrotados!";
-
-                if(clipVenceu != null)
-                {
-                    scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipVenceu);
-                }
 
                 if(StaticClass.faseAtual == StaticClass.faseDesbloqueada)
                 {
@@ -128,13 +135,8 @@ public class DetectarEstados : MonoBehaviour
         // Pausou
         if (StaticClass.estadoDeJogo == 2)
         {
-            menuPausado.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        }
-        else
-        {
-            menuPausado.SetActive(false);
         }
 
         // Trapaças de teste
@@ -154,7 +156,7 @@ public class DetectarEstados : MonoBehaviour
         }
 
         // Input para pausar ou continuar jogo
-        if (Input.GetKeyDown(KeyCode.Escape) && StaticClass.estadoDeJogo != 1 && StaticClass.estadoDeJogo != -1)
+        if (Input.GetKeyDown(KeyCode.Escape) && StaticClass.estadoDeJogo != 1 && StaticClass.estadoDeJogo != -1 && venceu == false && perdeu == false)
         {
             //Application.Quit(); Teste
             //VoltarParaTitulo(); Teste
@@ -168,6 +170,38 @@ public class DetectarEstados : MonoBehaviour
                 Pausar(false);
             }
         }
+    }
+
+    IEnumerator Vencer(float delay)
+    {
+        VencerFase.matouTodosOsInimigos = false;
+        vidaJogador.isImmortal = true;
+
+        if (StaticClass.debug)
+        {
+            Debug.Log("Venceu");
+        }
+
+        if (clipVenceuInstante != null)
+        {
+            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipVenceuInstante);
+        }
+
+        Time.timeScale = 0.01f;
+
+        yield return new WaitForSeconds(0.008f);
+
+        Time.timeScale = 0.5f;
+
+        yield return new WaitForSeconds(delay * 0.5f);
+
+        if (clipVenceu != null)
+        {
+            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipVenceu);
+        }
+
+        Time.timeScale = 1.0f;
+        StaticClass.estadoDeJogo = 1;
     }
 
     IEnumerator Perder(float delay)
@@ -210,11 +244,13 @@ public class DetectarEstados : MonoBehaviour
         // Se o bool for verdadeiro, pausa. Senão, continua o jogo.
         if(pausar == true)
         {
+            menuPausado.SetActive(true);
             StaticClass.estadoDeJogo = 2;
             Time.timeScale = 0;
         }
         else
         {
+            menuPausado.SetActive(false);
             StaticClass.estadoDeJogo = 0;
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
@@ -237,10 +273,24 @@ public class DetectarEstados : MonoBehaviour
 
     public void VoltarParaTitulo()
     {
-        if (!Input.GetKey(KeyCode.Q))
-        {
-            SceneManager.LoadScene("Titulo");
-        }
+        SceneManager.LoadScene("Titulo");
+    }
+
+    public void MostrarControles()
+    {
+        menuControles.SetActive(true);
+        menuPausado.SetActive(false);
+    }
+
+    public void SairDosControles()
+    {
+        menuControles.SetActive(false);
+        menuPausado.SetActive(true);
+    }
+
+    public void SomDeBotao()
+    {
+        scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipBotao);
     }
 
     // Mostra uma dica aleatória quando o jogador perde. As dicas são para todas as fases.
@@ -248,7 +298,7 @@ public class DetectarEstados : MonoBehaviour
     {
         if (StaticClass.modoDeJogo == 0)
         {
-            int dica = Random.Range(0, 8);
+            int dica = Random.Range(0, 9);
             if (dica == 0)
             {
                 menuTextoExtraText.text = "Dica: Durante um rolamento (tecla [Q]), você não leva dano de ataques corpo a corpo, mas inimigos ainda perderão tempo tentando te atacar.";
@@ -271,7 +321,7 @@ public class DetectarEstados : MonoBehaviour
             }
             else if (dica == 5)
             {
-                menuTextoExtraText.text = "Dica: Ataques feitos com a espada podem refletir projéteis, fazendo com que causem dano em inimigos. Ataques feitos com o machado podem derrubar projéteis, inutilizando-os.";
+                menuTextoExtraText.text = "Dica: Ataques feitos com a espada podem refletir alguns projéteis, fazendo com que causem dano em inimigos. Ataques feitos com o machado podem derrubar projéteis, inutilizando-os.";
             }
             else if (dica == 6)
             {
@@ -280,6 +330,10 @@ public class DetectarEstados : MonoBehaviour
             else if (dica == 7)
             {
                 menuTextoExtraText.text = "Dica: Quando o primeiro inimigo de uma fase aparece, é possível ouvir trombetas.";
+            }
+            else if (dica == 8)
+            {
+                menuTextoExtraText.text = "Dica: Se você conseguir atingir um inimigo que quer te golpear, você fará ele cambalear.";
             }
         }
         else if (StaticClass.modoDeJogo == 1)

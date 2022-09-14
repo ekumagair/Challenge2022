@@ -7663,7 +7663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 7
   _isDead: 0
   _currentHealth: 125
   isImmortal: 0
@@ -7709,6 +7709,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5299759301576069627}
         m_TargetAssemblyTypeName: Personagem, Assembly-CSharp
         m_MethodName: MatouInimigo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1987918119346768754}
+        m_TargetAssemblyTypeName: SoldadoRomano2, Assembly-CSharp
+        m_MethodName: Morrer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8012,7 +8024,7 @@ MonoBehaviour:
   lancaModelo: {fileID: 1766557395484692654}
   danoGiratorio: {fileID: 6904922883094311853, guid: bcc70b26524c7ae4e8810da1e8f6eae3, type: 3}
   fezAtaqueGiratorio: 0
-  timerLancaMultiplicador: 0.4
+  timerLancaMultiplicador: 0.3
 --- !u!114 &5299759301576069627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8036,6 +8048,8 @@ MonoBehaviour:
   spine: {fileID: 4804301060505218635}
   ragdoll: {fileID: 0}
   faseInfinitaValor: 300
+  cambalearNome: recoil_hard
+  cambalearLayer: 5
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

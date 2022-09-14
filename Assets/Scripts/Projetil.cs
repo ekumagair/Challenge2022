@@ -100,7 +100,7 @@ public class Projetil : MonoBehaviour
         else if (efeitoAoAtingir == 2)
         {
             // Ativar gravidade.
-            StartCoroutine(Atingiu2());
+            StartCoroutine(Atingiu2(atingido));
         }
 
         atingiu = true;
@@ -114,7 +114,7 @@ public class Projetil : MonoBehaviour
 
         if(particulaRastro != null)
         {
-            Destroy(particulaRastro);
+            particulaRastro.GetComponent<ParticleSystem>().Stop();
         }
 
         yield return new WaitForSeconds(0.015f);
@@ -136,18 +136,24 @@ public class Projetil : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator Atingiu2()
+    IEnumerator Atingiu2(GameObject atingido)
     {
         _rb.constraints = RigidbodyConstraints.None;
         _rb.isKinematic = false;
         _rb.useGravity = true;
-        _rb.velocity = (-transform.forward * (velocidade / 3)) + transform.up;
+        //_rb.velocity = (-transform.forward * (velocidade / 3)) + transform.up;
+        _rb.velocity = (-transform.forward * 5) + transform.up;
         dano = 0;
         velocidade = 0;
 
         if (particulaRastro != null)
         {
-            Destroy(particulaRastro);
+            particulaRastro.GetComponent<ParticleSystem>().Stop();
+        }
+        if (atingido.GetComponent<Personagem>() != null)
+        {
+            Instantiate(atingido.GetComponent<Personagem>().particulaDano, atingido.transform.position, atingido.transform.rotation);
+            atingido.GetComponent<Personagem>().SomDano();
         }
 
         yield return new WaitForSeconds(0.2f);

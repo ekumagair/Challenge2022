@@ -13,6 +13,7 @@ public class Jogador : MonoBehaviour
     public GameObject splashGiratorio2;
     public GameObject refletirProjeteis;
     public GameObject fumacaAtaqueGiratorio;
+    public GameObject projetilLanca;
     public static int armaEquipada;
     public static float armaDelay = 0.0f;
     public static int inimigosMortosHabilidade = 0;
@@ -25,6 +26,7 @@ public class Jogador : MonoBehaviour
 
     // Fazendo ataque especial
     public static bool girando = false;
+    public static bool atacandoComProjetil = false;
 
     // Inventário
     [Header("== Inventário =========================================")]
@@ -93,6 +95,7 @@ public class Jogador : MonoBehaviour
         armaDelay = 0.0f;
         inimigosMortosHabilidade = 0;
         inimigosMortosHabilidadeObjetivo = 15;
+        atacandoComProjetil = false;
         vida.isImmortal = false;
         girando = false;
         StaticClass.clicouEmBotao = false;
@@ -106,7 +109,7 @@ public class Jogador : MonoBehaviour
         AudioListener.volume = StaticClass.volumeGlobal;
 
         // Modo de jogo
-        if(StaticClass.faseAtual > 0 && StaticClass.faseAtual < 6)
+        if((StaticClass.faseAtual > 0 && StaticClass.faseAtual < 6) || StaticClass.faseAtual >= 11)
         {
             StaticClass.modoDeJogo = 0;
         }
@@ -114,7 +117,7 @@ public class Jogador : MonoBehaviour
         {
             StaticClass.modoDeJogo = 1;
         }
-        if (StaticClass.faseAtual > 6)
+        if (StaticClass.faseAtual > 6 && StaticClass.faseAtual < 11)
         {
             StaticClass.modoDeJogo = 2;
         }
@@ -150,14 +153,14 @@ public class Jogador : MonoBehaviour
         else if (StaticClass.faseAtual == 5)
         {
             StartCoroutine(CriarInstrucao("Soldados Romanos usam lanças que não podem ser refletidas ou derrubadas, mas são afetadas pela gravidade.", 10f, 0f));
-            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 30f));
-            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 40f));
+            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 40f));
+            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 50f));
         }
         else if (StaticClass.faseAtual == 6)
         {
             StartCoroutine(CriarInstrucao("Por quanto tempo você consegue sobreviver?", 6f, 0f));
         }
-        else if (StaticClass.faseAtual == 11)
+        else if (StaticClass.faseAtual == 11 || StaticClass.faseAtual == 12)
         {
             StartCoroutine(CriarInstrucao("Fase de teste.", 6f, 0f));
         }
@@ -270,12 +273,12 @@ public class Jogador : MonoBehaviour
                 }
                 else if (armaEquipada == 1)
                 {
-                    //arma.defaultDamage.damageValue = 45;
+                    //arma.defaultDamage.damageValue = 45; Protótipo
                     arma.defaultStaminaCost = 45;
                 }
                 else if (armaEquipada == 2)
                 {
-                    //arma.defaultDamage.damageValue = 0;
+                    //arma.defaultDamage.damageValue = 0; Protótipo
                     arma.defaultStaminaCost = 0;
 
                     if (Input.GetMouseButtonDown(0))
@@ -310,6 +313,12 @@ public class Jogador : MonoBehaviour
                 hudObj.SetActive(!hudObj.activeSelf);
             }
 
+            // Debug - Lança
+            if (Input.GetKeyDown(KeyCode.T) && armaDelay == 0 && girando == false && StaticClass.debug)
+            {
+                StartCoroutine(AtaqueProjetil(projetilLanca));
+            }
+
             // Não deixar que a quantidade de itens seja negativa.
             if (armasQuantidade[armaEquipada] < 0)
             {
@@ -324,21 +333,24 @@ public class Jogador : MonoBehaviour
             // Mudar modelo 3d do item no jogo de acordo com o item equipado.
             for (int i = 0; i < armasModelos.Length; i++)
             {
-                if (i != armaEquipada)
+                if (atacandoComProjetil == false)
                 {
-                    if (armasModelos[i] != null)
+                    if (i != armaEquipada)
                     {
-                        armasModelos[i].SetActive(false);
+                        if (armasModelos[i] != null)
+                        {
+                            armasModelos[i].SetActive(false);
+                        }
+                        //armasEspacos[i].color = new Color32(150, 150, 150, 200); Sprite antigo
                     }
-                    //armasEspacos[i].color = new Color32(150, 150, 150, 200); Sprite antigo
-                }
-                else
-                {
-                    if (armasModelos[i] != null)
+                    else
                     {
-                        armasModelos[i].SetActive(true);
+                        if (armasModelos[i] != null)
+                        {
+                            armasModelos[i].SetActive(true);
+                        }
+                        //armasEspacos[i].color = new Color32(255, 255, 0, 200); Sprite antigo
                     }
-                    //armasEspacos[i].color = new Color32(255, 255, 0, 200); Sprite antigo
                 }
 
                 // Mostrar quantidade de poções na HUD.
@@ -656,6 +668,27 @@ public class Jogador : MonoBehaviour
         girando = false;
     }
 
+    IEnumerator AtaqueProjetil(GameObject obj)
+    {
+        atacandoComProjetil = true;
+        Jogador.armaDelay = 0.9f;
+        animator.Play("Throw");
+        CriarObjetoDeSom(audioSource2D, clipSwoosh[Random.Range(0, clipSwoosh.Length)]);
+        armasModelos[armaEquipada].SetActive(false);
+
+        yield return new WaitForSeconds(0.25f);
+
+        var p = Instantiate(obj, transform.position + transform.up, transform.rotation);
+
+        Projetil pScript = p.GetComponent<Projetil>();
+        pScript.ignorar = gameObject.tag;
+
+        yield return new WaitForSeconds(0.3f);
+
+        armasModelos[armaEquipada].SetActive(true);
+        atacandoComProjetil = false;
+    }
+
     // Criar um texto de instrução que aparece na parte de baixo da tela depois de "delayInicial" segundos e fica à mostra por "esconder" segundos.
     public IEnumerator CriarInstrucao(string texto, float esconder, float delayInicial)
     {
@@ -727,7 +760,7 @@ public class Jogador : MonoBehaviour
     {
         if (input != null)
         {
-            Destroy(input);
+            input.enabled = false;
             rb.isKinematic = true;
             rb.velocity = Vector3.zero;
         }

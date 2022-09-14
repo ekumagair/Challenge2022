@@ -12707,7 +12707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 4
+  selectedToolbar: 7
   _isDead: 0
   _currentHealth: 75
   isImmortal: 0
@@ -13048,9 +13048,11 @@ MonoBehaviour:
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   destruirAoMorrer: {fileID: 6840382750536220530}
   localPes: {fileID: 0}
-  spine: {fileID: 3644473963997628849}
+  spine: {fileID: 4499461723090519697}
   ragdoll: {fileID: 447279441253685378, guid: aed1d503b1777e643b9b525bd6ba4393, type: 3}
   faseInfinitaValor: 15
+  cambalearNome: Big_From_Front
+  cambalearLayer: 5
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

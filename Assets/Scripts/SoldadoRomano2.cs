@@ -16,7 +16,6 @@ public class SoldadoRomano2 : MonoBehaviour
     Animator animator;
     Personagem personagem;
     Invector.vHealthController vida;
-    Invector.vCharacterController.AI.vSimpleMeleeAI_Motor melee;
     Invector.vCharacterController.AI.vSimpleMeleeAI_Controller controller;
 
     void Start()
@@ -25,7 +24,7 @@ public class SoldadoRomano2 : MonoBehaviour
         vida = GetComponent<Invector.vHealthController>();
         personagem = GetComponent<Personagem>();
         controller = GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>();
-        timerLanca = 10f;
+        timerLanca = 15f;
         atacando = false;
         girando = false;
         fezAtaqueGiratorio = false;
@@ -33,7 +32,7 @@ public class SoldadoRomano2 : MonoBehaviour
 
     void Update()
     {
-        if (!atacando && !girando && !controller.isAttacking && !vida.isDead && !controller.isBlocking && !controller.isCrouching)
+        if (!atacando && !girando && !controller.isAttacking && !vida.isDead && !controller.isBlocking && !controller.isCrouching && personagem.cambalearTimer <= 0)
         {
             timerLanca -= Time.deltaTime;
 
@@ -57,10 +56,20 @@ public class SoldadoRomano2 : MonoBehaviour
         StopCoroutine(Jogar());
     }
 
+    public void Morrer()
+    {
+        StopCoroutine(Jogar());
+        StopCoroutine(AtaqueGiratorio());
+    }
+
     IEnumerator Jogar()
     {
+        if (controller != null)
+        {
+            controller.OnEnableAttack();
+        }
+
         vida.isImmortal = false;
-        GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().OnEnableAttack();
         atacando = true;
         timerLanca = 5f * timerLancaMultiplicador;
         animator.Play("Throw", 0);
@@ -75,13 +84,21 @@ public class SoldadoRomano2 : MonoBehaviour
 
         lancaModelo.SetActive(true);
         atacando = false;
-        GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().OnDisableAttack();
+
+        if (controller != null)
+        {
+            controller.OnDisableAttack();
+        }
     }
 
     IEnumerator AtaqueGiratorio()
     {
+        if (controller != null)
+        {
+            controller.OnEnableAttack();
+        }
+
         vida.isImmortal = true;
-        GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().OnEnableAttack();
         StopCoroutine(Jogar());
 
         atacando = true;
@@ -101,7 +118,11 @@ public class SoldadoRomano2 : MonoBehaviour
 
         atacando = false;
         girando = false;
-        GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().OnDisableAttack();
         vida.isImmortal = false;
+
+        if (controller != null)
+        {
+            controller.OnDisableAttack();
+        }
     }
 }

@@ -8,9 +8,12 @@ public class VencerFase : MonoBehaviour
     public float delay = 0;
     GameObject jogador;
 
+    public static bool matouTodosOsInimigos = false;
+
     void Start()
     {
         jogador = GameObject.FindGameObjectWithTag("Player");
+        matouTodosOsInimigos = false;
         StaticClass.estadoDeJogo = 0;
         StartCoroutine(Esperar());
     }
@@ -28,15 +31,18 @@ public class VencerFase : MonoBehaviour
         // Esperar todos os inimigos morrerem.
         while (StaticClass.inimigosVivos > 0)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.01f);
         }
 
         // Muda o estado de jogo para vitória.
-        StaticClass.estadoDeJogo = 1;
+        matouTodosOsInimigos = true;
         Cursor.lockState = CursorLockMode.None;
 
         jogador.GetComponent<Jogador>().DesativarInputs();
 
-        Debug.Log("Venceu a fase");
+        if (StaticClass.debug)
+        {
+            Debug.Log("Desativou inputs");
+        }
     }
 }
