@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidade: 20
   ignorar: 
-  dano: 35
+  dano: 30
   efeitoAoAtingir: 2
   podeSerRefletido: 0
   particulaImpacto: {fileID: 309877448753314056, guid: b0df4d508a77bc346bf7718996362a7f, type: 3}

@@ -150,7 +150,7 @@ public class DetectarEstados : MonoBehaviour
             StaticClass.faseAtual++;
             ReiniciarCena();
         }
-        if (Input.GetKeyDown(KeyCode.R) && StaticClass.debug)
+        if (Input.GetKeyDown(KeyCode.Y) && StaticClass.debug)
         {
             ReiniciarCena();
         }
@@ -333,7 +333,7 @@ public class DetectarEstados : MonoBehaviour
             }
             else if (dica == 8)
             {
-                menuTextoExtraText.text = "Dica: Se você conseguir atingir um inimigo que quer te golpear, você fará ele cambalear.";
+                menuTextoExtraText.text = "Dica: Se você conseguir atingir um inimigo enquanto ele quer te golpear, você fará ele cambalear.";
             }
         }
         else if (StaticClass.modoDeJogo == 1)

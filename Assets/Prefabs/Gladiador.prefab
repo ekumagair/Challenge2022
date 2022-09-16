@@ -10738,6 +10738,9 @@ MonoBehaviour:
   spine: {fileID: 2270351724747545602}
   ragdoll: {fileID: 0}
   faseInfinitaValor: 60
+  cambalearNome: Big_From_Front
+  cambalearLayer: 5
+  cambalearTimer: 0
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

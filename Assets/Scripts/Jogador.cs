@@ -14,6 +14,7 @@ public class Jogador : MonoBehaviour
     public GameObject refletirProjeteis;
     public GameObject fumacaAtaqueGiratorio;
     public GameObject projetilLanca;
+    public GameObject modeloLanca;
     public static int armaEquipada;
     public static float armaDelay = 0.0f;
     public static int inimigosMortosHabilidade = 0;
@@ -23,10 +24,13 @@ public class Jogador : MonoBehaviour
     public GameObject[] armasModelos;
     public ParticleSystem[] armasTrail;
     public GameObject hudObj;
+    public Slider sliderVidaInimigo;
 
     // Fazendo ataque especial
     public static bool girando = false;
     public static bool atacandoComProjetil = false;
+    int quantidadeLanca = 0;
+    public Text quantidadeLancaTexto;
 
     // Inventário
     [Header("== Inventário =========================================")]
@@ -70,10 +74,13 @@ public class Jogador : MonoBehaviour
     [Header("== Tempo limitado =========================================")]
     public Text textTempoLimitado;
 
+    // Componentes
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
     Invector.vCharacterController.vThirdPersonMotor motor;
     Invector.vCharacterController.vThirdPersonInput input;
+    Invector.vCharacterController.vThirdPersonController controller;
+    Invector.vCharacterController.vLockOn lockOn;
     Rigidbody rb;
     Animator animator;
     CameraShake cameraShaker;
@@ -88,10 +95,14 @@ public class Jogador : MonoBehaviour
         vida = GetComponent<Invector.vHealthController>();
         motor = GetComponent<Invector.vCharacterController.vThirdPersonMotor>();
         input = GetComponent<Invector.vCharacterController.vThirdPersonInput>();
+        controller = GetComponent<Invector.vCharacterController.vThirdPersonController>();
+        lockOn = GetComponent<Invector.vCharacterController.vLockOn>();
         animator = GetComponent<Animator>();
         personagemScript = GetComponent<Personagem>();
         rb = GetComponent<Rigidbody>();
         cameraShaker = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        modeloLanca.SetActive(false);
+        quantidadeLanca = 0;
         armaDelay = 0.0f;
         inimigosMortosHabilidade = 0;
         inimigosMortosHabilidadeObjetivo = 15;
@@ -153,8 +164,9 @@ public class Jogador : MonoBehaviour
         else if (StaticClass.faseAtual == 5)
         {
             StartCoroutine(CriarInstrucao("Soldados Romanos usam lanças que não podem ser refletidas ou derrubadas, mas são afetadas pela gravidade.", 10f, 0f));
-            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 40f));
-            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 50f));
+            StartCoroutine(CriarInstrucao("Você pode coletar lanças deixadas por eles quando são derrotados. Aperte [R] para atirá-las.", 20f, 10f));
+            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 60f));
+            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 70f));
         }
         else if (StaticClass.faseAtual == 6)
         {
@@ -197,7 +209,7 @@ public class Jogador : MonoBehaviour
 
         if (StaticClass.estadoDeJogo == 0)
         {
-            if (armaDelay == 0 && girando == false && vida.isDead == false)
+            if (armaDelay == 0 && girando == false && atacandoComProjetil == false && vida.isDead == false && controller.isDead == false)
             {
                 if (StaticClass.tipoDeInventario == 0)
                 {
@@ -286,25 +298,52 @@ public class Jogador : MonoBehaviour
                         ItemDeCura(2, 25);
                     }
                 }
+
+                // Se está no chão
+                if (controller.isGrounded)
+                {
+                    // Ataque especial (giratório)
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        if (inimigosMortosHabilidade >= inimigosMortosHabilidadeObjetivo && motor.currentStamina > 0 && (armaEquipada == 0 || armaEquipada == 1) && armaDelay < 0.1f)
+                        {
+                            StartCoroutine(AtaqueGiratorio());
+                        }
+                        else
+                        {
+                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                        }
+                    }
+
+                    // Ataque com a lança
+                    if (Input.GetKeyDown(KeyCode.R))
+                    {
+                        if (quantidadeLanca > 0 && motor.currentStamina > 0)
+                        {
+                            quantidadeLanca--;
+                            motor.currentStamina *= 0.7f;
+                            StartCoroutine(AtaqueProjetil(projetilLanca));
+                        }
+                        else
+                        {
+                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                        }
+                    }
+                }
             }
 
-            // Ataque especial (giratório)
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                if(inimigosMortosHabilidade >= inimigosMortosHabilidadeObjetivo && motor.currentStamina > 0 && (armaEquipada == 0 || armaEquipada == 1) && armaDelay < 0.1f)
-                {
-                    StartCoroutine(AtaqueGiratorio());
-                }
-                else
-                {
-                    CriarObjetoDeSom(audioSource2D, clipCampainha);
-                }
-            }
-
-            // Trapaça de teste
+            // Trapaças de teste
             if (Input.GetKeyDown(KeyCode.P) && StaticClass.debug)
             {
                 inimigosMortosHabilidade += 10;
+            }
+            if (Input.GetKeyDown(KeyCode.J) && StaticClass.debug)
+            {
+                quantidadeLanca++;
+            }
+            if (Input.GetKeyDown(KeyCode.K) && StaticClass.debug)
+            {
+                StaticClass.pontosDeDificuldade += 1000;
             }
 
             // Esconder ou mostrar HUD
@@ -314,10 +353,11 @@ public class Jogador : MonoBehaviour
             }
 
             // Debug - Lança
-            if (Input.GetKeyDown(KeyCode.T) && armaDelay == 0 && girando == false && StaticClass.debug)
+            /*
+            if (Input.GetKeyDown(KeyCode.R) && armaDelay == 0 && girando == false && StaticClass.debug)
             {
                 StartCoroutine(AtaqueProjetil(projetilLanca));
-            }
+            }*/
 
             // Não deixar que a quantidade de itens seja negativa.
             if (armasQuantidade[armaEquipada] < 0)
@@ -328,6 +368,11 @@ public class Jogador : MonoBehaviour
             if (armasQuantidade[armaEquipada] <= 0)
             {
                 armaEquipada = 0;
+            }
+            // Não deixar que a quantidade de lanças seja negativa.
+            if(quantidadeLanca < 0)
+            {
+                quantidadeLanca = 0;
             }
 
             // Mudar modelo 3d do item no jogo de acordo com o item equipado.
@@ -489,6 +534,27 @@ public class Jogador : MonoBehaviour
             imageProgresso.enabled = false;
             textTempoLimitado.text = "";
         }
+
+        // Mostrar quantidade de lanças;
+        if (quantidadeLanca > 0)
+        {
+            quantidadeLancaTexto.text = quantidadeLanca.ToString();
+        }
+        else
+        {
+            quantidadeLancaTexto.text = "";
+        }
+
+        // Mostrar vida do inimigo que é alvo da mira travada.
+        if(lockOn.currentTarget != null)
+        {
+            sliderVidaInimigo.gameObject.SetActive(true);
+            sliderVidaInimigo.value = (1 / (lockOn.currentTarget.gameObject.GetComponent<Invector.vHealthController>().maxHealth / lockOn.currentTarget.gameObject.GetComponent<Invector.vHealthController>().currentHealth)) * 100f;
+        }
+        else
+        {
+            sliderVidaInimigo.gameObject.SetActive(false);
+        }
     }
 
     // Função executada quando um item é usado.
@@ -558,8 +624,7 @@ public class Jogador : MonoBehaviour
                 Debug.Log("Curar");
             }
 
-            //InputAtaque();
-            armasTrail[2].Play();
+            armasTrail[slot].Play();
             vida.AddHealth(cura);
             armasQuantidade[slot]--;
 
@@ -593,19 +658,26 @@ public class Jogador : MonoBehaviour
             ItemColetavel itemColetavel = other.gameObject.GetComponent<ItemColetavel>();
             int da = itemColetavel.desbloquearArma;
             int rv = itemColetavel.recuperarVida;
+            int adLanca = itemColetavel.adicionarLancas;
 
             // da = Qual é este item.
             // rv = Recuperar vida instantaneamente ao tocar. Não é mais usado desde que a poção passou a ser parte do inventário.
+            // adLanca = Adicionar lanças.
 
             if (da >= 0)
             {
                 armasQuantidade[da]++;
             }
-            if(rv > 0)
+            if (rv > 0)
             {
                 vida.AddHealth(rv);
             }
+            if (adLanca > 0)
+            {
+                quantidadeLanca += adLanca;
+            }
 
+            // Tocar som.
             CriarObjetoDeSom(itemColetavel.criarAoSerDestruido, itemColetavel.clipAoSerDestruido);
 
             // Apaga o item do mundo.
@@ -675,15 +747,17 @@ public class Jogador : MonoBehaviour
         animator.Play("Throw");
         CriarObjetoDeSom(audioSource2D, clipSwoosh[Random.Range(0, clipSwoosh.Length)]);
         armasModelos[armaEquipada].SetActive(false);
+        modeloLanca.SetActive(true);
 
         yield return new WaitForSeconds(0.25f);
 
+        modeloLanca.SetActive(false);
         var p = Instantiate(obj, transform.position + transform.up, transform.rotation);
 
         Projetil pScript = p.GetComponent<Projetil>();
         pScript.ignorar = gameObject.tag;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
 
         armasModelos[armaEquipada].SetActive(true);
         atacandoComProjetil = false;

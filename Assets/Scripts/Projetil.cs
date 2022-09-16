@@ -39,13 +39,19 @@ public class Projetil : MonoBehaviour
             // Se o objeto atingido tem vida, causa dano nele.
             if(collision.gameObject.GetComponent<Invector.vHealthController>() != null)
             {
-                // Se este ataque for letal, não prende o projétil no alvo.
-                if(collision.gameObject.GetComponent<Invector.vHealthController>().currentHealth - dano <= 0 && efeitoAoAtingir == 1)
+                Invector.vHealthController h = collision.gameObject.GetComponent<Invector.vHealthController>();
+
+                if (h.isImmortal == false)
                 {
-                    efeitoAoAtingir = 2;
+                    // Se este ataque for letal, não prende o projétil no alvo.
+                    if (h.currentHealth - dano <= 0 && efeitoAoAtingir == 1)
+                    {
+                        efeitoAoAtingir = 2;
+                    }
+
+                    // Causar dano.
+                    h.AddHealth(dano * -1);
                 }
-                
-                collision.gameObject.GetComponent<Invector.vHealthController>().AddHealth(dano * -1);
             }
 
             ParticulaDeImpacto();

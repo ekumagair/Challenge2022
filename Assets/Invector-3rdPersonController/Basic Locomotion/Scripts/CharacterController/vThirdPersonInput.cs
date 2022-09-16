@@ -505,7 +505,7 @@ namespace Invector.vCharacterController
         /// <returns></returns>
         protected virtual bool JumpConditions()
         {
-            return !cc.customAction && !cc.isCrouching && cc.isGrounded && cc.GroundAngle() < cc.slopeLimit && cc.currentStamina >= cc.jumpStamina && !cc.isJumping && !cc.isRolling;
+            return !cc.customAction && !cc.isCrouching && cc.isGrounded && cc.GroundAngle() < cc.slopeLimit && cc.currentStamina >= cc.jumpStamina && !cc.isJumping && !cc.isRolling && !Jogador.girando && !Jogador.atacandoComProjetil;
         }
 
         /// <summary>
@@ -525,7 +525,7 @@ namespace Invector.vCharacterController
         /// <returns></returns>
         protected virtual bool RollConditions()
         {
-            return (!cc.isRolling || cc.canRollAgain) && cc.isGrounded && cc.input != Vector3.zero && !cc.customAction && cc.currentStamina > cc.rollStamina && !cc.isJumping && !cc.isSliding;
+            return (!cc.isRolling || cc.canRollAgain) && cc.isGrounded && cc.input != Vector3.zero && !cc.customAction && cc.currentStamina > cc.rollStamina && !cc.isJumping && !cc.isSliding && !Jogador.girando && !Jogador.atacandoComProjetil;
         }
 
         /// <summary>

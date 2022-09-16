@@ -10,6 +10,7 @@ public class MudarCorSeVidaBaixa : MonoBehaviour
     public GameObject qualObjeto;
     public int limiteDeVida = 25;
     public Color corPadrao = new Color(1, 1, 1, 1);
+    public bool animado = false;
 
     public float[] multiplicador = new float[4];
     // 0 = R
@@ -38,17 +39,26 @@ public class MudarCorSeVidaBaixa : MonoBehaviour
         {
             if (vidaDoObjeto.currentHealth < limiteDeVida)
             {
-                for (int i = 0; i < 4; i++)
+                if (animado == true)
                 {
-                    novaCor[i] += Time.deltaTime * multiplicador[i];
-
-                    if (novaCor[i] > 1 && multiplicador[i] > 0)
+                    // Brilhar
+                    for (int i = 0; i < 4; i++)
                     {
-                        novaCor[i] = 0.4f;
-                    }
-                }
+                        novaCor[i] += Time.deltaTime * multiplicador[i];
 
-                img.color = new Color(novaCor[0], novaCor[1], novaCor[2], 1);
+                        if (novaCor[i] > 1 && multiplicador[i] > 0)
+                        {
+                            novaCor[i] = 0.4f;
+                        }
+                    }
+
+                    img.color = new Color(novaCor[0], novaCor[1], novaCor[2], 1);
+                }
+                else
+                {
+                    // Mudar de cor sem animação
+                    img.color = new Color(1f * multiplicador[0], 1f * multiplicador[1], 1f * multiplicador[2], 1f * multiplicador[3]);
+                }
             }
             else
             {

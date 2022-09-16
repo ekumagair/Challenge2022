@@ -8006,8 +8006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d65c6c4769fbba4d9dbafaa040e0550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 6020708913455267028, guid: 1887d2cb5318b83428143721d6141956, type: 3}
-  chance: 2
+  item: {fileID: 6020708913455267028, guid: 9695667091a3c434182a0d2f59c274db, type: 3}
+  chance: 1
 --- !u!114 &1987918119346768754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8025,6 +8025,7 @@ MonoBehaviour:
   danoGiratorio: {fileID: 6904922883094311853, guid: bcc70b26524c7ae4e8810da1e8f6eae3, type: 3}
   fezAtaqueGiratorio: 0
   timerLancaMultiplicador: 1
+  lancaVelocidadeMultiplicador: 1
 --- !u!114 &5299759301576069627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8043,7 +8044,7 @@ MonoBehaviour:
   particulaBlock: {fileID: 309877448753314056, guid: b0df4d508a77bc346bf7718996362a7f, type: 3}
   particulaDeCura: {fileID: 0}
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
-  destruirAoMorrer: {fileID: 0}
+  destruirAoMorrer: {fileID: 1766557395484692654}
   localPes: {fileID: 0}
   spine: {fileID: 4804301060505218635}
   ragdoll: {fileID: 0}

@@ -7623,7 +7623,7 @@ Transform:
   m_GameObject: {fileID: 8329258053292303919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 5695842149340450035}
   - {fileID: 8328036874600310499}
@@ -8006,8 +8006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d65c6c4769fbba4d9dbafaa040e0550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 6020708913455267028, guid: 1887d2cb5318b83428143721d6141956, type: 3}
-  chance: 2
+  item: {fileID: 6020708913455267028, guid: 9695667091a3c434182a0d2f59c274db, type: 3}
+  chance: 1
 --- !u!114 &1987918119346768754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8024,7 +8024,8 @@ MonoBehaviour:
   lancaModelo: {fileID: 1766557395484692654}
   danoGiratorio: {fileID: 6904922883094311853, guid: bcc70b26524c7ae4e8810da1e8f6eae3, type: 3}
   fezAtaqueGiratorio: 0
-  timerLancaMultiplicador: 0.3
+  timerLancaMultiplicador: 0.25
+  lancaVelocidadeMultiplicador: 1.5
 --- !u!114 &5299759301576069627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8043,13 +8044,14 @@ MonoBehaviour:
   particulaBlock: {fileID: 309877448753314056, guid: b0df4d508a77bc346bf7718996362a7f, type: 3}
   particulaDeCura: {fileID: 424050273188206046, guid: c40f73b3d79d251438caa784e096a781, type: 3}
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
-  destruirAoMorrer: {fileID: 0}
+  destruirAoMorrer: {fileID: 1766557395484692654}
   localPes: {fileID: 0}
   spine: {fileID: 4804301060505218635}
   ragdoll: {fileID: 0}
   faseInfinitaValor: 300
   cambalearNome: recoil_hard
   cambalearLayer: 5
+  cambalearTimer: 0
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

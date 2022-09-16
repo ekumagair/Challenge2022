@@ -8,6 +8,7 @@ public class ItemColetavel : MonoBehaviour
 
     public int desbloquearArma = -1;
     public int recuperarVida = 0;
+    public int adicionarLancas = 0;
     public GameObject criarAoSerDestruido;
     public AudioClip clipAoSerDestruido;
 
