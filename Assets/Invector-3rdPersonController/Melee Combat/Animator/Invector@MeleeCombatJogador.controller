@@ -29571,12 +29571,12 @@ AnimatorState:
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
-  m_Mirror: 0
+  m_Mirror: 1
   m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 1
+  m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400032, guid: 71a860de405aaeb44ace152c21808003, type: 3}
+  m_Motion: {fileID: 7400000, guid: 0335857ab36d07b40b5c3118bfdb3880, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: FlipAnimation
@@ -34407,7 +34407,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102000012097988626}
-    m_Position: {x: 276, y: 168, z: 0}
+    m_Position: {x: 280, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000013808204466}
     m_Position: {x: 276, y: 96, z: 0}

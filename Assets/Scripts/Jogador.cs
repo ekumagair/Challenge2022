@@ -25,6 +25,7 @@ public class Jogador : MonoBehaviour
     public ParticleSystem[] armasTrail;
     public GameObject hudObj;
     public Slider sliderVidaInimigo;
+    public RectTransform healthBarInstant;
 
     // Fazendo ataque especial
     public static bool girando = false;
@@ -112,7 +113,9 @@ public class Jogador : MonoBehaviour
         StaticClass.clicouEmBotao = false;
         StaticClass.segundosVivo = 0;
 
-        if(hitSound != null)
+        healthBarInstant.localScale = new Vector3(1, 1, 1);
+
+        if (hitSound != null)
         {
             hitSound.GetComponent<AudioSource>().volume = StaticClass.volumeHitSound;
         }
@@ -543,6 +546,12 @@ public class Jogador : MonoBehaviour
         else
         {
             quantidadeLancaTexto.text = "";
+        }
+
+        // Barra de vida instantânea.
+        if(healthBarInstant != null)
+        {
+            healthBarInstant.localScale = new Vector3((1 / (vida.maxHealth / vida.currentHealth)), 1, 1);
         }
 
         // Mostrar vida do inimigo que é alvo da mira travada.
