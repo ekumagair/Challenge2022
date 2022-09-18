@@ -1,3 +1,4 @@
+using Invector.vMelee;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,17 +19,22 @@ public class Personagem : MonoBehaviour
     public GameObject spine;
     public GameObject ragdoll;
     public int faseInfinitaValor = 0;
+    public string cambalearNome = "Big_From_Front";
+    public int cambalearLayer = 5;
+    public float cambalearTimer = 0;
     public AudioClip[] clipDano;
     public AudioClip[] clipBlock;
 
     Animator animator;
     GameObject particulaDeCuraAtual = null;
     Invector.vHealthController vida;
+    Invector.vCharacterController.AI.vSimpleMeleeAI_Controller controller;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         vida = GetComponent<Invector.vHealthController>();
+        controller = GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>();
     }
 
     private void Awake()
@@ -52,6 +58,7 @@ public class Personagem : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 1, transform.position.z);
         }
 
+        // Partícula de cura
         if (particulaDeCura != null)
         {
             if (vida.inHealthRecovery == true && particulaDeCuraAtual == null)
@@ -70,6 +77,16 @@ public class Personagem : MonoBehaviour
             {
                 Destroy(particulaDeCuraAtual);
             }
+        }
+
+        // Contar quanto tempo está cambaleando
+        if(cambalearTimer > 0)
+        {
+            cambalearTimer -= Time.deltaTime;
+        }
+        if (cambalearTimer < 0)
+        {
+            cambalearTimer = 0;
         }
     }
 
@@ -95,11 +112,20 @@ public class Personagem : MonoBehaviour
         {
             Destroy(particulaDeCuraAtual);
         }
+
+        if(controller != null && vida != null && animator != null && cambalearNome != "" && cambalearLayer != -1)
+        {
+            if(controller.isAttacking == true && vida.isImmortal == false)
+            {
+                animator.Play(cambalearNome, cambalearLayer);
+                cambalearTimer = 4f;
+            }
+        }
     }
 
     public void MatouInimigo()
     {
-        CriarParticulaDano();
+        //CriarParticulaDano();
 
         if(destruirAoMorrer != null)
         {

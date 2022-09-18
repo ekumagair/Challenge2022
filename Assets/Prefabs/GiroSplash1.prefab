@@ -62,7 +62,7 @@ MonoBehaviour:
   openCloseWindow: 1
   selectedToolbar: 0
   damage:
-    damageValue: 30
+    damageValue: 35
     staminaBlockCost: 5
     staminaRecoveryDelay: 1
     ignoreDefense: 1

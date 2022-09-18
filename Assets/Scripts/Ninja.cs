@@ -152,6 +152,7 @@ public class Ninja : MonoBehaviour
     public void Morrer()
     {
         morto = true;
+        StopCoroutine(Atacar());
 
         if (destruirAoMorrer == true)
         {
@@ -199,5 +200,6 @@ public class Ninja : MonoBehaviour
     public void LevarDano()
     {
         animator.Play("BlockBreak");
+        StopCoroutine(Atacar());
     }
 }

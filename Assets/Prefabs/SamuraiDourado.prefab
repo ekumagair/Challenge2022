@@ -3147,7 +3147,7 @@ Transform:
   m_GameObject: {fileID: 4041324420027178559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 8915342864673235928}
   - {fileID: 8501812534684675161}
@@ -3373,9 +3373,12 @@ MonoBehaviour:
   audioSource: {fileID: 106114, guid: dda4aa09d79a917438ef3124f8cc3b60, type: 3}
   destruirAoMorrer: {fileID: 8848945882822300962}
   localPes: {fileID: 0}
-  spine: {fileID: 3224584274895270848}
+  spine: {fileID: 4704903754166442923}
   ragdoll: {fileID: 0}
   faseInfinitaValor: 170
+  cambalearNome: 
+  cambalearLayer: -1
+  cambalearTimer: 0
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

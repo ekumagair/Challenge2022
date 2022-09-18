@@ -151,6 +151,8 @@ public class Samurai : MonoBehaviour
     public void Morrer()
     {
         morto = true;
+        StopCoroutine(Atacar());
+        StopCoroutine(LevarDanoCoroutine());
 
         if (destruirAoMorrer == true)
         {
@@ -169,6 +171,7 @@ public class Samurai : MonoBehaviour
     public void LevarDano()
     {
         animator.Play("BlockBreak");
+        StopCoroutine(Atacar());
         StartCoroutine(LevarDanoCoroutine());
     }
 

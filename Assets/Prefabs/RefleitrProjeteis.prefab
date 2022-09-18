@@ -60,7 +60,7 @@ MonoBehaviour:
   openCloseEvents: 0
   openCloseWindow: 0
   selectedToolbar: 0
-  delay: 0.5
+  delay: 0.4
   onDestroy:
     m_PersistentCalls:
       m_Calls: []

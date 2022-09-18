@@ -95,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 1413438260738966762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 3215279032836929824}
   - {fileID: 5381882342432500890}
@@ -330,6 +330,9 @@ MonoBehaviour:
   spine: {fileID: 8476460706435638969}
   ragdoll: {fileID: 0}
   faseInfinitaValor: 200
+  cambalearNome: 
+  cambalearLayer: -1
+  cambalearTimer: 0
   clipDano:
   - {fileID: 8300000, guid: 7117d6765fe35a442aafc88c1f555d6e, type: 3}
   - {fileID: 8300000, guid: dbaa9ffdb23a03c47aaf4d543d6a1701, type: 3}

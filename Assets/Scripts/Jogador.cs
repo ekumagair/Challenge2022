@@ -13,6 +13,8 @@ public class Jogador : MonoBehaviour
     public GameObject splashGiratorio2;
     public GameObject refletirProjeteis;
     public GameObject fumacaAtaqueGiratorio;
+    public GameObject projetilLanca;
+    public GameObject modeloLanca;
     public static int armaEquipada;
     public static float armaDelay = 0.0f;
     public static int inimigosMortosHabilidade = 0;
@@ -22,9 +24,14 @@ public class Jogador : MonoBehaviour
     public GameObject[] armasModelos;
     public ParticleSystem[] armasTrail;
     public GameObject hudObj;
+    public Slider sliderVidaInimigo;
+    public RectTransform healthBarInstant;
 
     // Fazendo ataque especial
     public static bool girando = false;
+    public static bool atacandoComProjetil = false;
+    int quantidadeLanca = 0;
+    public Text quantidadeLancaTexto;
 
     // Inventário
     [Header("== Inventário =========================================")]
@@ -68,10 +75,13 @@ public class Jogador : MonoBehaviour
     [Header("== Tempo limitado =========================================")]
     public Text textTempoLimitado;
 
+    // Componentes
     Invector.vMelee.vMeleeManager arma;
     Invector.vHealthController vida;
     Invector.vCharacterController.vThirdPersonMotor motor;
     Invector.vCharacterController.vThirdPersonInput input;
+    Invector.vCharacterController.vThirdPersonController controller;
+    Invector.vCharacterController.vLockOn lockOn;
     Rigidbody rb;
     Animator animator;
     CameraShake cameraShaker;
@@ -86,19 +96,26 @@ public class Jogador : MonoBehaviour
         vida = GetComponent<Invector.vHealthController>();
         motor = GetComponent<Invector.vCharacterController.vThirdPersonMotor>();
         input = GetComponent<Invector.vCharacterController.vThirdPersonInput>();
+        controller = GetComponent<Invector.vCharacterController.vThirdPersonController>();
+        lockOn = GetComponent<Invector.vCharacterController.vLockOn>();
         animator = GetComponent<Animator>();
         personagemScript = GetComponent<Personagem>();
         rb = GetComponent<Rigidbody>();
         cameraShaker = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        modeloLanca.SetActive(false);
+        quantidadeLanca = 0;
         armaDelay = 0.0f;
         inimigosMortosHabilidade = 0;
         inimigosMortosHabilidadeObjetivo = 15;
+        atacandoComProjetil = false;
         vida.isImmortal = false;
         girando = false;
         StaticClass.clicouEmBotao = false;
         StaticClass.segundosVivo = 0;
 
-        if(hitSound != null)
+        healthBarInstant.localScale = new Vector3(1, 1, 1);
+
+        if (hitSound != null)
         {
             hitSound.GetComponent<AudioSource>().volume = StaticClass.volumeHitSound;
         }
@@ -106,7 +123,7 @@ public class Jogador : MonoBehaviour
         AudioListener.volume = StaticClass.volumeGlobal;
 
         // Modo de jogo
-        if(StaticClass.faseAtual > 0 && StaticClass.faseAtual < 6)
+        if((StaticClass.faseAtual > 0 && StaticClass.faseAtual < 6) || StaticClass.faseAtual >= 11)
         {
             StaticClass.modoDeJogo = 0;
         }
@@ -114,7 +131,7 @@ public class Jogador : MonoBehaviour
         {
             StaticClass.modoDeJogo = 1;
         }
-        if (StaticClass.faseAtual > 6)
+        if (StaticClass.faseAtual > 6 && StaticClass.faseAtual < 11)
         {
             StaticClass.modoDeJogo = 2;
         }
@@ -150,14 +167,15 @@ public class Jogador : MonoBehaviour
         else if (StaticClass.faseAtual == 5)
         {
             StartCoroutine(CriarInstrucao("Soldados Romanos usam lanças que não podem ser refletidas ou derrubadas, mas são afetadas pela gravidade.", 10f, 0f));
-            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 30f));
-            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 40f));
+            StartCoroutine(CriarInstrucao("Você pode coletar lanças deixadas por eles quando são derrotados. Aperte [R] para atirá-las.", 20f, 10f));
+            StartCoroutine(CriarInstrucao("Inimigos dourados são versões mais fortes dos inimigos normais.", 10f, 60f));
+            StartCoroutine(CriarInstrucao("Ataque-os constantemente, senão eles vão regenerar seus pontos de vida!", 10f, 70f));
         }
         else if (StaticClass.faseAtual == 6)
         {
             StartCoroutine(CriarInstrucao("Por quanto tempo você consegue sobreviver?", 6f, 0f));
         }
-        else if (StaticClass.faseAtual == 11)
+        else if (StaticClass.faseAtual == 11 || StaticClass.faseAtual == 12)
         {
             StartCoroutine(CriarInstrucao("Fase de teste.", 6f, 0f));
         }
@@ -194,7 +212,7 @@ public class Jogador : MonoBehaviour
 
         if (StaticClass.estadoDeJogo == 0)
         {
-            if (armaDelay == 0 && girando == false && vida.isDead == false)
+            if (armaDelay == 0 && girando == false && atacandoComProjetil == false && vida.isDead == false && controller.isDead == false)
             {
                 if (StaticClass.tipoDeInventario == 0)
                 {
@@ -270,12 +288,12 @@ public class Jogador : MonoBehaviour
                 }
                 else if (armaEquipada == 1)
                 {
-                    //arma.defaultDamage.damageValue = 45;
+                    //arma.defaultDamage.damageValue = 45; Protótipo
                     arma.defaultStaminaCost = 45;
                 }
                 else if (armaEquipada == 2)
                 {
-                    //arma.defaultDamage.damageValue = 0;
+                    //arma.defaultDamage.damageValue = 0; Protótipo
                     arma.defaultStaminaCost = 0;
 
                     if (Input.GetMouseButtonDown(0))
@@ -283,25 +301,52 @@ public class Jogador : MonoBehaviour
                         ItemDeCura(2, 25);
                     }
                 }
+
+                // Se está no chão
+                if (controller.isGrounded)
+                {
+                    // Ataque especial (giratório)
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        if (inimigosMortosHabilidade >= inimigosMortosHabilidadeObjetivo && motor.currentStamina > 0 && (armaEquipada == 0 || armaEquipada == 1) && armaDelay < 0.1f)
+                        {
+                            StartCoroutine(AtaqueGiratorio());
+                        }
+                        else
+                        {
+                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                        }
+                    }
+
+                    // Ataque com a lança
+                    if (Input.GetKeyDown(KeyCode.R))
+                    {
+                        if (quantidadeLanca > 0 && motor.currentStamina > 0)
+                        {
+                            quantidadeLanca--;
+                            motor.currentStamina *= 0.7f;
+                            StartCoroutine(AtaqueProjetil(projetilLanca));
+                        }
+                        else
+                        {
+                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                        }
+                    }
+                }
             }
 
-            // Ataque especial (giratório)
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                if(inimigosMortosHabilidade >= inimigosMortosHabilidadeObjetivo && motor.currentStamina > 0 && (armaEquipada == 0 || armaEquipada == 1) && armaDelay < 0.1f)
-                {
-                    StartCoroutine(AtaqueGiratorio());
-                }
-                else
-                {
-                    CriarObjetoDeSom(audioSource2D, clipCampainha);
-                }
-            }
-
-            // Trapaça de teste
+            // Trapaças de teste
             if (Input.GetKeyDown(KeyCode.P) && StaticClass.debug)
             {
                 inimigosMortosHabilidade += 10;
+            }
+            if (Input.GetKeyDown(KeyCode.J) && StaticClass.debug)
+            {
+                quantidadeLanca++;
+            }
+            if (Input.GetKeyDown(KeyCode.K) && StaticClass.debug)
+            {
+                StaticClass.pontosDeDificuldade += 1000;
             }
 
             // Esconder ou mostrar HUD
@@ -309,6 +354,13 @@ public class Jogador : MonoBehaviour
             {
                 hudObj.SetActive(!hudObj.activeSelf);
             }
+
+            // Debug - Lança
+            /*
+            if (Input.GetKeyDown(KeyCode.R) && armaDelay == 0 && girando == false && StaticClass.debug)
+            {
+                StartCoroutine(AtaqueProjetil(projetilLanca));
+            }*/
 
             // Não deixar que a quantidade de itens seja negativa.
             if (armasQuantidade[armaEquipada] < 0)
@@ -320,25 +372,33 @@ public class Jogador : MonoBehaviour
             {
                 armaEquipada = 0;
             }
+            // Não deixar que a quantidade de lanças seja negativa.
+            if(quantidadeLanca < 0)
+            {
+                quantidadeLanca = 0;
+            }
 
             // Mudar modelo 3d do item no jogo de acordo com o item equipado.
             for (int i = 0; i < armasModelos.Length; i++)
             {
-                if (i != armaEquipada)
+                if (atacandoComProjetil == false)
                 {
-                    if (armasModelos[i] != null)
+                    if (i != armaEquipada)
                     {
-                        armasModelos[i].SetActive(false);
+                        if (armasModelos[i] != null)
+                        {
+                            armasModelos[i].SetActive(false);
+                        }
+                        //armasEspacos[i].color = new Color32(150, 150, 150, 200); Sprite antigo
                     }
-                    //armasEspacos[i].color = new Color32(150, 150, 150, 200); Sprite antigo
-                }
-                else
-                {
-                    if (armasModelos[i] != null)
+                    else
                     {
-                        armasModelos[i].SetActive(true);
+                        if (armasModelos[i] != null)
+                        {
+                            armasModelos[i].SetActive(true);
+                        }
+                        //armasEspacos[i].color = new Color32(255, 255, 0, 200); Sprite antigo
                     }
-                    //armasEspacos[i].color = new Color32(255, 255, 0, 200); Sprite antigo
                 }
 
                 // Mostrar quantidade de poções na HUD.
@@ -477,6 +537,33 @@ public class Jogador : MonoBehaviour
             imageProgresso.enabled = false;
             textTempoLimitado.text = "";
         }
+
+        // Mostrar quantidade de lanças;
+        if (quantidadeLanca > 0)
+        {
+            quantidadeLancaTexto.text = quantidadeLanca.ToString();
+        }
+        else
+        {
+            quantidadeLancaTexto.text = "";
+        }
+
+        // Barra de vida instantânea.
+        if(healthBarInstant != null)
+        {
+            healthBarInstant.localScale = new Vector3((1 / (vida.maxHealth / vida.currentHealth)), 1, 1);
+        }
+
+        // Mostrar vida do inimigo que é alvo da mira travada.
+        if(lockOn.currentTarget != null)
+        {
+            sliderVidaInimigo.gameObject.SetActive(true);
+            sliderVidaInimigo.value = (1 / (lockOn.currentTarget.gameObject.GetComponent<Invector.vHealthController>().maxHealth / lockOn.currentTarget.gameObject.GetComponent<Invector.vHealthController>().currentHealth)) * 100f;
+        }
+        else
+        {
+            sliderVidaInimigo.gameObject.SetActive(false);
+        }
     }
 
     // Função executada quando um item é usado.
@@ -546,8 +633,7 @@ public class Jogador : MonoBehaviour
                 Debug.Log("Curar");
             }
 
-            //InputAtaque();
-            armasTrail[2].Play();
+            armasTrail[slot].Play();
             vida.AddHealth(cura);
             armasQuantidade[slot]--;
 
@@ -581,19 +667,26 @@ public class Jogador : MonoBehaviour
             ItemColetavel itemColetavel = other.gameObject.GetComponent<ItemColetavel>();
             int da = itemColetavel.desbloquearArma;
             int rv = itemColetavel.recuperarVida;
+            int adLanca = itemColetavel.adicionarLancas;
 
             // da = Qual é este item.
             // rv = Recuperar vida instantaneamente ao tocar. Não é mais usado desde que a poção passou a ser parte do inventário.
+            // adLanca = Adicionar lanças.
 
             if (da >= 0)
             {
                 armasQuantidade[da]++;
             }
-            if(rv > 0)
+            if (rv > 0)
             {
                 vida.AddHealth(rv);
             }
+            if (adLanca > 0)
+            {
+                quantidadeLanca += adLanca;
+            }
 
+            // Tocar som.
             CriarObjetoDeSom(itemColetavel.criarAoSerDestruido, itemColetavel.clipAoSerDestruido);
 
             // Apaga o item do mundo.
@@ -654,6 +747,29 @@ public class Jogador : MonoBehaviour
         Jogador.inimigosMortosHabilidade -= inimigosMortosHabilidadeObjetivo;
         vida.isImmortal = false;
         girando = false;
+    }
+
+    IEnumerator AtaqueProjetil(GameObject obj)
+    {
+        atacandoComProjetil = true;
+        Jogador.armaDelay = 0.9f;
+        animator.Play("Throw");
+        CriarObjetoDeSom(audioSource2D, clipSwoosh[Random.Range(0, clipSwoosh.Length)]);
+        armasModelos[armaEquipada].SetActive(false);
+        modeloLanca.SetActive(true);
+
+        yield return new WaitForSeconds(0.25f);
+
+        modeloLanca.SetActive(false);
+        var p = Instantiate(obj, transform.position + transform.up, transform.rotation);
+
+        Projetil pScript = p.GetComponent<Projetil>();
+        pScript.ignorar = gameObject.tag;
+
+        yield return new WaitForSeconds(0.4f);
+
+        armasModelos[armaEquipada].SetActive(true);
+        atacandoComProjetil = false;
     }
 
     // Criar um texto de instrução que aparece na parte de baixo da tela depois de "delayInicial" segundos e fica à mostra por "esconder" segundos.
@@ -727,7 +843,7 @@ public class Jogador : MonoBehaviour
     {
         if (input != null)
         {
-            Destroy(input);
+            input.enabled = false;
             rb.isKinematic = true;
             rb.velocity = Vector3.zero;
         }

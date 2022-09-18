@@ -16122,7 +16122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDamage: 0.3
-  endDamage: 0.7
+  endDamage: 0.8
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
@@ -16178,7 +16178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDamage: 0.3
-  endDamage: 0.7
+  endDamage: 0.8
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
@@ -17496,7 +17496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDamage: 0.3
-  endDamage: 0.7
+  endDamage: 0.8
   damageMultiplier: 0
   recoilID: 0
   reactionID: 0
