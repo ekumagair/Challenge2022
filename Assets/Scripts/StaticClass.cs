@@ -11,12 +11,14 @@ public static class StaticClass
     public static int ondasPassadas = 0;
     public static int totalDeInimigos = 0;
     public static int segundosVivo = 0;
+    public static bool viuAgradecimento = false;
 
     // Modo de jogo
     public static int modoDeJogo = 0;
     // 0 = Normal (Fase pré-definida)
     // 1 = Fase infinita
     // 2 = Tempo limitado (Fase pré-definida)
+    // 3 = Demonstração
 
     // Usado na fase infinita
     public static int pontosDeDificuldade = 0;
@@ -49,4 +51,7 @@ public static class StaticClass
     public static int tipoDeInventario = 1;
     // 0 = Usar as teclas 1, 2 e 3 para escolher os itens.
     // 1 = Usar uma tecla para alternar entre 2 armas e usar outra tecla para usar a poção.
+
+    // Música
+    public static float musicaMenuTempo = 0;
 }

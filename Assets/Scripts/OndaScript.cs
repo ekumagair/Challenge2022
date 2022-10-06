@@ -81,6 +81,14 @@ public class OndaScript : MonoBehaviour
                     ini.GetComponent<Invector.vCharacterController.AI.vSimpleMeleeAI_Controller>().chanceToRoll = 0.0f;
                 }
             }
+
+            if (StaticClass.modoDeJogo == 3)
+            {
+                if (ini.GetComponent<Invector.vMelee.vMeleeManager>() != null)
+                {
+                    ini.GetComponent<Invector.vMelee.vMeleeManager>().hitProperties.hitDamageTags[0] = "";
+                }
+            }
         }
 
         local[escolha].GetComponent<PontoDeSpawn>().DestaqueTochas();

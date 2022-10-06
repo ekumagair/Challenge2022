@@ -31,12 +31,16 @@ public class Samurai : MonoBehaviour
     {
         agente = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        alvo = GameObject.FindGameObjectWithTag("Player");
         morto = false;
         atacando = false;
         iniciouAtaque = false;
         levandoDano = false;
         levandoDanoParar = false;
+
+        if(alvo == null)
+        {
+            alvo = GameObject.FindGameObjectWithTag("Player");
+        }
 
         ResetarTempoDeAtaque();
         tempoAteAtacar += 2f;
@@ -128,7 +132,7 @@ public class Samurai : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
 
         var flecha = Instantiate(projetil, transform.position + transform.up + transform.forward, transform.rotation);
-        flecha.GetComponent<Projetil>().ignorar = "Enemy";
+        flecha.GetComponent<Projetil>().ignorar = gameObject.tag;
         flecha.transform.rotation = transform.rotation;
 
         if (projetilModelo != null)

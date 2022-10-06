@@ -12,6 +12,7 @@ public class SoldadoRomano2 : MonoBehaviour
     float timerLanca = 8f;
     public float timerLancaMultiplicador = 1.0f;
     public float lancaVelocidadeMultiplicador = 1.0f;
+    public float timerLancaAnimDelayDivisor = 1.0f;
     bool atacando = false;
     bool girando = false;
     Animator animator;
@@ -75,16 +76,24 @@ public class SoldadoRomano2 : MonoBehaviour
         timerLanca = 5f * timerLancaMultiplicador;
         animator.Play("Throw", 0);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.2f / timerLancaAnimDelayDivisor);
 
-        lancaModelo.SetActive(false);
+        if (lancaModelo != null)
+        {
+            lancaModelo.SetActive(false);
+        }
+
         var l = Instantiate(lanca, transform.position + transform.up, transform.rotation);
         l.GetComponent<Projetil>().ignorar = gameObject.tag;
         l.GetComponent<Projetil>().velocidade *= lancaVelocidadeMultiplicador;
 
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.6f / timerLancaAnimDelayDivisor);
 
-        lancaModelo.SetActive(true);
+        if (lancaModelo != null)
+        {
+            lancaModelo.SetActive(true);
+        }
+
         atacando = false;
 
         if (controller != null)

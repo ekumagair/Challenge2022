@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Invector;
 
 public class Jogador : MonoBehaviour
 {
@@ -112,6 +113,7 @@ public class Jogador : MonoBehaviour
         girando = false;
         StaticClass.clicouEmBotao = false;
         StaticClass.segundosVivo = 0;
+        StaticClass.musicaMenuTempo = 0;
 
         healthBarInstant.localScale = new Vector3(1, 1, 1);
 
@@ -134,6 +136,10 @@ public class Jogador : MonoBehaviour
         if (StaticClass.faseAtual > 6 && StaticClass.faseAtual < 11)
         {
             StaticClass.modoDeJogo = 2;
+        }
+        if (StaticClass.faseAtual == 13)
+        {
+            StaticClass.modoDeJogo = 3;
         }
 
         // Instruções
@@ -199,6 +205,12 @@ public class Jogador : MonoBehaviour
             textIntro.text = "";
             StartCoroutine(ContarTempoLimitado());
         }
+        else if (StaticClass.modoDeJogo == 3)
+        {
+            textIntro.text = "";
+            hudObj.SetActive(false);
+            vida.isImmortal = true;
+        }
 
         StartCoroutine(ContarTempoVivo());
     }
@@ -222,7 +234,7 @@ public class Jogador : MonoBehaviour
                         armaEquipada = 0;
                         Jogador.armaDelay = 0.4f;
                         animator.Play("Longs_Equip", 3);
-                        CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                        CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)], false);
                     }
                     // Escolher o machado
                     if (Input.GetKeyDown(KeyCode.Alpha2) && armasDisponiveis[1] == true && armaEquipada != 1)
@@ -230,7 +242,7 @@ public class Jogador : MonoBehaviour
                         armaEquipada = 1;
                         Jogador.armaDelay = 0.8f;
                         animator.Play("WeaponUnsheath", 3);
-                        CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                        CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)], false);
                     }
                     // Escolher a poção
                     if (Input.GetKeyDown(KeyCode.Alpha3) && armasDisponiveis[2] == true && armaEquipada != 2)
@@ -238,7 +250,7 @@ public class Jogador : MonoBehaviour
                         armaEquipada = 2;
                         Jogador.armaDelay = 0.2f;
                         animator.Play("WeaponSheath", 3);
-                        CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                        CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)], false);
                     }
                 }
                 else if (StaticClass.tipoDeInventario == 1)
@@ -251,18 +263,18 @@ public class Jogador : MonoBehaviour
                             armaEquipada = 1;
                             Jogador.armaDelay = 0.8f;
                             animator.Play("WeaponUnsheath", 3);
-                            CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                            CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)], false);
                         }
                         else if (armaEquipada == 1 && armasDisponiveis[0] == true)
                         {
                             armaEquipada = 0;
                             Jogador.armaDelay = 0.4f;
                             animator.Play("Longs_Equip", 3);
-                            CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)]);
+                            CriarObjetoDeSom(audioSource2D, clipMochila[Random.Range(0, clipMochila.Length)], false);
                         }
                         else if (armasDisponiveis[0] == false || armasDisponiveis[1] == false)
                         {
-                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                            CriarObjetoDeSom(audioSource2D, clipCampainha, false);
                         }
                     }
 
@@ -275,7 +287,7 @@ public class Jogador : MonoBehaviour
                         }
                         else
                         {
-                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                            CriarObjetoDeSom(audioSource2D, clipCampainha, false);
                         }
                     }
                 }
@@ -314,7 +326,7 @@ public class Jogador : MonoBehaviour
                         }
                         else
                         {
-                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                            CriarObjetoDeSom(audioSource2D, clipCampainha, false);
                         }
                     }
 
@@ -329,7 +341,7 @@ public class Jogador : MonoBehaviour
                         }
                         else
                         {
-                            CriarObjetoDeSom(audioSource2D, clipCampainha);
+                            CriarObjetoDeSom(audioSource2D, clipCampainha, false);
                         }
                     }
                 }
@@ -639,12 +651,12 @@ public class Jogador : MonoBehaviour
 
             if(clipUsarPocao != null)
             {
-                CriarObjetoDeSom(audioSource2D, clipUsarPocao);
+                CriarObjetoDeSom(audioSource2D, clipUsarPocao, false);
             }
         }
         else
         {
-            CriarObjetoDeSom(audioSource2D, clipCampainha);
+            CriarObjetoDeSom(audioSource2D, clipCampainha, false);
 
             if (StaticClass.debug)
             {
@@ -687,7 +699,7 @@ public class Jogador : MonoBehaviour
             }
 
             // Tocar som.
-            CriarObjetoDeSom(itemColetavel.criarAoSerDestruido, itemColetavel.clipAoSerDestruido);
+            CriarObjetoDeSom(itemColetavel.criarAoSerDestruido, itemColetavel.clipAoSerDestruido, false);
 
             // Apaga o item do mundo.
             Destroy(other.transform.parent.gameObject);
@@ -695,15 +707,29 @@ public class Jogador : MonoBehaviour
         }
     }
 
-    public void CriarObjetoDeSom(GameObject audioSource, AudioClip ac)
+    public void CriarObjetoDeSom(GameObject audioSource, AudioClip ac, bool loop)
     {
         // Cria um objeto e imediatamente ativa o componente de AudioSource dele.
         var go = Instantiate(audioSource, transform.position, transform.rotation);
 
         if (go.GetComponent<AudioSource>() != null)
         {
-            go.GetComponent<AudioSource>().clip = ac;
-            go.GetComponent<AudioSource>().Play();
+            AudioSource _as = go.GetComponent<AudioSource>();
+            _as.clip = ac;
+            _as.Play();
+            _as.loop = loop;
+
+            if (go.GetComponent<vDestroyGameObject>() != null)
+            {
+                if (loop == false)
+                {
+                    go.GetComponent<vDestroyGameObject>().delay = _as.clip.length;
+                }
+                else
+                {
+                    Destroy(go.GetComponent<vDestroyGameObject>());
+                }
+            }
         }
     }
 
@@ -740,13 +766,19 @@ public class Jogador : MonoBehaviour
             // Reduz energia do jogador, cria partículas de rastro, faz som, cria partículas de poeira.
             motor.currentStamina *= 0.4f;
             InputAtaque();
-            CriarObjetoDeSom(audioSource2D, clipSwoosh[Random.Range(0, clipSwoosh.Length)]);
+            CriarObjetoDeSom(audioSource2D, clipSwoosh[Random.Range(0, clipSwoosh.Length)], false);
             CriarFumaca();
         }
 
         Jogador.inimigosMortosHabilidade -= inimigosMortosHabilidadeObjetivo;
-        vida.isImmortal = false;
+
+        yield return new WaitForSeconds(0.5f);
+
         girando = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        vida.isImmortal = false;
     }
 
     IEnumerator AtaqueProjetil(GameObject obj)
@@ -754,7 +786,7 @@ public class Jogador : MonoBehaviour
         atacandoComProjetil = true;
         Jogador.armaDelay = 0.9f;
         animator.Play("Throw");
-        CriarObjetoDeSom(audioSource2D, clipSwoosh[Random.Range(0, clipSwoosh.Length)]);
+        CriarObjetoDeSom(audioSource2D, clipSwoosh[Random.Range(0, clipSwoosh.Length)], false);
         armasModelos[armaEquipada].SetActive(false);
         modeloLanca.SetActive(true);
 

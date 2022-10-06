@@ -10,7 +10,8 @@ public class AparecerSeFase : MonoBehaviour
     {
         Igual,
         MaiorQue,
-        MenorQue
+        MenorQue,
+        DiferenteDe
     }
 
     public Operador operador = 0;
@@ -37,6 +38,13 @@ public class AparecerSeFase : MonoBehaviour
 
             case Operador.MenorQue:
                 if (StaticClass.faseAtual >= qualFase)
+                {
+                    Destroy(gameObject);
+                }
+                break;
+
+            case Operador.DiferenteDe:
+                if (StaticClass.faseAtual == qualFase)
                 {
                     Destroy(gameObject);
                 }

@@ -20,6 +20,7 @@ public class DetectarEstados : MonoBehaviour
     public GameObject menuTitulo;
     public GameObject menuTextoExtra;
     public GameObject menuControles;
+    public GameObject menuIrParaAgradecimento;
 
     public AudioClip clipBotao;
     public AudioClip clipPrimeiroInimigo;
@@ -27,6 +28,7 @@ public class DetectarEstados : MonoBehaviour
     public AudioClip clipVenceu;
     public AudioClip clipVenceuInstante;
     public AudioClip clipPerdeu;
+    public AudioClip clipPerdeuInstante;
 
     Text menuTituloText;
     Text menuTextoExtraText;
@@ -42,6 +44,7 @@ public class DetectarEstados : MonoBehaviour
         menuTextoExtraText.text = "";
         menuPausado.SetActive(false);
         menuControles.SetActive(false);
+        menuIrParaAgradecimento.SetActive(false);
         StaticClass.estadoDeJogo = 0;
         vidaJogador.isImmortal = false;
         clipPrimeiroInimigoTocou = false;
@@ -77,13 +80,12 @@ public class DetectarEstados : MonoBehaviour
         if (StaticClass.inimigosVivos > 0 && clipPrimeiroInimigoTocou == false && clipPrimeiroInimigo != null)
         {
             clipPrimeiroInimigoTocou = true;
-            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipPrimeiroInimigo);
+            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipPrimeiroInimigo, false);
         }
 
         // Venceu
-        if (StaticClass.estadoDeJogo == 1)
+        if (StaticClass.estadoDeJogo == 1 && StaticClass.modoDeJogo != 3)
         {
-            menuContinuar.SetActive(true);
             menuTituloText.text = "VITÓRIA!";
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -94,6 +96,17 @@ public class DetectarEstados : MonoBehaviour
                 venceu = true;
                 menuTitulo.GetComponent<Animator>().Play("CanvasBotoesTitulo");
                 menuTextoExtraText.text = "Todos os inimigos foram derrotados!";
+
+                if(StaticClass.faseAtual == 5 && StaticClass.viuAgradecimento == false)
+                {
+                    menuContinuar.SetActive(false);
+                    menuIrParaAgradecimento.SetActive(true);
+                }
+                else
+                {
+                    menuContinuar.SetActive(true);
+                    menuIrParaAgradecimento.SetActive(false);
+                }
 
                 if(StaticClass.faseAtual == StaticClass.faseDesbloqueada)
                 {
@@ -107,7 +120,7 @@ public class DetectarEstados : MonoBehaviour
         }
 
         // Perdeu
-        if (StaticClass.estadoDeJogo == -1)
+        if (StaticClass.estadoDeJogo == -1 && StaticClass.modoDeJogo != 3)
         {
             menuPerdeu.SetActive(true);
 
@@ -184,7 +197,7 @@ public class DetectarEstados : MonoBehaviour
 
         if (clipVenceuInstante != null)
         {
-            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipVenceuInstante);
+            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipVenceuInstante, false);
         }
 
         Time.timeScale = 0.01f;
@@ -197,7 +210,7 @@ public class DetectarEstados : MonoBehaviour
 
         if (clipVenceu != null)
         {
-            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipVenceu);
+            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipVenceu, true);
         }
 
         Time.timeScale = 1.0f;
@@ -211,9 +224,9 @@ public class DetectarEstados : MonoBehaviour
             Debug.Log("Morreu");
         }
 
-        if (clipPerdeu != null)
+        if (clipPerdeuInstante != null)
         {
-            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipPerdeu);
+            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipPerdeuInstante, false);
         }
 
         perdeu = true;
@@ -221,6 +234,11 @@ public class DetectarEstados : MonoBehaviour
         scriptJogador.DestruirCamera();
 
         yield return new WaitForSeconds(delay);
+
+        if (clipPerdeu != null)
+        {
+            scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipPerdeu, true);
+        }
 
         StaticClass.estadoDeJogo = -1;
         menuTitulo.GetComponent<Animator>().Play("CanvasBotoesTitulo");
@@ -276,6 +294,11 @@ public class DetectarEstados : MonoBehaviour
         SceneManager.LoadScene("Titulo");
     }
 
+    public void IrParaAgradecimentos()
+    {
+        SceneManager.LoadScene("Agradecimentos");
+    }
+
     public void MostrarControles()
     {
         menuControles.SetActive(true);
@@ -290,7 +313,7 @@ public class DetectarEstados : MonoBehaviour
 
     public void SomDeBotao()
     {
-        scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipBotao);
+        scriptJogador.CriarObjetoDeSom(scriptJogador.audioSource2D, clipBotao, false);
     }
 
     // Mostra uma dica aleatória quando o jogador perde. As dicas são para todas as fases.

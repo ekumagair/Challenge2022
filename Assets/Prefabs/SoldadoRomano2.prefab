@@ -8026,6 +8026,7 @@ MonoBehaviour:
   fezAtaqueGiratorio: 0
   timerLancaMultiplicador: 1
   lancaVelocidadeMultiplicador: 1
+  timerLancaAnimDelayDivisor: 0.75
 --- !u!114 &5299759301576069627
 MonoBehaviour:
   m_ObjectHideFlags: 0

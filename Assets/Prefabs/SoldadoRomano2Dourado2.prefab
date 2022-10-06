@@ -8024,8 +8024,9 @@ MonoBehaviour:
   lancaModelo: {fileID: 1766557395484692654}
   danoGiratorio: {fileID: 6904922883094311853, guid: bcc70b26524c7ae4e8810da1e8f6eae3, type: 3}
   fezAtaqueGiratorio: 0
-  timerLancaMultiplicador: 0.25
+  timerLancaMultiplicador: 0.4
   lancaVelocidadeMultiplicador: 1.5
+  timerLancaAnimDelayDivisor: 0.75
 --- !u!114 &5299759301576069627
 MonoBehaviour:
   m_ObjectHideFlags: 0
