@@ -82,11 +82,15 @@ public class OndaScript : MonoBehaviour
                 }
             }
 
+            // Se está no modo de demonstração, inimigo não pode causar dano no jogador.
             if (StaticClass.modoDeJogo == 3)
             {
                 if (ini.GetComponent<Invector.vMelee.vMeleeManager>() != null)
                 {
-                    ini.GetComponent<Invector.vMelee.vMeleeManager>().hitProperties.hitDamageTags[0] = "";
+                    if (ini.GetComponent<Invector.vMelee.vMeleeManager>().hitProperties.hitDamageTags[0] == "Player")
+                    {
+                        ini.GetComponent<Invector.vMelee.vMeleeManager>().hitProperties.hitDamageTags[0] = "";
+                    }
                 }
             }
         }

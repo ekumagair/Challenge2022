@@ -24,7 +24,7 @@ public class MusicaFase : MonoBehaviour
         {
             if (StaticClass.estadoDeJogo == 1 || StaticClass.estadoDeJogo == -1)
             {
-                _as.volume -= Time.deltaTime * 2f;
+                _as.volume -= Time.deltaTime * 2.5f;
             }
         }
         if(_as.volume < 0)

@@ -64,7 +64,9 @@ public class MenuScript : MonoBehaviour
         Time.timeScale = 1;
 
         StaticClass.totalDeInimigos = 0;
+        StaticClass.inimigosMortos = 0;
         StaticClass.clicouEmBotao = false;
+        StaticClass.segundosVivo = 0;
     }
 
     private void Update()
@@ -82,6 +84,7 @@ public class MenuScript : MonoBehaviour
             }
         }
 
+        // Texto que representa os valores das opções.
         if (mouseValor != null)
         {
             mouseValor.text = "(" + Mathf.RoundToInt(StaticClass.sensibilidadeMouse).ToString() + ")";

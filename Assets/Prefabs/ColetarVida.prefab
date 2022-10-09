@@ -732,6 +732,8 @@ GameObject:
   - component: {fileID: 6020708913455267027}
   - component: {fileID: 6020708913455267026}
   - component: {fileID: 6020708913455267029}
+  - component: {fileID: 6751454515353744418}
+  - component: {fileID: 8335191453517885158}
   m_Layer: 19
   m_Name: ColetarVida
   m_TagString: Untagged
@@ -785,6 +787,121 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &6751454515353744418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6020708913455267028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225dd2ba07b52fc4289ee023c92f4a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ativado: 1
+  som:
+  - {fileID: 8300000, guid: e6da2da0f3dec2742a1d5bdc29e9c27e, type: 3}
+  - {fileID: 8300000, guid: 9e5e7eb96cd614d43bbaf48dcd7e207d, type: 3}
+  - {fileID: 8300000, guid: 7630b27f3f595af4193deb0bc148f4a1, type: 3}
+  - {fileID: 8300000, guid: e150335f89ffbeb4ba33673ed850ed21, type: 3}
+  - {fileID: 8300000, guid: f6f5a4b2a534fc0448a84f29234c99ce, type: 3}
+--- !u!82 &8335191453517885158
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6020708913455267028}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6020708914032426872
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,6 +961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desbloquearArma: 2
   recuperarVida: 0
+  adicionarLancas: 0
   criarAoSerDestruido: {fileID: 106114, guid: b55e972b67c7429408f51d5c239794f9, type: 3}
   clipAoSerDestruido: {fileID: 8300000, guid: b0d8ed57f9fa05148a7fb39a60eff08e, type: 3}
 --- !u!1 &6757809153383903718

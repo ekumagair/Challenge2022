@@ -137,7 +137,7 @@ public class Jogador : MonoBehaviour
         {
             StaticClass.modoDeJogo = 2;
         }
-        if (StaticClass.faseAtual == 13)
+        if (StaticClass.faseAtual == 13 || StaticClass.faseAtual == 14)
         {
             StaticClass.modoDeJogo = 3;
         }
@@ -359,6 +359,10 @@ public class Jogador : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K) && StaticClass.debug)
             {
                 StaticClass.pontosDeDificuldade += 1000;
+            }
+            if (Input.GetKeyDown(KeyCode.H) && StaticClass.debug)
+            {
+                Destroy(gameObject);
             }
 
             // Esconder ou mostrar HUD

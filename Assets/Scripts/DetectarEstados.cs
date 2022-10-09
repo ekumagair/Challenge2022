@@ -296,6 +296,8 @@ public class DetectarEstados : MonoBehaviour
 
     public void IrParaAgradecimentos()
     {
+        StaticClass.musicaMenuTempo = 0;
+        StaticClass.viuAgradecimento = true;
         SceneManager.LoadScene("Agradecimentos");
     }
 
