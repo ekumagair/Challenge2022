@@ -5,7 +5,6 @@ using UnityEngine;
 public class VencerFase : MonoBehaviour
 {
     public int esperarOndas = 0;
-    public float delay = 0;
     GameObject jogador;
 
     public static bool matouTodosOsInimigos = false;
@@ -20,13 +19,20 @@ public class VencerFase : MonoBehaviour
 
     IEnumerator Esperar()
     {
+        yield return new WaitForSeconds(3.5f);
+
+        if (StaticClass.debug)
+        {
+            Debug.Log("Fase " + StaticClass.faseAtual.ToString() + ": " + esperarOndas.ToString() + " ondas para vencer. " + StaticClass.ondasPassadas.ToString() + " ondas passadas.");
+        }
+
         // Esperar uma quantidade de ondas ser criada.
         while (StaticClass.ondasPassadas < esperarOndas)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
         }
 
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(2.0f);
 
         // Esperar todos os inimigos morrerem.
         while (StaticClass.inimigosVivos > 0)

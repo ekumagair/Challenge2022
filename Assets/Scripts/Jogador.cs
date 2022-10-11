@@ -364,6 +364,11 @@ public class Jogador : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            if (Input.GetKeyDown(KeyCode.U) && StaticClass.debug)
+            {
+                StaticClass.inimigosMortos += 100;
+                StaticClass.ondasPassadas += 10;
+            }
 
             // Esconder ou mostrar HUD
             if (Input.GetKeyDown(KeyCode.I) && StaticClass.debug)

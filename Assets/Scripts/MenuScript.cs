@@ -64,9 +64,13 @@ public class MenuScript : MonoBehaviour
         Time.timeScale = 1;
 
         StaticClass.totalDeInimigos = 0;
-        StaticClass.inimigosMortos = 0;
         StaticClass.clicouEmBotao = false;
         StaticClass.segundosVivo = 0;
+
+        StaticClass.estadoDeJogo = 0;
+        StaticClass.ondasPassadas = 0;
+        StaticClass.inimigosMortos = 0;
+        StaticClass.inimigosVivos = 0;
     }
 
     private void Update()

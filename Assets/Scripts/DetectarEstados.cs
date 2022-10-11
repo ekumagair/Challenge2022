@@ -280,7 +280,9 @@ public class DetectarEstados : MonoBehaviour
     {
         StaticClass.estadoDeJogo = 0;
         StaticClass.ondasPassadas = 0;
+        StaticClass.inimigosMortos = 0;
         StaticClass.inimigosVivos = 0;
+        StaticClass.segundosVivo = 0;
     }
 
     public void ReiniciarCena()
@@ -296,6 +298,7 @@ public class DetectarEstados : MonoBehaviour
 
     public void IrParaAgradecimentos()
     {
+        ReiniciarVariaveis();
         StaticClass.musicaMenuTempo = 0;
         StaticClass.viuAgradecimento = true;
         SceneManager.LoadScene("Agradecimentos");
