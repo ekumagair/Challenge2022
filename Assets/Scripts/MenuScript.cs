@@ -71,6 +71,17 @@ public class MenuScript : MonoBehaviour
         StaticClass.ondasPassadas = 0;
         StaticClass.inimigosMortos = 0;
         StaticClass.inimigosVivos = 0;
+
+        // Carregar jogo salvo.
+        if(PlayerPrefs.HasKey("fase_desbloqueada"))
+        {
+            StaticClass.faseDesbloqueada = PlayerPrefs.GetInt("fase_desbloqueada");
+            StaticClass.inimigosMortosRecorde = PlayerPrefs.GetInt("inimigos_mortos_recorde");
+        }
+        if(StaticClass.faseDesbloqueada < 1)
+        {
+            StaticClass.faseDesbloqueada = 1;
+        }
     }
 
     private void Update()
@@ -114,6 +125,14 @@ public class MenuScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Period) && StaticClass.debug)
         {
             StaticClass.faseDesbloqueada++;
+        }
+        if(Input.GetKeyDown(KeyCode.Delete) && StaticClass.debug)
+        {
+            // Apagar dados salvos
+            PlayerPrefs.SetInt("fase_desbloqueada", 1);
+            PlayerPrefs.SetInt("inimigos_mortos_recorde", 0);
+            StaticClass.faseDesbloqueada = 1;
+            StaticClass.inimigosMortosRecorde = 0;
         }
     }
 

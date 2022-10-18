@@ -112,6 +112,8 @@ public class DetectarEstados : MonoBehaviour
                 {
                     StaticClass.faseDesbloqueada++;
                 }
+
+                Salvar();
             }
         }
         else
@@ -243,6 +245,7 @@ public class DetectarEstados : MonoBehaviour
         StaticClass.estadoDeJogo = -1;
         menuTitulo.GetComponent<Animator>().Play("CanvasBotoesTitulo");
         MostrarDica();
+        Salvar();
     }
 
     public void MudarEstadoDeJogo(int e)
@@ -287,17 +290,20 @@ public class DetectarEstados : MonoBehaviour
 
     public void ReiniciarCena()
     {
+        Salvar();
         ReiniciarVariaveis();
         SceneManager.LoadScene(cenaAtual);
     }
 
     public void VoltarParaTitulo()
     {
+        Salvar();
         SceneManager.LoadScene("Titulo");
     }
 
     public void IrParaAgradecimentos()
     {
+        Salvar();
         ReiniciarVariaveis();
         StaticClass.musicaMenuTempo = 0;
         StaticClass.viuAgradecimento = true;
@@ -429,5 +435,17 @@ public class DetectarEstados : MonoBehaviour
                 menuTextoExtraText.text = "Dica: Se você tiver energia (barra verde) o suficiente, você pode segurar o [Shift] para correr.";
             }
         }
+    }
+
+    // Salvar
+    public void Salvar()
+    {
+        if(StaticClass.faseDesbloqueada < 1)
+        {
+            StaticClass.faseDesbloqueada = 1;
+        }
+
+        PlayerPrefs.SetInt("fase_desbloqueada", StaticClass.faseDesbloqueada);
+        PlayerPrefs.SetInt("inimigos_mortos_recorde", StaticClass.inimigosMortosRecorde);
     }
 }
