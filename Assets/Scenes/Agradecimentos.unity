@@ -606,6 +606,9 @@ MonoBehaviour:
   textBuild: {fileID: 0}
   textCarregando: {fileID: 0}
   escSair: 0
+  previewTxt: {fileID: 0}
+  previewObj: {fileID: 0}
+  previewSprites: []
 --- !u!1 &596367594
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +908,8 @@ GameObject:
   - component: {fileID: 905478105}
   - component: {fileID: 905478104}
   - component: {fileID: 905478107}
+  - component: {fileID: 905478109}
+  - component: {fileID: 905478108}
   m_Layer: 5
   m_Name: Voltar
   m_TagString: Untagged
@@ -1134,6 +1139,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &905478108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905478102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.9972117, b: 0, a: 0.5}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
+--- !u!114 &905478109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905478102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75639c500e6fdb34caaa58721a5bc983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &940306437
 GameObject:
   m_ObjectHideFlags: 0

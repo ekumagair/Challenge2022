@@ -54,4 +54,32 @@ public static class StaticClass
 
     // Música
     public static float musicaMenuTempo = 0;
+
+    // Salvar dados
+    public static void Salvar()
+    {
+        if (faseDesbloqueada < 1)
+        {
+            faseDesbloqueada = 1;
+        }
+
+        SaveSystem.SaveData();
+    }
+
+    // Carregar dados
+    public static void Carregar()
+    {
+        UserData dados = SaveSystem.LoadData();
+
+        if(dados != null)
+        {
+            faseDesbloqueada = dados.faseDesbloqueada;
+            inimigosMortosRecorde = dados.inimigosMortosRecorde;
+            sensibilidadeMouse = dados.sensibilidadeMouse;
+            volumeGlobal = dados.volumeGlobal;
+            AudioListener.volume = volumeGlobal;
+            volumeHitSound = dados.volumeHitSound;
+            shakeMult = dados.shakeMult;
+        }
+    }
 }

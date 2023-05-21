@@ -20,9 +20,14 @@ public class MenuScript : MonoBehaviour
     public Text textCarregando;
     public bool escSair;
 
+    [Header("Preview de fases")]
+    public Text previewTxt;
+    public Image previewObj;
+    public Sprite[] previewSprites;
+
     void Start()
     {
-        if(sliderMouse != null && StaticClass.sensibilidadeMouse != 0f)
+        if (sliderMouse != null && StaticClass.sensibilidadeMouse != 0f)
         {
             sliderMouse.value = StaticClass.sensibilidadeMouse;
         }
@@ -54,9 +59,14 @@ public class MenuScript : MonoBehaviour
             }
         }
 
-        if(textCarregando != null)
+        if (textCarregando != null)
         {
             textCarregando.enabled = false;
+        }
+
+        if (previewTxt != null)
+        {
+            previewTxt.text = "";
         }
 
         Cursor.lockState = CursorLockMode.None;
@@ -73,12 +83,10 @@ public class MenuScript : MonoBehaviour
         StaticClass.inimigosVivos = 0;
 
         // Carregar jogo salvo.
-        if(PlayerPrefs.HasKey("fase_desbloqueada"))
-        {
-            StaticClass.faseDesbloqueada = PlayerPrefs.GetInt("fase_desbloqueada");
-            StaticClass.inimigosMortosRecorde = PlayerPrefs.GetInt("inimigos_mortos_recorde");
-        }
-        if(StaticClass.faseDesbloqueada < 1)
+        StaticClass.Carregar();
+
+        // A fase 1 precisa estar disponível.
+        if (StaticClass.faseDesbloqueada < 1)
         {
             StaticClass.faseDesbloqueada = 1;
         }
@@ -129,8 +137,9 @@ public class MenuScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Delete) && StaticClass.debug)
         {
             // Apagar dados salvos
-            PlayerPrefs.SetInt("fase_desbloqueada", 1);
-            PlayerPrefs.SetInt("inimigos_mortos_recorde", 0);
+            SaveSystem.DeleteSave();
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
             StaticClass.faseDesbloqueada = 1;
             StaticClass.inimigosMortosRecorde = 0;
         }
@@ -138,45 +147,77 @@ public class MenuScript : MonoBehaviour
 
     public void IrParaJogo()
     {
-        //SceneManager.LoadScene("Gameplay"); Protótipo
         StartCoroutine(IrPara("Gameplay"));
     }
 
     public void IrParaFase(int fase)
     {
         StaticClass.faseAtual = fase;
-        //SceneManager.LoadScene("Gameplay"); Protótipo
         StartCoroutine(IrPara("Gameplay"));
     }
 
     public void IrParaSelecionarFase()
     {
-        //SceneManager.LoadScene("SelecionarFases"); Protótipo
         StartCoroutine(IrPara("SelecionarFases"));
     }
 
     public void IrParaTitulo()
     {
-        //SceneManager.LoadScene("Titulo"); Protótipo
+        StaticClass.Salvar();
         StartCoroutine(IrPara("Titulo"));
     }
 
     public void IrParaOpcoes()
     {
-        //SceneManager.LoadScene("Opcoes"); Protótipo
+        StaticClass.Salvar();
         StartCoroutine(IrPara("Opcoes"));
     }
 
     public void IrParaControles()
     {
-        //SceneManager.LoadScene("Controles"); Protótipo
         StartCoroutine(IrPara("Controles"));
     }
 
     public void IrParaCreditos()
     {
-        //SceneManager.LoadScene("Creditos"); Protótipo
         StartCoroutine(IrPara("Creditos"));
+    }
+
+    public void MudarPreview(int n)
+    {
+        if(previewObj != null && previewTxt != null && StaticClass.faseDesbloqueada > n)
+        {
+            previewObj.sprite = previewSprites[n];
+
+            switch (n + 1)
+            {
+                case 1:
+                    previewTxt.text = "Fase 1: Derrote todos os Cavaleiros para vencer.";
+                    break;
+                case 2:
+                    previewTxt.text = "Fase 2: Derrote todos os Cavaleiros e Gladiadores para vencer.";
+                    break;
+                case 3:
+                    previewTxt.text = "Fase 3: Derrote todos os Cavaleiros e Samurais para vencer.";
+                    break;
+                case 4:
+                    previewTxt.text = "Fase 4: Derrote todos os Cavaleiros e Ninjas para vencer.";
+                    break;
+                case 5:
+                    previewTxt.text = "Fase 5: Todos os inimigos que você já encontrou estão aqui, junto com variações mais fortes deles e Soldados Romanos.";
+                    break;
+                case 6:
+                    previewTxt.text = "Fase Infinita: Uma fase que só termina quando você é derrotado pelas ondas de inimigos que ficam cada vez mais fortes. Seu recorde de inimigos mortos é: " + StaticClass.inimigosMortosRecorde.ToString() + ".";
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            previewObj.sprite = previewSprites[0];
+            previewTxt.text = "";
+        }
     }
 
     public void SairDoJogo()

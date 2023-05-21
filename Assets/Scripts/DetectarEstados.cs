@@ -303,10 +303,10 @@ public class DetectarEstados : MonoBehaviour
 
     public void IrParaAgradecimentos()
     {
-        Salvar();
         ReiniciarVariaveis();
         StaticClass.musicaMenuTempo = 0;
         StaticClass.viuAgradecimento = true;
+        Salvar();
         SceneManager.LoadScene("Agradecimentos");
     }
 
@@ -424,7 +424,6 @@ public class DetectarEstados : MonoBehaviour
         }
         else if (StaticClass.modoDeJogo == 2)
         {
-            //menuTextoExtraText.text = "Tente novamente.";
             int dica = Random.Range(0, 2);
             if (dica == 0)
             {
@@ -440,12 +439,11 @@ public class DetectarEstados : MonoBehaviour
     // Salvar
     public void Salvar()
     {
-        if(StaticClass.faseDesbloqueada < 1)
-        {
-            StaticClass.faseDesbloqueada = 1;
-        }
-
+        /*
         PlayerPrefs.SetInt("fase_desbloqueada", StaticClass.faseDesbloqueada);
         PlayerPrefs.SetInt("inimigos_mortos_recorde", StaticClass.inimigosMortosRecorde);
+        PlayerPrefs.Save();*/
+
+        StaticClass.Salvar();
     }
 }
